@@ -1,0 +1,122 @@
+<div class="register__container">
+    <div class="register__logo">
+        <div class="logo__img"></div>
+    </div>
+
+    <div class="card__container">
+        <h2 class="card__title">
+            Register
+        </h2>
+    
+        <!-- multiples cards -->
+        <div 
+            [ngClass]="{'active': selectIndex === 0}"
+            class="card">
+            <div class="card__body">
+                <div class="card__inputs">
+                    <input type="text" placeholder="Nombre">
+                    <input type="text" placeholder="Apellido">
+                </div>
+                <button class="btn__login">
+                    <i class="ri-radio-button-line"></i>
+                    Iniciar Sesión
+                </button>
+            </div>
+        </div>
+        <div 
+            [ngClass]="{'active': selectIndex === 1}"
+            class="card">
+            <div class="card__body">
+                <div class="card__inputs">
+                    <input type="number" placeholder="Cédula de identidad">
+                    <input type="text" placeholder="Dirección">
+                </div>
+                <button class="btn__login">
+                    <i class="ri-radio-button-line"></i>
+                    Iniciar Sesión
+                </button>
+            </div>
+        </div>
+        <div 
+            [ngClass]="{'active': selectIndex === 2}"
+            class="card">
+            <div class="card__body">
+                <div class="card__inputs">
+                    <input type="number" placeholder="Teléfono">
+                    <div class="select">
+                        <p>
+                            {{ opcionValue | titlecase }}
+                        </p>
+                        <button 
+                            [ngClass]="{'active': btnShow === false}"
+                            class="btn__show"
+                            (click)="showBtn()">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </button>
+                        <button 
+                            [ngClass]="{'active': btnShow === true}"
+                            class="btn__show"
+                            (click)="hideBtn()">
+                            <i class="ri-arrow-up-s-line"></i>
+                        </button>
+
+                        <ul 
+                            [ngClass]="{'show': btnShow === true}"
+                            class="opcion__container">
+                            <li
+                                [ngClass]="{'active1': selectItem === 0}" 
+                                class="opcion__item item1"
+                                (click)="onClickItem1()">
+                                <div class="img analogico"></div>
+                                <p>Analógico</p>
+                            </li>
+                            <li 
+                                [ngClass]="{'active2': selectItem === 1}"
+                                class="opcion__item item2"
+                                (click)="onClickItem2()">
+                                <div class="img digital"></div>
+                                <p>Digital</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="btn__login">
+                    <i class="ri-radio-button-line"></i>
+                    Iniciar Sesión
+                </button>
+            </div>
+        </div>
+        <div 
+            [ngClass]="{'active': selectIndex === 3}"
+            class="card">
+            <div class="card__body">
+                <div class="card__inputs">
+                    <input type="text" placeholder="Correo">
+                    <input type="password" placeholder="Contraseña">
+                </div>
+
+                <button class="btn__login">
+                    <i class="ri-radio-button-line"></i>
+                    Iniciar Sesión
+                </button>
+            </div>
+        </div>
+
+        <!-- botones  -->
+        <div class="btn__card">
+            <button 
+                (click)="onPrevCard()"
+                class="btn prev"
+                [ngClass]="{'active': selectIndex > 0}">
+                <i class="ri-arrow-left-s-line"></i>
+            </button>
+            <button 
+                (click)="onNextCard()"
+                class="btn next"
+                [ngClass]="{'active': selectIndex === 4}">
+                <i class="ri-arrow-right-s-line"></i>
+            </button>
+        </div>
+    </div>
+</div>
+

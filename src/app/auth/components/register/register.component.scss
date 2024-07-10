@@ -1,0 +1,382 @@
+$color-blue-light: rgba(61, 117, 201, .7);
+$color-blue-dark: rgba(9, 0, 108, .9);
+$color-white: #fff;
+$box-shadow-gray: 0 15px 20px rgba(186, 172, 255, .5);
+$box-shadow-blue: 10px 15px 20px rgba(25, 14, 138, .2), -10px 15px 20px rgba(25, 14, 138, .2);
+$font-family-open-sans: 'Open Sans', 'Poppins', Arial;
+$font-family-poppins: 'Poppins', 'Open Sans', Arial;
+
+
+
+.register__container {
+    width: 380px;
+    min-width: 260px;
+    max-width: 1000px;
+    height: 710px;
+    background-color: $color-white;
+    border-radius: 30px;
+    box-shadow: $box-shadow-gray;
+    overflow: hidden;
+
+    .register__logo {
+        position: relative;
+        display: flex;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 400px;
+        height: 260px;
+        justify-content: center;
+        align-items: center;
+        background-image: linear-gradient(155deg, $color-blue-light, $color-blue-dark 70.71%);
+        box-shadow: $box-shadow-blue;
+        border-bottom-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+
+        .logo__img {
+            position: absolute;
+            top: 70px;
+            width: 80px;
+            height: 80px;
+            background-image: url('../../../../../public/agua-del-grifo.png');
+            background-size: cover;
+        }
+        
+    }
+
+    .card__container {
+        position: relative;
+        top: -78px;
+        width: 85%;
+        height: 400px;
+        margin: auto;
+        padding: 20px;
+        background-color: $color-white;
+        border-radius: 30px;
+        box-shadow: 0 20px 20px rgba(79, 3, 239, .2);
+
+        .card__title {
+            font-size: 35px;
+            font-family: $font-family-poppins;
+            color: rgba(43, 29, 199, .7);
+            font-weight: 700;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .card {
+            position: absolute;
+            top: 145px;
+            left: 50%;
+            width: 85%;
+            transform: translateX(120%);
+            transition: ease-in .2s;
+
+            .card__inputs {
+                width: 100%;
+
+                input {
+                    width: 100%;
+                    padding: 15px 20px;
+                    margin: 15px 0;
+                    border-radius: 50px;
+                    font-family: $font-family-open-sans;
+                    font-size: 14px;
+                    font-weight: normal;
+                    color: rgba(0, 0, 0, .7);
+                    border: 1.5px solid rgba(0, 0, 0, .1);
+                    box-shadow: 5px 10px 30px rgba(98, 84, 255, .2);
+                    outline: none;
+                    transition: ease-in-out .2s;  
+                    
+                    &:focus {
+                        transform: scale(1.05);
+                        border: 2px solid $color-blue-light;
+                        transition: ease-in-out .1s;
+                    }
+                }
+
+                input[type=number]::-webkit-outer-spin-button,
+                input[type=number]::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+
+                .select {
+                    position: relative;
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    padding: 14px 20px;
+                    margin: 15px 0;
+                    border-radius: 50px;
+                    font-family: $font-family-open-sans;
+                    font-size: 14px;
+                    font-weight: normal;
+                    border: 1.5px solid rgba(0, 0, 0, .1);
+                    box-shadow: 5px 10px 30px rgba(98, 84, 255, .2);
+                    transition: ease-in-out .2s;
+                    background-color: $color-white;
+
+                    p {
+                        color: rgba(0, 0, 0, .6);
+                        user-select: none;
+                    }
+
+                    .btn__show {
+                        padding: 0 10px;
+                        background: transparent;
+                        display: none;
+                        border: none;
+                        animation: btnAnimation .25s ease-out;
+                    } 
+
+                    .btn__show.active {
+                        display: block;
+                    }
+
+                    i {
+                        font-size: 20px;
+                        font-weight: 600;
+                        color: rgba(0, 0, 0, .6);
+                        cursor: pointer;
+                        transition: opacity ease .2s;
+
+                        &:hover {
+                            opacity: .9;
+                            transition: opacity ease .2s;
+                        }
+                    }
+
+                    @keyframes btnAnimation {
+                        0% {
+                            transform: scale(0);
+                        }
+                        70% {
+                            transform: scale(.7);
+                        }
+                        100% {
+                            transform: scale(1);
+                        }
+                    }
+
+                    .opcion__container {
+                        position: absolute;
+                        top: 64px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 100%;
+                        background-color: $color-white;
+                        border-radius: 20px;
+                        box-shadow: 3px 15px 20px rgba(0, 0, 0, .1);
+                        display: none;
+                        animation: opcionAnimationShow .3s ease-out;
+
+                        .opcion__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 5px 20px;
+                            cursor: pointer;
+                        }
+                        
+                        .item1 {
+                            border-bottom: 1px solid rgba(0, 0, 0, .1);
+                        }
+
+                        .opcion__item > li {
+                            border-radius: 20px 20px 0 0;
+                        }
+
+                        li {
+                            list-style: none;
+
+                            .img {
+                                width: 40px;
+                                height: 40px;
+                            }
+                            
+                            .analogico {
+                                background-image: url('../../../../../public/analogico.png');
+                                background-size: cover;
+                            }
+
+                            .digital {
+                                background-image: url('../../../../../public/digital.png');
+                                background-size: cover;
+                            }
+                        }
+
+                        li.active1 {
+                            background-image: linear-gradient(120deg, rgba(55, 147, 255, 1) 33%, rgba(69, 3, 239, 1) 100%);
+                            border-radius: 20px 20px 0 0;
+
+                            p {
+                                color: $color-white;
+                                opacity: .85;
+                            }
+                        }
+
+                        li.active2 {
+                            background-image: linear-gradient(120deg, rgba(55, 147, 255, 1) 33%, rgba(69, 3, 239, 1) 100%);
+                            border-radius: 0 0 20px 20px;
+                            color: $color-white;
+
+                            p {
+                                color: $color-white;
+                                opacity: .85;
+                            }
+                        }
+                    }
+
+                    .opcion__container.show {
+                        display: block;
+                    }
+
+                    @keyframes opcionAnimationShow {
+                        0% {
+                            transform: translateX(-50%) scale(0);
+                        }
+
+                        50% {
+                            transform: translateX(-50%) scale(.7);
+                        }
+
+                        100% {
+                            transform: translateX(-50%) scale(1);
+                        }
+                    }
+                }
+            }
+
+            .btn__login {
+                margin: 20px 0;
+                background-color: transparent;
+                border: none;
+                font-family: $font-family-poppins;
+                font-size: 12px;
+                font-weight: 600;
+                color: rgba(9, 0, 115, .71);
+                transition: ease-in .2s;
+
+                &:hover {
+                    opacity: .8;
+                    transition: ease-in .2s;
+                }
+            }
+            
+        }
+        .card.active {
+            transform: translateX(-50%);
+            transition: ease-in .2s;
+        }
+        .btn__card {
+            position: absolute;
+            bottom: -75px;
+            left: 00;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 20px;
+
+            .btn {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                background-image: linear-gradient(120deg, rgba(55, 147, 255, 1) 33%, rgba(69, 3, 239, 1) 100%);
+                border: none;
+                box-shadow: 3px 10px 20px rgba(0, 0, 0, .15);
+                transition: .2s ease;
+
+                i {
+                    color: $color-white;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+
+                &:hover {
+                    opacity: .9;
+                    transition: .2s ease;
+                }
+            }
+
+            .prev {
+                display: none;
+            }
+
+            .prev.active {
+                display: block;
+            }
+
+            .next.active {
+                display: none;
+            }
+        }
+
+    }
+}
+
+@media (min-width: 800px) {
+    .register__container {
+        width: 700px;
+        height: 545px;
+        max-width: 1200px;
+        display: grid;
+        grid-template-areas: 'logo card';
+
+        .register__logo {
+            position: relative;
+            top: 0;
+            left: 70px;
+            grid-area: 'logo';
+            height: 543px;
+            border-radius: 0% 50% 50% 0%;
+
+            .logo__img {
+                top: 236px;
+                left: 219px;
+            }
+        }
+
+        .card__container {
+            top: -35px;
+            left: -63px;
+            width: 300px;
+            grid-area: 'card';
+
+            .card__inputs {
+                input {
+                    margin: 15px 0;
+                }
+            }
+        }
+
+        .btn__container {
+            grid-area: 'card';
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .register__container {
+        width: 900px;
+
+        .login__logo {
+            left: 90px;
+
+            .logo__img {
+                left: 170px;
+            }
+        }
+
+        .btn__login {
+            left: 84px;
+        }
+
+        .card__container {
+            width: 378px;
+            left: -72px;
+        }
+    }
+}

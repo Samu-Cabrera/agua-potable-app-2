@@ -1,0 +1,261 @@
+$color-blue-light: rgba(61, 117, 201, .7);
+$color-blue-dark: rgba(9, 0, 108, .9);
+$color-white: #fff;
+$box-shadow-blue: 10px 15px 20px rgba(25, 14, 138, .2), -10px 15px 20px rgba(25, 14, 138, .2);
+$box-shadow-gray: 0 15px 20px rgba(186, 172, 255, .5);
+$font-family-open-sans: 'Open Sans', 'Poppins', Arial;
+$font-family-poppins: 'Poppins', 'Open Sans', Arial;
+
+.login__container {
+    width: 380px;
+    min-width: 260px;
+    max-width: 1000px;
+    height: auto;
+    background-color: $color-white;
+    border-radius: 30px;
+    box-shadow: $box-shadow-gray;
+    overflow: hidden;
+
+    .login__logo {
+        position: relative;
+        display: flex;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 400px;
+        height: 260px;
+        justify-content: center;
+        align-items: center;
+        background-image: linear-gradient(155deg, $color-blue-light, $color-blue-dark 70.71%);
+        box-shadow: $box-shadow-blue;
+        border-bottom-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+
+        .logo__img {
+            position: absolute;
+            top: 70px;
+            width: 80px;
+            height: 80px;
+            background-image: url('../../../../../public/agua-del-grifo.png');
+            background-size: cover;
+        }
+
+    }
+
+    .card__container {
+        position: relative;
+        top: -78px;
+        left: 0;
+        width: 85%;
+        padding: 20px;
+        margin: auto;
+        background-color: $color-white;
+        border-radius: 30px;
+        box-shadow: 0 20px 20px rgba(79, 3, 239, .2);
+
+        .card__title {
+            font-size: 35px;
+            font-family: $font-family-poppins;
+            color: rgba(43, 29, 199, .7);
+            font-weight: 700;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .card__inputs {
+            width: 100%;
+
+            input {
+                width: 100%;
+                padding: 15px 20px;
+                margin: 12px 0;
+                border-radius: 50px;
+                font-family: $font-family-open-sans;
+                font-size: 14px;
+                font-weight: normal;
+                color: rgba(0, 0, 0, .7);
+                border: 1.5px solid rgba(0, 0, 0, .1);
+                box-shadow: 5px 10px 30px rgba(98, 84, 255, .2);
+                outline: none;
+                transition: ease-in-out .2s;
+
+                &:focus {
+                    transform: scale(1.05);
+                    outline: 1px solid $color-blue-light;
+                    transition: ease-in-out .1s;
+                }
+            }
+
+            .input__error {
+                outline: 1px solid #F23742;
+
+                &:focus {
+                    outline: 1px solid #F23742; 
+                }
+            }
+
+            .input__message {
+                display: block;
+                position: relative;
+                width: 100%;
+                top: -7px;
+                padding: 0 15px;
+                font-family: $font-family-open-sans;
+                font-size: 12px;
+                font-weight: 600;
+                color: #F23742;
+                animation: error-animation .5s ease-out;
+            }
+
+            @keyframes error-animation {
+                0% {
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 70;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+
+
+            input[type=number]::-webkit-outer-spin-button,
+            input[type=number]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+            }
+        }
+
+        .card__body .btn__register {
+            margin: 20px 0;
+            background-color: transparent;
+            border: none;
+            font-family: $font-family-poppins;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(9, 0, 115, .71);
+            transition: ease-in .2s;
+
+            &:hover {
+                opacity: .9;
+                transition: ease-in .2s;
+            }
+        }
+    }
+
+    .btn__login {
+        position: relative;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 35px;
+        margin-bottom: 10px;
+        background: $color-blue-light;
+        border: none;
+        font-family: $font-family-poppins;
+        font-size: 14px;
+        color: $color-white;
+        font-weight: 400;
+        border-radius: 50px;
+        box-shadow: 0 20px 40px rgba(19, 0, 236, .27);
+        user-select: none;
+    }
+
+    .btn__login.active {
+        background-image: linear-gradient(120deg, rgba(55, 147, 255, 1) 33%, rgba(69, 3, 239, 1) 100%);
+        transition: .2s ease-in-out;
+        color: $color-white;
+        opacity: 1;
+        cursor: pointer;
+
+        &:hover {
+            opacity: .8;
+            transition: .2s ease-in-out;
+        }
+
+        i {
+            display: block;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        &:hover i {
+            transform: translateX(10px);
+            transition: .2s ease-in-out;
+
+        }
+
+    }
+}
+
+@media (min-width: 800px) {
+    .login__container {
+        width: 700px;
+        max-width: 1200px;
+        height: 530px;
+        display: grid;
+        grid-template-areas: 'logo card';
+
+        .login__logo {
+            position: relative;
+            top: 0;
+            left: 70px;
+            grid-area: 'logo';
+            height: 529px;
+            border-radius: 0% 50% 50% 0%;
+
+            .logo__img {
+                top: 220px;
+                left: 216px;
+            }
+        }
+
+        .card__container {
+            top: 20px;
+            left: -85px;
+            width: 350px;
+            grid-area: 'card';
+
+
+            .card__inputs {
+                input {
+                    margin: 15px 0;
+                }
+            }
+        }
+
+        .btn__login {
+            top: 60px;
+            left: 90px;
+            margin-bottom: 10px;
+        }
+
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .login__container {
+        width: 800px;
+
+        .login__logo {
+            left: 90px;
+
+            .logo__img {
+                left: 197px;
+            }
+        }
+
+        .btn__login {
+            left: 112px;
+        }
+
+        .card__container {
+            left: -70px;
+            width: 350px;
+        }
+    }
+}

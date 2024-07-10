@@ -1,0 +1,67 @@
+<div class="login__container">
+    <div class="login__logo">
+         <div class="logo__img"></div>
+    </div>
+
+    <form 
+        [formGroup] = "loginForm"
+        autocomplete="off"
+        (ngSubmit)="onSubmit()">
+
+        <div class="card__container">
+            <h2 class="card__title">
+                Log In
+            </h2>
+    
+            <div class="card__body">
+                <div 
+                    class="card__inputs">
+                    <input 
+                        type="number" 
+                        placeholder="Cédula de Identidad"
+                        formControlName="cedula"
+                        [ngClass]="{'input__error': isValidField('cedula')}">
+                        @if (isValidField('cedula')) {
+                            <span class="input__message">
+                                {{ getError('cedula') }}
+                            </span>
+                        }
+                    <div class="input__password">
+                        <input 
+                            type="password" 
+                            placeholder="Contraseña"
+                            formControlName="password"
+                            [ngClass]="{'input__error': isValidField('password')}">
+                        @if(isValidField('password')){
+                            <span class="input__message">
+                                {{ getError('password') }}
+                            </span>
+                        }
+                    </div>
+                </div>
+    
+                <button 
+                    class="btn__register">
+                    <i class="ri-radio-button-line"></i>
+                    Solicitar una cuenta
+                </button>
+            </div>
+        </div>
+        <!-- <button 
+            type="submit" 
+            class="btn__login"
+            [disabled]="this.loginForm.invalid"
+            [ngClass]="{'active': this.loginForm.valid}">
+            Iniciar
+        </button> -->
+        <button 
+            type="submit"
+            class="btn__login"
+            [disabled]="this.loginForm.invalid"
+            [ngClass]="{'active': this.loginForm.valid}">
+            Iniciar Sesión
+            <i class="ri-arrow-right-line"></i>
+        </button>
+    </form>
+
+</div>

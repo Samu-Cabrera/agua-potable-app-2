@@ -1,0 +1,23 @@
+$color-blue-light: rgba(61, 117, 201, .7);
+$font-family-open-sans: 'Open Sans', 'Poppins', Arial;
+
+input {
+    width: 100%;
+    padding: 15px 20px;
+    margin: 15px 0;
+    border-radius: 50px;
+    font-family: $font-family-open-sans;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgba(0, 0, 0, .8);
+    border: 1.5px solid rgba(0, 0, 0, .1);
+    box-shadow: 5px 10px 30px rgba(98, 84, 255, .2);
+    outline: none;
+    transition: ease-in-out .2s;  
+    
+    &:focus {
+        transform: scale(1.05);
+        border: 2px solid $color-blue-light;
+        transition: ease-in-out .1s;
+    }
+}
