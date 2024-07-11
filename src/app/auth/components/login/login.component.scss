@@ -127,13 +127,13 @@ $font-family-poppins: 'Poppins', 'Open Sans', Arial;
         }
 
         .card__body .btn__register {
+            display: inline-block;
             margin: 20px 0;
-            background-color: transparent;
-            border: none;
             font-family: $font-family-poppins;
             font-size: 12px;
             font-weight: 600;
             color: rgba(9, 0, 115, .71);
+            text-decoration: none;
             transition: ease-in .2s;
 
             &:hover {

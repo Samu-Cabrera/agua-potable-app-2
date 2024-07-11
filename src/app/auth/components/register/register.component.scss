@@ -78,23 +78,56 @@ $font-family-poppins: 'Poppins', 'Open Sans', Arial;
                 input {
                     width: 100%;
                     padding: 15px 20px;
-                    margin: 15px 0;
+                    margin: 12px 0;
                     border-radius: 50px;
                     font-family: $font-family-open-sans;
                     font-size: 14px;
                     font-weight: normal;
                     color: rgba(0, 0, 0, .7);
-                    border: 1.5px solid rgba(0, 0, 0, .1);
+                    border: 1px solid rgba(0, 0, 0, .1);
                     box-shadow: 5px 10px 30px rgba(98, 84, 255, .2);
                     outline: none;
                     transition: ease-in-out .2s;  
                     
                     &:focus {
                         transform: scale(1.05);
-                        border: 2px solid $color-blue-light;
+                        border: 1px solid $color-blue-light;
                         transition: ease-in-out .1s;
                     }
                 }
+
+                .input__error {
+                    outline: 1px solid #F23742;
+    
+                    &:focus {
+                        outline: 1px solid #F23742; 
+                    }
+                }
+
+                .input__message {
+                    display: block;
+                    position: relative;
+                    width: 100%;
+                    top: -7px;
+                    padding: 0 15px;
+                    font-family: $font-family-open-sans;
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #F23742;
+                    animation: error-animation .5s ease-out;
+                }
+
+                @keyframes error-animation {
+                0% {
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 70;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
 
                 input[type=number]::-webkit-outer-spin-button,
                 input[type=number]::-webkit-inner-spin-button {
@@ -287,7 +320,6 @@ $font-family-poppins: 'Poppins', 'Open Sans', Arial;
                 border: none;
                 box-shadow: 3px 10px 20px rgba(0, 0, 0, .15);
                 transition: .2s ease;
-
                 i {
                     color: $color-white;
                     font-size: 20px;

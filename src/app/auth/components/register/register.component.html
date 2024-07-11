@@ -3,7 +3,11 @@
         <div class="logo__img"></div>
     </div>
 
-    <div class="card__container">
+    <form 
+        [formGroup]="registerForm"
+        autocomplete="off"
+        (ngSubmit)="onSave()"
+        class="card__container">
         <h2 class="card__title">
             Register
         </h2>
@@ -14,22 +18,65 @@
             class="card">
             <div class="card__body">
                 <div class="card__inputs">
-                    <input type="text" placeholder="Nombre">
-                    <input type="text" placeholder="Apellido">
+                    <input 
+                        type="text" 
+                        placeholder="Nombre"
+                        formControlName="name"
+                        [ngClass]="{'input__error': isValidField('name')}">
+
+                        @if(isValidField('name')){
+                            <span class="input__message">
+                                {{ getError('name') }}
+                            </span>
+                        }
+                    <input 
+                        type="text" 
+                        placeholder="Apellido"
+                        formControlName="lastname"
+                        [ngClass]="{'input__error': isValidField('lastname')}">
+                        
+                        @if(isValidField('lastname')){
+                            <span class="input__message">
+                                {{ getError('lastname') }}
+                            </span>
+                        }
                 </div>
-                <button class="btn__login">
+                <button 
+                    [ngClass]="{'active': this.registerForm.valid}"
+                    [disabled]="this.registerForm.invalid"
+                    class="btn__login">
                     <i class="ri-radio-button-line"></i>
                     Iniciar Sesión
                 </button>
             </div>
         </div>
+
         <div 
             [ngClass]="{'active': selectIndex === 1}"
             class="card">
             <div class="card__body">
                 <div class="card__inputs">
-                    <input type="number" placeholder="Cédula de identidad">
-                    <input type="text" placeholder="Dirección">
+                    <input 
+                        type="number" 
+                        placeholder="Cédula de identidad"
+                        formControlName="cedula">
+
+                        @if(isValidField('cedula')){
+                            <span class="input__message">
+                                {{ getError('cedula') }}
+                            </span>
+                        }
+
+                    <input 
+                        type="text" 
+                        placeholder="Dirección"
+                        formControlName="address">
+
+                        @if(isValidField('address')){
+                            <span class="input__message">
+                                {{ getError('address') }}
+                            </span>
+                        }
                 </div>
                 <button class="btn__login">
                     <i class="ri-radio-button-line"></i>
@@ -37,12 +84,23 @@
                 </button>
             </div>
         </div>
+
         <div 
             [ngClass]="{'active': selectIndex === 2}"
             class="card">
             <div class="card__body">
                 <div class="card__inputs">
-                    <input type="number" placeholder="Teléfono">
+                    <input 
+                        type="number" 
+                        placeholder="Teléfono"
+                        formControlName="phone">
+
+                        @if(isValidField('phone')){
+                            <span class="input__message">
+                                {{ getError('phone') }}
+                            </span>
+                        }
+
                     <div class="select">
                         <p>
                             {{ opcionValue | titlecase }}
@@ -86,13 +144,33 @@
                 </button>
             </div>
         </div>
+
         <div 
             [ngClass]="{'active': selectIndex === 3}"
             class="card">
             <div class="card__body">
                 <div class="card__inputs">
-                    <input type="text" placeholder="Correo">
-                    <input type="password" placeholder="Contraseña">
+                    <input 
+                        type="text" 
+                        placeholder="Correo"
+                        formControlName="email">
+
+                        @if(isValidField('email')){
+                            <span class="input__message">
+                                {{ getError('email') }}
+                            </span>
+                        }
+
+                    <input 
+                        type="password" 
+                        placeholder="Contraseña"
+                        formControlName="password">
+
+                        @if(isValidField('password')){
+                            <span class="input__message">
+                                {{ getError('password') }}
+                            </span>
+                        }
                 </div>
 
                 <button class="btn__login">
@@ -117,6 +195,6 @@
                 <i class="ri-arrow-right-s-line"></i>
             </button>
         </div>
-    </div>
+    </form>
 </div>
 

@@ -1,17 +1,14 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AsyncValidator } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { minValidators, maxValidators, userCIValidators } from '../../helpers/custom.validation';
 import { ValidatorsServices } from '../../services/validators.service';
 
 @Component({
   selector: 'auth-login',
   standalone: true,
-  imports: [
-    RouterModule,
-    ReactiveFormsModule,
-    NgClass
+  imports: [ RouterModule, ReactiveFormsModule, NgClass
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -19,7 +16,7 @@ import { ValidatorsServices } from '../../services/validators.service';
 export class LoginComponent {
 
   loginForm: FormGroup = this.fb.group({
-    cedula: ['', [
+    cedula: ['92998-3874', [
       Validators.required,
       minValidators,
       maxValidators,

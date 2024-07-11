@@ -40,20 +40,16 @@
                     </div>
                 </div>
     
-                <button 
+                <a 
+                    routerLink="/auth/register"
                     class="btn__register">
-                    <i class="ri-radio-button-line"></i>
+                    <i class="ri-radio-button-line"
+                    routerLink="/auth/register"></i>
                     Solicitar una cuenta
-                </button>
+                </a>
             </div>
         </div>
-        <!-- <button 
-            type="submit" 
-            class="btn__login"
-            [disabled]="this.loginForm.invalid"
-            [ngClass]="{'active': this.loginForm.valid}">
-            Iniciar
-        </button> -->
+        
         <button 
             type="submit"
             class="btn__login"

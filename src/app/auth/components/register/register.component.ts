@@ -1,24 +1,68 @@
 import { NgClass, TitleCasePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ValidatorsServices } from '../../services/validators.service';
+import { existEmail, existUserCI, maxValidators, minValidators } from '../../helpers/custom.validation';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    NgClass,
-    TitleCasePipe
-  ],
+  imports: [ NgClass, TitleCasePipe, ReactiveFormsModule ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
- 
+
+  private readonly validatorService = inject(ValidatorsServices);
+  private readonly fb = inject(FormBuilder);
+
+  constructor(){
+    console.log(this.registerForm.valid);
+  }
 
   selectIndex: number = 0;
   selectItem: number = 0;
   opcionValue: string = 'Medidor';
   btnShow: boolean = false;
 
+  registerForm: FormGroup = this.fb.group({
+    name: ['', [Validators.required]],
+    lastname: ['', [Validators.required]],
+    cedula: ['', [
+      Validators.required,
+      minValidators,
+      maxValidators
+    ], [
+      existUserCI(this.validatorService)
+    ]],
+    address: ['', Validators.required],
+    phone: ['', [ 
+      Validators.required,
+      minValidators
+    ]],
+    medidor: [''],
+    email: ['', [
+      Validators.required,
+      Validators.email
+    ], [existEmail(this.validatorService)]],
+    password: ['', [
+      Validators.required,
+      minValidators
+    ]]
+
+
+  });
+
+  isValidField(field: string): boolean | null {
+    return this.validatorService.isValidField(this.registerForm, field);
+  }
+
+  getError(field: string): string | null {
+    return this.validatorService.getFieldError(this.registerForm, field);
+  }
+
+
+  //metodos
   onNextCard(): void {
     this.selectIndex++;
 
@@ -48,5 +92,9 @@ export class RegisterComponent {
 
   hideBtn(): void {
     this.btnShow = false;
+  }
+
+  onSave(): void {
+    console.log(this.registerForm.valid);
   }
 }

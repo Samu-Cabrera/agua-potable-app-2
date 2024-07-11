@@ -23,10 +23,13 @@ export class ValidatorsServices {
     
         for(let keys of Object.keys(errors)) {
           switch(keys){
-            case 'required': return field === 'cedula' ? 'La cédula es obligatoria.' : 'La contraseña es obligatoria.'
+            case 'required': return 'Este campo es obligatorio.';
             case 'minLength': return `Este campo debe tener más de 5 caracteres.`;
             case 'maxLength': return 'Este campo debe tener menos de 15 caracteres.';
-            case 'existeCI': return 'La cédula ya esta registrada.';
+            case 'existeCI': return 'La cédula no esta registrada.';
+            case 'userCI': return 'La cédula ya esta registrada.';
+            case 'email': return 'El correo no es valido.';
+            case 'existEmail': return 'El correo ya esta registrado.'
           }
         }
     
@@ -37,7 +40,15 @@ export class ValidatorsServices {
       const api_url = 'https://jsonplaceholder.typicode.com/users';
       
       return this._http.get<any[]>(api_url).pipe(
-        map(users => users.some(user => user.username === CI))
+        map(users => users.some(user => user.address.zipcode === CI))
+      );
+    }
+
+    public checkEmail(email: string): Observable<boolean> {
+      const api_url = 'https://jsonplaceholder.typicode.com/users';
+      
+      return this._http.get<any[]>(api_url).pipe(
+        map(users => users.some(user => user.email === email))
       );
     }
 }

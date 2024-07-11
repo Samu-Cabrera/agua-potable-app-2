@@ -26,9 +26,31 @@ export const maxValidators = (field: AbstractControl): ValidationErrors | null =
 export const userCIValidators = (existeCI: ValidatorsServices): AsyncValidatorFn => {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
         return timer(1000).pipe(
-            switchMap(() => existeCI.checkUserCI(control.value.trim())),
-            map(ci => ci ? { existeCI: true } : null),
+            switchMap(() => existeCI.checkUserCI(control.value.toString())),
+            map(ci => ci ? null : { existeCI: true}),
             catchError(() => of(null))
         );
     };
 }
+
+export const existUserCI = (userCI: ValidatorsServices): AsyncValidatorFn => {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+        return timer(1000).pipe(
+            switchMap(() => userCI.checkUserCI(control.value.toString())),
+            map(ci => ci ? { userCI: true } : null),
+            catchError(() => of(null))
+        )
+    }
+}
+
+export const existEmail = (email: ValidatorsServices): AsyncValidatorFn => {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+        email.checkEmail(control.value).subscribe(res => console.log(res))
+        return timer(1000).pipe(
+            switchMap(() => email.checkEmail(control.value.trim())),
+            map(userEmail => userEmail ? { existEmail: true } : null),
+            catchError(() => of(null))
+        )
+    } 
+}
+
