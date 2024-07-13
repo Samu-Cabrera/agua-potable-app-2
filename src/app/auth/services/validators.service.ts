@@ -41,8 +41,6 @@ export class ValidatorsServices {
     }
 
     public checkUserCI(CI: number): Observable<boolean>{
-
-      console.log(CI);
       return this._http.get<UserList>(`${ this._api_url }/user/list-all`).pipe(
         map(res => res.usuarios.some(user => user.ci === Number(CI)))
       );

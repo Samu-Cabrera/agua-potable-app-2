@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environments.dev';
 import { UserRegister, User, UserLogin, UserLoginMsg } from '../interfaces/user.interface';
 
@@ -15,7 +16,11 @@ export class UserServices{
 
 
     login(data: UserLogin): Observable<UserLoginMsg> {
-        return this._http.post<UserLoginMsg>(`${ environment.apiUrl }/api/login/`, data);
+        return this._http.post<UserLoginMsg>(`${ environment.apiUrl }/api/login/`, data).pipe(
+            tap((res: UserLoginMsg) => {
+                if(res.token) localStorage.setItem('token', res.token);
+            })
+        );
     }
 
     register(data: User): Observable<UserRegister> {
