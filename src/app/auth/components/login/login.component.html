@@ -19,11 +19,11 @@
                     <input 
                         type="number" 
                         placeholder="Cédula de Identidad"
-                        formControlName="cedula"
-                        [ngClass]="{'input__error': isValidField('cedula')}">
-                        @if (isValidField('cedula')) {
+                        formControlName="ci"
+                        [ngClass]="{'input__error': isValidField('ci')}">
+                        @if (isValidField('ci')) {
                             <span class="input__message">
-                                {{ getError('cedula') }}
+                                {{ getError('ci') }}
                             </span>
                         }
                     <div class="input__password">

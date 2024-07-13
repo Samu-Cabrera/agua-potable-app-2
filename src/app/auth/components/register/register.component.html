@@ -21,27 +21,28 @@
                     <input 
                         type="text" 
                         placeholder="Nombre"
-                        formControlName="name"
-                        [ngClass]="{'input__error': isValidField('name')}">
+                        formControlName="nombre"
+                        [ngClass]="{'input__error': isValidField('nombre')}">
 
-                        @if(isValidField('name')){
+                        @if(isValidField('nombre')){
                             <span class="input__message">
-                                {{ getError('name') }}
+                                {{ getError('nombre') }}
                             </span>
                         }
                     <input 
                         type="text" 
                         placeholder="Apellido"
-                        formControlName="lastname"
-                        [ngClass]="{'input__error': isValidField('lastname')}">
+                        formControlName="apellido"
+                        [ngClass]="{'input__error': isValidField('apellido')}">
                         
-                        @if(isValidField('lastname')){
+                        @if(isValidField('apellido')){
                             <span class="input__message">
-                                {{ getError('lastname') }}
+                                {{ getError('apellido') }}
                             </span>
                         }
                 </div>
                 <button 
+                    type="button"
                     [ngClass]="{'active': this.registerForm.valid}"
                     [disabled]="this.registerForm.invalid"
                     class="btn__login">
@@ -59,26 +60,28 @@
                     <input 
                         type="number" 
                         placeholder="Cédula de identidad"
-                        formControlName="cedula">
+                        formControlName="ci">
 
-                        @if(isValidField('cedula')){
+                        @if(isValidField('ci')){
                             <span class="input__message">
-                                {{ getError('cedula') }}
+                                {{ getError('ci') }}
                             </span>
                         }
 
                     <input 
                         type="text" 
                         placeholder="Dirección"
-                        formControlName="address">
+                        formControlName="direccion">
 
-                        @if(isValidField('address')){
+                        @if(isValidField('direccion')){
                             <span class="input__message">
-                                {{ getError('address') }}
+                                {{ getError('direccion') }}
                             </span>
                         }
                 </div>
-                <button class="btn__login">
+                <button 
+                    type="button"
+                    class="btn__login">
                     <i class="ri-radio-button-line"></i>
                     Iniciar Sesión
                 </button>
@@ -93,11 +96,11 @@
                     <input 
                         type="number" 
                         placeholder="Teléfono"
-                        formControlName="phone">
+                        formControlName="telefono">
 
-                        @if(isValidField('phone')){
+                        @if(isValidField('telefono')){
                             <span class="input__message">
-                                {{ getError('phone') }}
+                                {{ getError('telefono') }}
                             </span>
                         }
 
@@ -106,12 +109,14 @@
                             {{ opcionValue | titlecase }}
                         </p>
                         <button 
+                            type="button"
                             [ngClass]="{'active': btnShow === false}"
                             class="btn__show"
                             (click)="showBtn()">
                             <i class="ri-arrow-down-s-line"></i>
                         </button>
                         <button 
+                            type="button"
                             [ngClass]="{'active': btnShow === true}"
                             class="btn__show"
                             (click)="hideBtn()">
@@ -138,7 +143,9 @@
                         </ul>
                     </div>
                 </div>
-                <button class="btn__login">
+                <button
+                    type="button" 
+                    class="btn__login">
                     <i class="ri-radio-button-line"></i>
                     Iniciar Sesión
                 </button>
@@ -173,22 +180,61 @@
                         }
                 </div>
 
-                <button class="btn__login">
+                <button
+                    type="button" 
+                    class="btn__login">
                     <i class="ri-radio-button-line"></i>
                     Iniciar Sesión
                 </button>
             </div>
         </div>
 
+        <div 
+            [ngClass]="{'active': selectIndex === 4}"
+            class="card">
+            <div class="card__body">
+                <div class="card__info">
+                    <h3 class="title">
+                        Solicitar una cuenta
+                    </h3>
+                    <p>
+                        El administrador se encargará de revisar y aceptar su solicitud. Recibirá un correo electrónico cuando su registro haya sido aprobado.
+                    </p>
+
+                </div>
+
+                <div class="icon__info">
+                    <i class="ri-information-2-line"></i>
+                </div>
+                
+
+                <div class="card__btns-info">
+                    <button 
+                        type="button"
+                        class="btn cancelar">
+                        Cancelar
+                    </button>
+                    <button 
+                        type="submit"
+                        class="btn"
+                        (submit)="onSave()">
+                        Solicitar
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- botones  -->
         <div class="btn__card">
             <button 
+                type="button"
                 (click)="onPrevCard()"
                 class="btn prev"
                 [ngClass]="{'active': selectIndex > 0}">
                 <i class="ri-arrow-left-s-line"></i>
             </button>
             <button 
+                type="button"
                 (click)="onNextCard()"
                 class="btn next"
                 [ngClass]="{'active': selectIndex === 4}">

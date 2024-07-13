@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core'
 import { FormGroup } from '@angular/forms' 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environments.dev';
+import { UserList } from '../interfaces/user.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -10,10 +12,11 @@ import { map } from 'rxjs/operators';
 export class ValidatorsServices {
     
   private readonly _http = inject(HttpClient);
+  private readonly _api_url = environment.apiUrl;
 
     //es valido el formulario
     public isValidField(form: FormGroup, field: string): boolean | null {
-        return form.controls[field].errors && form.controls[field].touched;
+      return form.controls[field].errors && form.controls[field].touched;
     }
 
     public getFieldError(form: FormGroup, field: string): string | null {
@@ -29,26 +32,31 @@ export class ValidatorsServices {
             case 'existeCI': return 'La cédula no esta registrada.';
             case 'userCI': return 'La cédula ya esta registrada.';
             case 'email': return 'El correo no es valido.';
-            case 'existEmail': return 'El correo ya esta registrado.'
+            case 'existEmail': return 'El correo ya esta registrado.';
+            case 'existPhone': return 'El teléfono ya esta registrado.';
           }
         }
     
         return null;
     }
 
-    public checkUserCI(CI: string): Observable<boolean>{
-      const api_url = 'https://jsonplaceholder.typicode.com/users';
-      
-      return this._http.get<any[]>(api_url).pipe(
-        map(users => users.some(user => user.address.zipcode === CI))
+    public checkUserCI(CI: number): Observable<boolean>{
+
+      console.log(CI);
+      return this._http.get<UserList>(`${ this._api_url }/user/list-all`).pipe(
+        map(res => res.usuarios.some(user => user.ci === Number(CI)))
       );
     }
 
     public checkEmail(email: string): Observable<boolean> {
-      const api_url = 'https://jsonplaceholder.typicode.com/users';
-      
-      return this._http.get<any[]>(api_url).pipe(
-        map(users => users.some(user => user.email === email))
+      return this._http.get<UserList>(`${ this._api_url }/user/list-all`).pipe(
+        map(res => res.usuarios.some(user => user.email === email))
+      );
+    }
+
+    public checkPhone(phone: string): Observable<boolean> {
+      return this._http.get<UserList>(`${ this._api_url }/user/list-all`).pipe(
+        map(res => res.usuarios.some(user => user.telefono === parseInt(phone)))
       );
     }
 }

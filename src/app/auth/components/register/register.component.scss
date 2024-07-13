@@ -281,6 +281,68 @@ $font-family-poppins: 'Poppins', 'Open Sans', Arial;
                 }
             }
 
+            .card__info {
+                width: 100%;
+
+                .title {
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: rgb(77, 77, 77);
+                    font-family: $font-family-open-sans;
+                }
+
+                p {
+                    font-size: 14px;
+                    margin-top: 5px;
+                    color: rgb(77, 77, 77);
+                    font-family: $font-family-open-sans;
+                }
+            }
+
+            .icon__info {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+
+                i {
+                    font-size: 35px;
+                    color: #F23742;
+                    opacity: .8;
+                }
+            }
+
+            .card__btns-info {
+                display: flex;
+                justify-content: center;
+                align-items: end;
+                column-gap: 10px;
+                margin-top: 20px;
+                width: 100%;
+
+                .btn {
+                    width: 150px;
+                    padding: 10px;
+                    background-image: linear-gradient(120deg, rgba(55, 147, 255, 1) 33%, rgba(69, 3, 239, 1) 100%);
+                    border: none;
+                    font-family: $font-family-poppins;
+                    font-size: 14px;
+                    color: $color-white;
+                    font-weight: 400;
+                    border-radius: 20px;
+                    box-shadow: 0 20px 40px rgba(19, 0, 236, .2);
+                    transition: .2s ease-in-out;
+
+                    &:hover {
+                        opacity: .8;
+                        transition: .2s ease-in-out;
+                    }
+                }
+
+                .btn.cancelar {
+                    background-image: linear-gradient(120deg, rgba(55, 147, 255, 1) 33%, rgba(3, 229, 211, 1) 100%);
+                }
+            }
+
             .btn__login {
                 margin: 20px 0;
                 background-color: transparent;
@@ -372,8 +434,8 @@ $font-family-poppins: 'Poppins', 'Open Sans', Arial;
 
         .card__container {
             top: -35px;
-            left: -63px;
-            width: 300px;
+            left: -85px;
+            width: 350px;
             grid-area: 'card';
 
             .card__inputs {
@@ -392,13 +454,13 @@ $font-family-poppins: 'Poppins', 'Open Sans', Arial;
 @media (min-width: 1200px) {
 
     .register__container {
-        width: 900px;
+        width: 800px;
 
         .login__logo {
             left: 90px;
 
             .logo__img {
-                left: 170px;
+                left: 197px;
             }
         }
 
@@ -407,8 +469,8 @@ $font-family-poppins: 'Poppins', 'Open Sans', Arial;
         }
 
         .card__container {
-            width: 378px;
-            left: -72px;
+            width: 350px;
+            left: -70px;
         }
     }
 }

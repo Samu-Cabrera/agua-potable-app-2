@@ -1,8 +1,11 @@
 import { NgClass, TitleCasePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ValidatorsServices } from '../../services/validators.service';
-import { existEmail, existUserCI, maxValidators, minValidators } from '../../helpers/custom.validation';
+import { existEmail, existPhone, existUserCI, maxValidators, minValidators } from '../../helpers/custom.validation';
+import { UserServices } from '../../services/user.service';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +18,8 @@ export class RegisterComponent {
 
   private readonly validatorService = inject(ValidatorsServices);
   private readonly fb = inject(FormBuilder);
+  private readonly _userService = inject(UserServices);
+  private readonly _router = inject(Router)
 
   constructor(){
     console.log(this.registerForm.valid);
@@ -26,31 +31,31 @@ export class RegisterComponent {
   btnShow: boolean = false;
 
   registerForm: FormGroup = this.fb.group({
-    name: ['', [Validators.required]],
-    lastname: ['', [Validators.required]],
-    cedula: ['', [
+    nombre: ['test1', [Validators.required]],
+    apellido: ['test1', [Validators.required]],
+    ci: ['111111', [
       Validators.required,
       minValidators,
       maxValidators
     ], [
       existUserCI(this.validatorService)
     ]],
-    address: ['', Validators.required],
-    phone: ['', [ 
+    direccion: ['Coronel bogado', Validators.required],
+    telefono: ['', [ 
       Validators.required,
       minValidators
+    ], [
+      existPhone(this.validatorService)
     ]],
     medidor: [''],
-    email: ['', [
+    email: ['test1@gmail.com', [
       Validators.required,
       Validators.email
     ], [existEmail(this.validatorService)]],
-    password: ['', [
+    password: ['111111', [
       Validators.required,
       minValidators
     ]]
-
-
   });
 
   isValidField(field: string): boolean | null {
@@ -95,6 +100,18 @@ export class RegisterComponent {
   }
 
   onSave(): void {
-    console.log(this.registerForm.valid);
+
+    if(this.registerForm.invalid) return;
+
+    this._userService.register(this.registerForm.value).pipe(
+      delay(2000)
+    ).subscribe(res => {
+      if(res.ok) return this._router.navigateByUrl('/');
+
+      return;
+
+    });
+
   }
+  
 }
