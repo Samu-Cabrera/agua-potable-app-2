@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="header">
+        <div class="img__fondo"></div>
+        <h2 class="header__title">
+            Lectura del Medidor
+        </h2>
+    </div>
+
+    <div class="user__container">
+        <h2 class="title">
+            Lista de usuarios
+        </h2>
+
+        <search-input/>
+
+        <ul class="list__group">
+            @for (user of users; track $index) {
+                <user-item
+                    [name]="user.nombre + ' ' + user.apellido | titlecase"
+                    [address]="user.direccion"
+                    [srcImg]="user | photo"/>
+            }
+        </ul>
+    </div>
+</div>

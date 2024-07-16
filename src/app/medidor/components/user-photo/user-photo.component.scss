@@ -1,0 +1,25 @@
+$blue-light: rgba(98, 84, 255, .3);
+$gray-light: #F0F0F0;
+$blue-dark: #09006ccc;
+$dark-rgba-light: rgba(79, 79, 79, .1);
+
+
+
+
+.img__photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 51px;
+    height: 51px;
+    border-radius: 50%;
+    background-image: linear-gradient(to bottom, $blue-light 0%, $blue-dark 100%);
+    box-shadow: 0 5px 20px $dark-rgba-light;
+
+    .img{
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: $gray-light;
+    }
+}

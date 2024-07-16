@@ -1,0 +1,54 @@
+$white: #FFFFFF;
+$dark-light: #4F4F4F;
+$gray-dark: #838383;
+$blue: #510DF1;
+
+
+
+.list__item {
+    width: 100%;
+    height: 65px;
+    padding: 10px 15px;
+    margin-bottom: 7px;
+    display: flex;
+    justify-content: space-between;
+    background-color: $white;
+    align-items: center;
+    border-radius: 8px;
+    transition: .2s ease;
+
+    .user__info {
+        width: 60%;
+        font-size: 16px;
+        font-weight: 600;
+        color: $dark-light;
+        margin: 0 30px;
+
+        span, small {
+            display: block;
+        }
+
+        small {
+            font-size: 10px;
+            font-style: italic;
+            font-weight: 400;
+            color: $gray-dark;
+        }
+    }
+
+    .btn__calcular {
+        font-size: 14px;
+        font-weight: 500;
+        color: $blue;
+        opacity: .8;
+
+        &:hover {
+            opacity: .5;
+        }
+    } 
+
+    &:hover {
+        opacity: .5;
+        transition: .2s ease;
+    }
+}
