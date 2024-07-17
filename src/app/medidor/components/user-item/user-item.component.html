@@ -5,7 +5,9 @@
         <span>{{ name }}</span>
         <small>{{ address }}</small>
     </div>
-    <a href="#" class="btn__calcular">
+    <a 
+        [routerLink]="['medidor/user/', userId]" 
+        class="btn__calcular">
         Calcular
     </a>
 </li>

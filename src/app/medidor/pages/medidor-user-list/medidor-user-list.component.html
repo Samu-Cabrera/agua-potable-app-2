@@ -11,14 +11,25 @@
             Lista de usuarios
         </h2>
 
-        <search-input/>
+        <search-input 
+            (userFoud)="onUsersFound($event)"
+            placeholder="Ingrese nombre..."/>
 
-        <ul class="list__group">
+        <ul 
+            class="list__group"
+            cdkDropList
+            (cdkDropListDropped)="drop($event)">
+
             @for (user of users; track $index) {
                 <user-item
                     [name]="user.nombre + ' ' + user.apellido | titlecase"
                     [address]="user.direccion"
-                    [srcImg]="user | photo"/>
+                    [srcImg]="user | photo"
+                    [routerLink]="['/medidor/user/', user._id]"
+                    [userId]="user._id"
+                    cdkDrag/>
+            } @empty {
+                <h3 style="text-align: center;">Usuario no encontrado.</h3>
             }
         </ul>
     </div>

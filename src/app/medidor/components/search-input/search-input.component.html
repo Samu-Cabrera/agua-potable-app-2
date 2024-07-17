@@ -1,4 +1,6 @@
 <input 
     [type]="type" 
     [placeholder]="placeholder"
-    class="search__input">
+    class="search__input"
+    [formControl]="inputValue"
+    (keydown)="search()">

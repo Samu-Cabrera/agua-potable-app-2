@@ -22,5 +22,21 @@ export interface Usuario {
 
 export interface Role {
     _id:    string;
-    nombre: string;
+    nombre?: string;
+}
+
+export interface User {
+    _id:       string;
+    nombre:    string;
+    apellido:  string;
+    ci:        number;
+    direccion: string;
+    telefono:  number;
+    medidor:   string;
+    email:     string;
+    estado:    boolean;
+    roles:     string[];
+    imagen:    string;
+    createdAt: Date;
+    updatedAt: Date;
 }

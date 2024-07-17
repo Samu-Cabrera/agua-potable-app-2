@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environments.dev';
-import { UserList } from '../interfaces/user.interface';
+import { User, UserList } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,10 @@ export class UserService {
 
   getUser(): Observable<UserList>{
     return this._http.get<UserList>(`${ this._urlApi }/user/list`);
+  }
+
+  getUserById(id: string): Observable<User>{
+    return this._http.get<User>(`${ this._urlApi }/user/${ id }`);
   }
   
 }
