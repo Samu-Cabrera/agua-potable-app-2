@@ -39,6 +39,11 @@ $white-rgba: rgba(255, 255, 255, .7);
                 user-select: none;
             }
 
+            .number.exede {
+                color: #EA0000;
+                opacity: .5;
+            }
+
             .day {
                 color: $dark;
                 opacity: .8;
@@ -47,22 +52,20 @@ $white-rgba: rgba(255, 255, 255, .7);
         }
     }
 
-    .outer.exceeded {
-        color: red;
-    }
-
-    svg circle {
+    circle {
         fill: none;
         stroke-width: 20; 
-        stroke-dasharray: 628; 
-        transition: stroke-dashoffset 0.5s ease, stroke 0.5s ease;
-        transform-origin: center;
+        stroke: url(#GradientColor);        
     }
 
+    circle.exede {
+        stroke: url(#GradientColorRed);
+    }
 
     svg {
         position: absolute;
         top: 0;
         left: 0;
     }
+    
 }

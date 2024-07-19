@@ -1,8 +1,8 @@
-<div class="skill">
-    <div class="outer" [ngClass]="{'exceeded': hasExceededLimit}">
+<div class="skill" ngc>
+    <div class="outer">
         <div class="inner">
-          <h2 class="number">
-            {{ progressPercentage | number:'1.0-0' }}%
+          <h2 class="number" [ngClass]="{'exede': value > maxValue}">
+            {{ (value / maxValue * 100) | number: '1.0-0' }}%
           </h2>
           <span class="day">
               30 días.
@@ -16,14 +16,14 @@
           <stop offset="0%" stop-color="#3793FF" />
           <stop offset="100%" stop-color="#673ab7" />
         </linearGradient>
-        <linearGradient id="OverLimitGradientColor">
-          <stop offset="0%" stop-color="rgba(228, 5, 45, .8)" />
+        <linearGradient id="GradientColorRed">
+          <stop offset="0%" stop-color="rgba(228, 5, 45, .83)" />
           <stop offset="100%" stop-color="rgba(136, 0, 0, .8)" />
         </linearGradient>
       </defs>
       <circle cx="110" cy="110" r="100" stroke-linecap="round" 
-              [attr.stroke-dasharray]="circumference" 
-              [attr.stroke-dashoffset]="offset"
-              [attr.stroke]="hasExceededLimit ? 'url(#OverLimitGradientColor)' : 'url(#GradientColor)'"/>
+      [attr.stroke-dasharray]="strokeDasharray"
+      [attr.stroke-dashoffset]="strokeDashoffset"
+      [ngClass]="{'exede': value > maxValue}"/>
     </svg>
   </div>

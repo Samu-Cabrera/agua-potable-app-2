@@ -13,44 +13,40 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CircleProgressComponent implements OnInit {
 
-  @Input() limit: number = 100;
-  @Input() value: number = 0;
+  @Input() value: number = 11000;
+  @Input() maxValue: number = 10000;
+  strokeDasharray!: string;
+  strokeDashoffset!: number;
 
-  radius: number = 100; // Radio del círculo
-  circumference: number = 2 * Math.PI * this.radius; // Circunferencia del círculo
-  progressPercentage: number = 0;
-  offset: number = this.circumference;
-  hasExceededLimit: boolean = false;
-  currentPercentage: number = 0;
+  private readonly circumference = 2 * Math.PI * 100;
 
   ngOnInit() {
     this.animateProgress();
   }
 
-  private updateProgress(percentage: number) {
-    this.progressPercentage = percentage;
-    this.hasExceededLimit = this.value > this.limit;
-    this.offset = this.hasExceededLimit ? 0 : this.circumference - (this.progressPercentage / 100) * this.circumference;
-  }
+  animateProgress() {
+    const isExceeding = this.value > this.maxValue;
+    const progress = isExceeding ? 1 : this.value / this.maxValue;
 
-  private animateProgress() {
-    const startPercentage = 0;
-    const endPercentage = (this.value / this.limit) * 100;
-    const duration = 1000; // Duración de la animación en milisegundos
-    const startTime = performance.now();
+    this.strokeDasharray = `${this.circumference} ${this.circumference}`;
+    this.strokeDashoffset = this.circumference - progress * this.circumference;
 
-    const animate = (currentTime: number) => {
-      const elapsedTime = currentTime - startTime;
-      const progress = Math.min(elapsedTime / duration, 1);
-      this.currentPercentage = startPercentage + (endPercentage - startPercentage) * progress;
-      this.updateProgress(this.currentPercentage);
+    let startValue = 0;
+    const endValue = this.value;
+    const duration = 1000; // 1 second
+    const stepTime = 10;
+    const increment = (endValue - startValue) / (duration / stepTime);
 
-      if (progress < 1) {
-        requestAnimationFrame(animate);
+    const animate = () => {
+        if (startValue < endValue) {
+        startValue += increment;
+        const currentProgress = Math.min(startValue / this.maxValue, 1);
+        this.strokeDashoffset = this.circumference - currentProgress * this.circumference;
+        setTimeout(animate, stepTime);
       }
     };
 
-    requestAnimationFrame(animate);
+    animate();
   }
 
 }

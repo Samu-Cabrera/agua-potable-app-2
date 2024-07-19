@@ -18,7 +18,7 @@ import { CircleProgressComponent } from '../../../shared/circle-progress/circle-
     PhotoPipe,
     UserPhotoComponent,
     SharedInputComponent,
-    CircleProgressComponent
+    CircleProgressComponent,
 ],
   templateUrl: './lectura-medidor.component.html',
   styleUrl: './lectura-medidor.component.scss'
