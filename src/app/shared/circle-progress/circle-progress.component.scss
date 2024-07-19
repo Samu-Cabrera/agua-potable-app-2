@@ -1,0 +1,68 @@
+$dark: #4F4F4F;
+$white: #FFFFFF;
+$black-rgba: rgba(0, 0, 0, .15);
+$white-rgba: rgba(255, 255, 255, .7);
+
+
+.skill {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 40px 0;
+
+    .outer {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        padding: 20px;
+        box-shadow: 5px 10px 15px $black-rgba, -5px -10px 10px $white-rgba;
+
+        .inner {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            box-shadow: inset 4px 4px 6px -1px $black-rgba,
+                        inset -4px -4px 6px -1px $white-rgba,
+                        .5px .5px $white,
+                        -.5px -.5px $black-rgba,
+                        0px 12px 10px rgba(0, 0, 0, 0.05);
+
+            .number {
+                font-size: 40px;
+                font-weight: 600;
+                color: $dark;
+                opacity: .8;
+                user-select: none;
+            }
+
+            .day {
+                color: $dark;
+                opacity: .8;
+                user-select: none;
+            }
+        }
+    }
+
+    .outer.exceeded {
+        color: red;
+    }
+
+    svg circle {
+        fill: none;
+        stroke-width: 20; 
+        stroke-dasharray: 628; 
+        transition: stroke-dashoffset 0.5s ease, stroke 0.5s ease;
+        transform-origin: center;
+    }
+
+
+    svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}

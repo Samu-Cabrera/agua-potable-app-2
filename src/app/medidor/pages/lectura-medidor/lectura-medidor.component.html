@@ -1,3 +1,74 @@
-<pre>
-    {{ user | json }}
-</pre>
+<div class="lectura__container">
+    <header class="header__container">
+        <div class="btn__previous">
+            <a (click)="onBack()">
+                <i class="ri-arrow-left-line"></i>
+            </a>
+        </div>
+
+        @if(user){
+            <h2 class="name">
+                {{ user.nombre | titlecase }}
+            </h2>
+
+            <user-photo 
+            [src]="user | photo"
+            [alt]="user.nombre | titlecase"/>
+        }
+
+    </header>
+
+    <main class="lectura__body">
+        <shared-input 
+            type="text"
+            pleaceholder="Lectura actual..."
+            (inputValue)="haddleValue($event)"/>
+
+            <div class="body__content">
+                <div class="circle__progress">
+                    <circle-progress 
+                        [value]="valueProgress" 
+                        [limit]="limitProgress"/>
+                </div>
+
+                <div class="actions__container">
+                    <div class="card acutal">
+                        <a class="btn__icon">
+                            <i class="ri-pencil-line"></i>
+                        </a>
+
+                        <h3>
+                            Actual
+                        </h3>
+                        <span>
+                            12.000 L
+                        </span>
+                        <p>
+                            11/07/2024
+                        </p>
+                    </div>
+                    <div class="card limite">
+                        <a class="btn__icon">
+                            <i class="ri-pencil-line"></i>
+                        </a>
+
+                        <h3>
+                            Actual
+                        </h3>
+                        <span class="limite">
+                            15.000 L
+                        </span>
+                        <p>
+                            11/07/2024
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        <button class="btn__factura">
+            Generar Factura
+            <i class="ri-newspaper-line"></i>
+        </button>
+    </main>
+
+</div>

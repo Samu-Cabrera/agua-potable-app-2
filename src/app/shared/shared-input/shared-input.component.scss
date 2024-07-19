@@ -1,0 +1,29 @@
+$white: #FFFFFF;
+$dark-light: #4F4F4F;
+$gray-dark: #838383;
+$blue: #510DF1;
+$gray-light: #F0F0F0;
+$dark-rgba-light: rgba(79, 79, 79, .2);
+$color-blue-light: rgba(61, 117, 201, .7);
+
+
+.input__component {
+    width: 310px;
+    height: 45px;
+    background-color: $white;
+    border-radius: 30px;
+    outline: none;
+    border: 1px solid $gray-light;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 400;
+    color: $dark-light;
+    box-shadow: 0 8px 20px $dark-rgba-light;
+    transition: ease-in-out .2s;
+
+    &:focus {
+        transform: scale(1.02);
+        outline: 1px solid $color-blue-light;
+        transition: ease-in-out .1s;
+    }
+}
