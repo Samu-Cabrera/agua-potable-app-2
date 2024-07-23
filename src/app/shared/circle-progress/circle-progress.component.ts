@@ -1,5 +1,5 @@
 import { DecimalPipe, NgClass } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'circle-progress',
@@ -11,16 +11,28 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './circle-progress.component.html',
   styleUrl: './circle-progress.component.scss'
 })
-export class CircleProgressComponent implements OnInit {
+export class CircleProgressComponent implements OnInit, OnChanges {
 
-  @Input() value: number = 11000;
-  @Input() maxValue: number = 10000;
+  @Input() value: number = 0;
+  @Input() maxValue: number = 0;
+  @Input() diaConsumo!: number;
+  
   strokeDasharray!: string;
   strokeDashoffset!: number;
 
   private readonly circumference = 2 * Math.PI * 100;
 
   ngOnInit() {
+    this.updateProgress();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['value'] || changes['maxValue']) {
+      this.updateProgress();
+    }
+  }
+
+  private updateProgress() {
     this.animateProgress();
   }
 

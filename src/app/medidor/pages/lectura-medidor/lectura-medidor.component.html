@@ -24,45 +24,36 @@
             pleaceholder="Lectura actual..."
             (inputValue)="haddleValue($event)"/>
 
-            <div class="body__content">
-                <div class="circle__progress">
-                    <circle-progress/>
-                        <!-- <progress-2 [value]="20" [limite]="10"/> -->
-                </div>
-
-                <div class="actions__container">
-                    <div class="card acutal">
-                        <a class="btn__icon">
-                            <i class="ri-pencil-line"></i>
-                        </a>
-
-                        <h3>
-                            Actual
-                        </h3>
-                        <span>
-                            12.000 L
-                        </span>
-                        <p>
-                            11/07/2024
-                        </p>
+            @if(lecturaData){
+                <div class="body__content">
+                    <div class="circle__progress">
+                        <circle-progress
+                            [value]="lecturaData.consumoActual" 
+                            [maxValue]="lecturaData.ultimaLectura.limite"
+                            [diaConsumo]="lecturaData.diferenciaEnDias"/>
                     </div>
-                    <div class="card limite">
-                        <a class="btn__icon">
-                            <i class="ri-pencil-line"></i>
-                        </a>
 
-                        <h3>
-                            Actual
-                        </h3>
-                        <span class="limite">
-                            15.000 L
-                        </span>
-                        <p>
-                            11/07/2024
-                        </p>
+                    <div class="actions__container">
+                        @for (card of cards; track $index) {
+                            <div class="card acutal">
+                                <a class="btn__icon">
+                                    <i [class]="card.icon"></i>
+                                </a>
+        
+                                <h3>
+                                    {{ card.title }}
+                                </h3>
+                                <span [class]="card.className">
+                                    {{ card.value| number }} L
+                                </span>
+                                <p>
+                                    {{ card.fecha| date }}
+                                </p>
+                            </div>
+                        }
                     </div>
                 </div>
-            </div>
+            }
 
         <button class="btn__factura">
             Generar Factura

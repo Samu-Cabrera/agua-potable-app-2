@@ -48,7 +48,6 @@ export class MedidorUserListComponent implements OnInit{
 
   onUsersFound(user: Usuario[]): void {
     this.users = user;
-    console.log(this.usersFound)
   }
 
 }

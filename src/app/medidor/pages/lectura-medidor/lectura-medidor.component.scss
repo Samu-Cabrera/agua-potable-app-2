@@ -7,11 +7,13 @@ $black-rgba: rgba(0, 0, 0, .15);
 $white-rgba: rgba(255, 255, 255, .7);
 
 .lectura__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     min-width: 350px;
     width: 100%;
-    max-width: 640px;
     margin: 0 auto;
-    padding: 20px 30px;
+    padding: 40px 30px;
     background-image: linear-gradient(330deg, $blue-light 0%, $white 100%);
     box-shadow: 0 15px 30px $blue-light, 0 -10px 20px $white;
 
@@ -21,6 +23,7 @@ $white-rgba: rgba(255, 255, 255, .7);
         align-items: center;
         width: 100%;
         height: 50px;
+        max-width: 800px;
         color: $dark;
 
         .btn__previous {
@@ -137,6 +140,16 @@ $white-rgba: rgba(255, 255, 255, .7);
                         color: #F8033E;
                         opacity: .7;
                     }
+                }
+            }
+
+            @media(min-width: 800px) {
+                flex-direction: row;
+                justify-content: center;
+                column-gap: 40px;
+
+                .actions__container {
+                    width: auto;
                 }
             }
         }
