@@ -20,45 +20,64 @@
 
     <main class="lectura__body">
         <shared-input 
-            type="text"
+            type="number"
             pleaceholder="Lectura actual..."
             (inputValue)="haddleValue($event)"/>
+        @if(!inputValid){
+            <span class="input__error">
+                La lectura actual no puede ser menor que la anterior.
+            </span>
+        }
 
-            @if(lecturaData){
-                <div class="body__content">
-                    <div class="circle__progress">
+        @if(mostrarGrafico){
+            <div class="body__content">
+                <div class="circle__progress">
+                    @if(lecturaData){
                         <circle-progress
                             [value]="lecturaData.consumoActual" 
                             [maxValue]="lecturaData.ultimaLectura.limite"
                             [diaConsumo]="lecturaData.diferenciaEnDias"/>
-                    </div>
-
-                    <div class="actions__container">
-                        @for (card of cards; track $index) {
-                            <div class="card acutal">
-                                <a class="btn__icon">
-                                    <i [class]="card.icon"></i>
-                                </a>
-        
-                                <h3>
-                                    {{ card.title }}
-                                </h3>
-                                <span [class]="card.className">
-                                    {{ card.value| number }} L
-                                </span>
-                                <p>
-                                    {{ card.fecha| date }}
-                                </p>
-                            </div>
-                        }
-                    </div>
+                    }
                 </div>
-            }
 
-        <button class="btn__factura">
-            Generar Factura
-            <i class="ri-newspaper-line"></i>
-        </button>
+                <div class="actions__container">
+                    @for (card of cards; track $index) {
+                        <div class="card">
+                            <a class="btn__icon">
+                                <i 
+                                    [class]="card.icon!"
+                                    (click)="card.onAction!()">
+                                </i>
+                            </a>
+    
+                            <h3>
+                                {{ card.title }}
+                            </h3>
+                            <span [class]="card.className">
+                                {{ card.value| number }} L
+                            </span>
+                            <p>
+                                {{ card.fecha| date }}
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div>
+    
+            <button class="btn__factura">
+                Generar Factura
+                <i class="ri-newspaper-line"></i>
+            </button>
+        } @else {
+            <h3>Ingrese la lectura para calcular el consumo del usuario</h3>
+        }
+
     </main>
 
 </div>
+
+@if(openModal){
+    <app-modal titleModal="Title" (closeModal)="onCloseModal()">
+        <h1>Hola</h1>
+    </app-modal>
+}

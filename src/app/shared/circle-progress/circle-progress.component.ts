@@ -27,7 +27,7 @@ export class CircleProgressComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['value'] || changes['maxValue']) {
+    if (changes['value'] || changes['maxValue'] || changes['diaConsumo']) {
       this.updateProgress();
     }
   }

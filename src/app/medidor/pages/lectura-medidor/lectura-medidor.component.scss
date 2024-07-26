@@ -12,6 +12,7 @@ $white-rgba: rgba(255, 255, 255, .7);
     flex-direction: column;
     min-width: 350px;
     width: 100%;
+    min-height: 600px;
     margin: 0 auto;
     padding: 40px 30px;
     background-image: linear-gradient(330deg, $blue-light 0%, $white 100%);
@@ -71,6 +72,13 @@ $white-rgba: rgba(255, 255, 255, .7);
         justify-content: center;
         flex-wrap: wrap;
         margin: 40px 0;
+
+        .input__error {
+            font-size: 15px;
+            font-weight: 400;
+            color: #F8033E;
+            margin-top: 8px;
+        }
 
         .body__content {
             width: 100%;
@@ -140,6 +148,10 @@ $white-rgba: rgba(255, 255, 255, .7);
                         color: #F8033E;
                         opacity: .7;
                     }
+
+                }
+                .card:nth-child(1) > .btn__icon{
+                    display: none;
                 }
             }
 

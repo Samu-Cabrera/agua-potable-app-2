@@ -3,5 +3,6 @@ export interface Card {
     icon?: string;
     value: number;
     fecha: Date;
-    className?: string
+    className?: string,
+    onAction?: () => void;
 }

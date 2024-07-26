@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environments.dev';
 import { Observable } from 'rxjs';
-import { Lectura } from '../interfaces/lectura.interface';
+import { Lectura, UltimaLectura } from '../interfaces/lectura.interface';
 
 
 @Injectable({
@@ -10,11 +10,15 @@ import { Lectura } from '../interfaces/lectura.interface';
 })
 export class LecturaService {
 
-    private readonly api_url = `${ environment.apiUrl }/api/lectura/actual`;
+    private readonly api_url = environment.apiUrl;
     private readonly _http = inject(HttpClient);
     
     getLectura(id: string): Observable<Lectura> {
-        return this._http.get<Lectura>(`${ this.api_url }/${ id }`);
+        return this._http.get<Lectura>(`${ this.api_url }/api/lectura/actual/${ id }`);
+    }
+
+    createLectura(lectura: UltimaLectura): Observable<Lectura>{
+        return this._http.post<Lectura>(`${ this.api_url }/api/lectura`, lectura);
     }
 
 }

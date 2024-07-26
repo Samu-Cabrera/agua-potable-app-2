@@ -1,0 +1,17 @@
+<div class="modal__container">
+    <div class="modal__content">
+        <div class="modal__header">
+            <h3>
+                {{ titleModal() | titlecase}}
+            </h3>
+            <button
+                class="btn__close"
+                (click)="onCloseModal()">
+                <i class="ri-close-fill"></i>
+            </button>
+        </div>
+        <div class="modal__body">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

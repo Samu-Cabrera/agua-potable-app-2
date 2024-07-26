@@ -27,3 +27,8 @@ $color-blue-light: rgba(61, 117, 201, .7);
         transition: ease-in-out .1s;
     }
 }
+
+input[type=number]::-webkit-outer-spin-button,
+            input[type=number]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+            }

@@ -20,4 +20,5 @@ export class UserService {
     return this._http.get<User>(`${ this._urlApi }/user/${ id }`);
   }
   
+  
 }

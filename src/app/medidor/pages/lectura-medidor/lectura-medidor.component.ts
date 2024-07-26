@@ -9,8 +9,9 @@ import { PhotoPipe } from '../../pipes/photo.pipe';
 import { UserPhotoComponent } from "../../components/user-photo/user-photo.component";
 import { SharedInputComponent } from '../../../shared/shared-input/shared-input.component';
 import { CircleProgressComponent } from '../../../shared/circle-progress/circle-progress.component';
-import { Lectura } from '../../interfaces/lectura.interface';
+import { Lectura, UltimaLectura } from '../../interfaces/lectura.interface';
 import { Card } from '../../interfaces/card.interface';
+import { ModalComponent } from '../../../shared/modal/modal.component';
 
 @Component({
   selector: 'lectura-medidor',
@@ -25,6 +26,7 @@ import { Card } from '../../interfaces/card.interface';
     UserPhotoComponent,
     SharedInputComponent,
     CircleProgressComponent,
+    ModalComponent
 ],
   templateUrl: './lectura-medidor.component.html',
   styleUrl: './lectura-medidor.component.scss'
@@ -39,6 +41,9 @@ export class LecturaMedidorComponent implements OnInit {
   public user?: User;
   public lecturaData!: Lectura;
   public cards!: Card[];
+  public mostrarGrafico: boolean = true;
+  public openModal: boolean = false;
+  public inputValid: boolean = true;
 
   ngOnInit(): void {
     this._activatedRouter.params.pipe(
@@ -52,8 +57,13 @@ export class LecturaMedidorComponent implements OnInit {
     this._activatedRouter.params.pipe(
       switchMap(({ id }) => this._lecturaService.getLectura(id)),
     ).subscribe(data => {
-      this.lecturaData = data;
-      this.inicializarCard();
+      if(data.ok){
+        this.lecturaData = data;
+        this.inicializarCard();
+        return;
+      } 
+      this.mostrarGrafico = false;
+
     });
   }
 
@@ -61,7 +71,6 @@ export class LecturaMedidorComponent implements OnInit {
     this.cards =  [
       {
         title: 'Actual',
-        icon: 'ri-pencil-line',
         value: this.lecturaData.consumoActual,
         fecha: this.lecturaData.ultimaLectura.fechaLectura,
         className: 'actual'
@@ -71,9 +80,19 @@ export class LecturaMedidorComponent implements OnInit {
         icon: 'ri-pencil-line',
         value: this.lecturaData.ultimaLectura.limite,
         fecha: this.lecturaData.ultimaLectura.fechaLimite,
-        className: 'limite'
+        className: 'limite',
+        onAction: this.onEditLimite.bind(this)
       },
     ]
+  }
+
+  onEditLimite(){
+    console.log('editar limite');
+    this.openModal = true;
+  }
+
+  onCloseModal(): void {
+    this.openModal = false;
   }
 
   onBack(): void {
@@ -81,6 +100,26 @@ export class LecturaMedidorComponent implements OnInit {
   }
 
   haddleValue(value: string): void {
-    console.log(value);
+    if(Number(value) < this.lecturaData.ultimaLectura.lectura){
+      this.inputValid = false;
+      return;
+    }
+
+    const userID = this._activatedRouter.snapshot.paramMap.get('id');
+    const lectura: UltimaLectura = {
+      userID,
+      lectura: Number(value),
+      limite: this.lecturaData.ultimaLectura.limite,
+      fechaLectura: new Date(),
+      fechaLimite: this.lecturaData.ultimaLectura.fechaLimite
+    }
+
+    this._lecturaService.createLectura(lectura).subscribe(lectura => {
+      if(lectura.ok){
+        this.lecturaData = lectura;
+        this.inicializarCard();
+      }
+    });
+
   }
 }
