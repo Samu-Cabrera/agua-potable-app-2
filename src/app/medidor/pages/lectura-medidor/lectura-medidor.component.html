@@ -77,7 +77,28 @@
 </div>
 
 @if(openModal){
-    <app-modal titleModal="Title" (closeModal)="onCloseModal()">
-        <h1>Hola</h1>
+    <app-modal 
+        titleModal="Editar limite de consumo" 
+        (closeModal)="onCloseModal()">
+        <div class="modal__content">
+            <h3>
+                Limite Anterior: <span class="limite__anterior"> {{ lecturaData.ultimaLectura.limite | number }} </span> L
+            </h3>
+            <h3>
+                Limite Actual: <span> {{ limiteValue | number }} </span> L
+            </h3>
+            <div class="modal__action">
+                <shared-input
+                    type="number" 
+                    pleaceholder="Ingrese la lectura."
+                    (inputValueChanges)="inputValueChanges($event)"/>
+            </div>
+    
+            <button 
+                class="btn__save"
+                (click)="onEditLimite()">
+                Guardar
+            </button>
+        </div>
     </app-modal>
 }

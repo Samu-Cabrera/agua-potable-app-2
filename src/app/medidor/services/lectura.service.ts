@@ -21,4 +21,8 @@ export class LecturaService {
         return this._http.post<Lectura>(`${ this.api_url }/api/lectura`, lectura);
     }
 
+    updateLimit(id: string, limite: number): Observable<UltimaLectura>{
+        return this._http.put<UltimaLectura>(`${ this.api_url }/api/lectura/${ id }`, { limite });
+    }
+
 }

@@ -23,6 +23,7 @@
         min-height: 200px;
         padding: 20px;
         background-color: #fff;
+        color: #333;
         border-radius: 20px;
         box-shadow: 0 10px 20px rgba(0, 0, 0,.3);
 
@@ -31,6 +32,11 @@
             padding: 20px 0;
             display: flex;
             justify-content: center;
+
+            h3 {
+                font-size: 20px;
+                opacity: .8;
+            }
 
             .btn__close {
                 position: absolute;

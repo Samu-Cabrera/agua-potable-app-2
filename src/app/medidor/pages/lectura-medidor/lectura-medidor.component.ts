@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { DatePipe, DecimalPipe, NgClass, TitleCasePipe } from '@angular/common';
+import { DatePipe, DecimalPipe, NgClass, TitleCasePipe, } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
 import { UserService } from '../../services/user.service';
 import { LecturaService } from '../../services/lectura.service';
@@ -44,6 +44,8 @@ export class LecturaMedidorComponent implements OnInit {
   public mostrarGrafico: boolean = true;
   public openModal: boolean = false;
   public inputValid: boolean = true;
+  public lecturaValue!: number;
+  public limiteValue!: number;
 
   ngOnInit(): void {
     this._activatedRouter.params.pipe(
@@ -54,6 +56,10 @@ export class LecturaMedidorComponent implements OnInit {
       return;
     });
 
+    this.getLectura();
+  }
+
+  getLectura(): void {
     this._activatedRouter.params.pipe(
       switchMap(({ id }) => this._lecturaService.getLectura(id)),
     ).subscribe(data => {
@@ -63,9 +69,10 @@ export class LecturaMedidorComponent implements OnInit {
         return;
       } 
       this.mostrarGrafico = false;
-
+  
     });
   }
+
 
   private inicializarCard(): void {
     this.cards =  [
@@ -86,9 +93,23 @@ export class LecturaMedidorComponent implements OnInit {
     ]
   }
 
-  onEditLimite(){
-    console.log('editar limite');
+  inputValueChanges(value: string): void{
+    this.limiteValue = Number(value);
+  }
+
+  onEditLimite(): void{
     this.openModal = true;
+    const limitId = this.lecturaData.ultimaLectura._id!;
+    if(this.limiteValue > 0){
+      this._lecturaService.updateLimit(limitId, this.limiteValue).subscribe(data => {
+        if(data){
+          this.getLectura();
+          this.inicializarCard();
+        }
+        return;
+      });
+    }
+
   }
 
   onCloseModal(): void {

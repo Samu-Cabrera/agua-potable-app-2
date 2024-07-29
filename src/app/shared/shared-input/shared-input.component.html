@@ -3,4 +3,5 @@
     [type]="type()"
     [placeholder]="pleaceholder()"
     [formControl]="valueControl"
-    (keydown.enter)="emitInputValue()">
+    (keydown.enter)="emitInputValue()"
+    (input)="emitValueChanges()">
