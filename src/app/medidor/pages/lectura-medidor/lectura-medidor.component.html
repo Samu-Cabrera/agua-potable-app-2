@@ -64,10 +64,12 @@
                 </div>
             </div>
     
-            <button class="btn__factura">
+            <a 
+                class="btn__factura"
+                (click)="onGenerarFactura()">
                 Generar Factura
                 <i class="ri-newspaper-line"></i>
-            </button>
+            </a>
         } @else {
             <h3>Ingrese la lectura para calcular el consumo del usuario</h3>
         }

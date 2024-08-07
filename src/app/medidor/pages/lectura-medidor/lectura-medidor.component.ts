@@ -143,4 +143,10 @@ export class LecturaMedidorComponent implements OnInit {
     });
 
   }
+
+  onGenerarFactura(): void {
+    this._router.navigateByUrl(`medidor/factura/user/${ this.lecturaData.ultimaLectura.userID }`);
+  }
+
+
 }
