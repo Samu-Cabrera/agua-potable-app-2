@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="numero__factura">
-                <span>N°: 01</span>
+                <span>N°: {{ nroFactura }}</span>
             </div>
         </div>
 
@@ -38,64 +38,44 @@
                     <div class="title">
                         <h2>Usuario</h2>
                     </div>
-
-                    <div class="item__container user">
-                        <h3>
-                            Nombre:
-                        </h3>
-                        <p>
-                            Samuel Melgarejo
-                        </p>
-                        <h3>
-                            CI:
-                        </h3>
-                        <p>
-                            5.914.257
-                        </p>
-                        <h3>
-                            Dirección:
-                        </h3>
-                        <p>
-                            San Isidro, Coronel Bogado
-                        </p>
-                    </div>
+                    @if(user){
+                        <div class="item__container user">
+                            <h3>Nombre:</h3>
+                            <p>{{ user.nombre + ' ' + user.apellido | titlecase }}</p>
+                            <h3>CI:</h3>
+                            <p>{{ user.ci | number:'1.0-0' }}</p>
+                            <h3>Dirección:</h3>
+                            <p>{{ user.direccion | titlecase }}</p>
+                        </div>
+                    }
 
                  </div>
                 <!-- información de consumo -->
                 <div class="data__item">
                     <div class="title">
-                        <h2>Consumo</h2>
+                        <h2>Consumo 
+                            <small [ngClass]="{'consumo__required': consumo}">*</small>
+                        </h2>
+                        <button 
+                            class="btn"
+                            (click)="establecerDatosConsumo()">
+                            <i class="ri-pencil-line"></i>
+                        </button>
                     </div>
 
-                    <div class="item__container">
-                        <h3>
-                            Cantidad:
-                        </h3>
-                        <p>
-                            1.000L
-                        </p>
-                        <span>
-                            28/07/2024
-                        </span>
-                        <h3>
-                            IVA:
-                        </h3>
-                        <p>
-                            1.000
-                        </p>
-                        <span>
-                            GS
-                        </span>
-                        <h3>
-                            Total:
-                        </h3>
-                        <p>
-                            10.000
-                        </p>
-                        <span>
-                            GS
-                        </span>
-                    </div>
+                    @if (consumo) {
+                        <div class="item__container">
+                            <h3> Cantidad: </h3>
+                            <p>{{ consumo.cantidad }}</p>
+                            <span>{{ consumo.fecha | date }}</span>
+                            <h3>IVA:</h3>
+                            <p>{{ consumo.iva | number }}</p>
+                            <span>GS</span>
+                            <h3>Total:</h3>
+                            <p>{{ 10000 | number }}</p>
+                            <span>GS</span>
+                        </div>
+                    }
 
                  </div>
                 <!-- información de deudas pendientes -->
@@ -137,21 +117,23 @@
                  </div>
 
                  <!-- fecha de Emisión y vencimiento -->
-                 <div class="factura__date">
-                    <div class="emsion">
-                        <p>Emisión:</p>
-                        <span>28/07/2024</span>
+                @if(consumo){
+                    <div class="factura__date">
+                       <div class="emsion">
+                           <p>Emisión:</p>
+                           <span>{{ consumo.fecha| date }}</span>
+                       </div>
+                       <div class="vencimiento">
+                           <p>Vence:</p>
+                           <span>{{ consumo.fechaVencimiento }}</span>
+                       </div>
                     </div>
-                    <div class="vencimiento">
-                        <p>Vence:</p>
-                        <span>28/07/2024</span>
-                    </div>
-                 </div>
+                }
 
                  <!-- total a pagar -->
                  <div class="cuenta">
                     <h4>A credito</h4>
-                    <span>Total: 22.000 GS</span>
+                    <span>Total: {{ totalAPagar | number }} GS</span>
                  </div>
             </div>
 
@@ -165,3 +147,46 @@
         </button>
     </div>
 </div>
+
+@if(openModal){
+    <app-modal 
+        (closeModal)="onCloseModal()"
+        titleModal="Establecer">
+        <form [formGroup]="myForm">
+            <div class="modal__content">
+                <div class="input">
+                    <label>Precio: <small>*</small></label>
+                    <input 
+                        type="number"
+                        formControlName="precio">
+                    <span>
+                        <i class="ri-money-dollar-circle-line"></i>
+                    </span>
+                </div>
+                <div class="input">
+                    <label>IVA: <small>*</small></label>
+                    <input 
+                        type="number"
+                        formControlName="iva">
+                    <span>
+                        <i class="ri-percent-line"></i>
+                    </span>
+                </div>
+                <div class="input">
+                    <label>Vence: <small>*</small></label>
+                    
+                    <input 
+                        type="datetime-local"
+                        formControlName="vence">
+                </div>
+            </div>
+            <button
+                [ngClass]="{'btn__invalid': myForm.invalid}"
+                class="btn__send"
+                type="submit"
+                (click)="onSubmit()">
+                <i class="ri-check-line"></i>
+            </button>
+        </form>
+    </app-modal>
+}

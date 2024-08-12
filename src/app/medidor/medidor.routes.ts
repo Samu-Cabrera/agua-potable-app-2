@@ -18,7 +18,7 @@ export const medidorRoute: Routes = [
                 component: LecturaMedidorComponent
             },
             {
-                path: 'factura/user/:id',
+                path: 'user/factura/:id',
                 component: FacturaComponent
             },
             {
