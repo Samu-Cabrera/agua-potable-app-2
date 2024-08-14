@@ -20,9 +20,8 @@ export interface Consumo {
     cantidad: number;
     iva:      number;
     precio:   number;
-    fecha:    Date;
+    fecha?:    Date;
     fechaVencimiento?: Date;
-    cuentaTotal?: number;
 }
 
 export interface UserID {

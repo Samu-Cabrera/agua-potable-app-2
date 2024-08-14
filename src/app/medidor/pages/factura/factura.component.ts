@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DatePipe, DecimalPipe, NgClass, TitleCasePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs';
+import { map, switchMap, forkJoin } from 'rxjs';
 import { ModalComponent } from '../../../shared/modal/modal.component';
-import { Consumo, Factura, UserID, FacturaElement } from '../../interfaces/factura.interface';
+import { FacturaElement } from '../../interfaces/factura.interface';
 import { FacturaService } from '../../services/factura.service';
 import { LecturaService } from '../../services/lectura.service';
 import { ValidatorsServices } from '../../../auth/services/validators.service';
@@ -26,7 +26,6 @@ import { ValidatorsServices } from '../../../auth/services/validators.service';
 export class FacturaComponent implements OnInit {
 
   private readonly _activatedRoute = inject(ActivatedRoute);
-  private readonly _cdr = inject(ChangeDetectorRef);
   private readonly _fb = inject(FormBuilder);
   private readonly _facturaService = inject(FacturaService);
   private readonly _lecturaService = inject(LecturaService);
@@ -34,13 +33,10 @@ export class FacturaComponent implements OnInit {
 
 
   public openModal: boolean = false;
-  public user!: UserID;
-  public facturaPendiente!: FacturaElement;
-  public factura!: FacturaElement;
-  public nroFactura: number = 0;
-  public consumo!: Consumo;
-  public lecturaConsumo: number = 0;
-  public totalAPagar: number = 0;
+  public ultimaFactura!: FacturaElement;
+  public facturaPendiente!: FacturaElement[];
+  public lecturaConsumo!: number;
+  public costoConsumo: number = 0;
 
 
   public myForm: FormGroup = this._fb.group({
@@ -53,47 +49,31 @@ export class FacturaComponent implements OnInit {
     vence: new FormControl<Date | null>(null, Validators.required)
   });
 
-  ngOnInit(): void {
-    this.getUser();
-    this.getLectura();
-  }
-
   isValidField(field: string): boolean | null {
     return this._validatorService.isValidField(this.myForm, field);
   }
 
-  getUser(): void {
-    this._activatedRoute.params.pipe(
-      switchMap(({ id }) => this._lecturaService.getLectura(id))
-    ).subscribe(({ ultimaLectura }) => {
-      this.lecturaConsumo = ultimaLectura.lectura;
-    });
+  ngOnInit(): void {
+    this.loadData();
   }
 
-  getLectura(): void {
-    this._activatedRoute.params.pipe(
-      switchMap(({ id }) => this._facturaService.getFacturasPendientes(id)),
-      map((factura: Factura) => factura.factura)
-    ).subscribe(factura => {
-      this.user = factura[factura.length - 1].userID;
-      this.nroFactura = factura[factura.length - 1].nroFactura + 1;
-    });
-  }
+  loadData(): void {
+    this._activatedRoute.params
+    .pipe(
+      switchMap(({ id }) => forkJoin({
+        lectura: this._lecturaService.getLectura(id),
+        factura: this._facturaService.getFacturasAll(id).pipe(map(factura => factura.factura))
+      }))
+    )
+    .subscribe(({ lectura, factura }) => {
+      const { consumo } = factura[factura.length - 1];
+      const lecturaMedidor = lectura.consumoActual;
+      this.lecturaConsumo = lecturaMedidor;
+      this.ultimaFactura = factura[factura.length - 1];
+      this.costoConsumo = (lecturaMedidor * consumo.precio) + ((lecturaMedidor * consumo.precio) * consumo.iva / 100);
 
-  createFactura(): void {
-    const userId: string = this.user._id;
-    const consumo: Consumo = {
-      cantidad: this.lecturaConsumo,
-      iva: this.myForm.controls['iva'].value,
-      precio: this.myForm.controls['precio'].value,
-      fecha: new Date(),
-      fechaVencimiento: this.myForm.controls['vence'].value,
-      cuentaTotal: this.myForm.controls['precio'].value * this.lecturaConsumo
-    };
+      this.facturaPendiente = factura.filter(factura => !factura.estadoPago);
 
-    this._facturaService.createFactura(userId, consumo).subscribe((factura: FacturaElement)  => {
-      this.consumo = factura.consumo;
-      this._cdr.detectChanges();
     });
   }
 
@@ -103,13 +83,12 @@ export class FacturaComponent implements OnInit {
 
   }
 
-  establecerDatosConsumo(): void {
+  abrirModal(): void {
     this.openModal = true;
   }
 
   onSubmit(): void {
     if(this.myForm.invalid) return;
-    this.createFactura();
   }
 
 }

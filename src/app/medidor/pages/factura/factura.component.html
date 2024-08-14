@@ -23,7 +23,9 @@
                 </div>
             </div>
             <div class="numero__factura">
-                <span>N°: {{ nroFactura }}</span>
+                @if(ultimaFactura){
+                    <span>N°: {{ ultimaFactura.nroFactura + 1 }}</span>
+                }
             </div>
         </div>
 
@@ -33,51 +35,49 @@
             </h2>
 
             <div class="factura__data">
-                <!-- información del usuario -->
-                 <div class="data__item">
-                    <div class="title">
-                        <h2>Usuario</h2>
-                    </div>
-                    @if(user){
+                @if(ultimaFactura){
+                    <!-- información del usuario -->
+                     <div class="data__item">
+                        <div class="title">
+                            <h2>Usuario</h2>
+                        </div>
                         <div class="item__container user">
                             <h3>Nombre:</h3>
-                            <p>{{ user.nombre + ' ' + user.apellido | titlecase }}</p>
+                            <p>{{ ultimaFactura.userID.nombre + ' ' + ultimaFactura.userID.apellido | titlecase }}</p>
                             <h3>CI:</h3>
-                            <p>{{ user.ci | number:'1.0-0' }}</p>
+                            <p>{{ ultimaFactura.userID.ci | number }}</p>
                             <h3>Dirección:</h3>
-                            <p>{{ user.direccion | titlecase }}</p>
+                            <p>{{ ultimaFactura.userID.direccion | titlecase }}</p>
                         </div>
-                    }
-
-                 </div>
-                <!-- información de consumo -->
-                <div class="data__item">
-                    <div class="title">
-                        <h2>Consumo 
-                            <small [ngClass]="{'consumo__required': consumo}">*</small>
-                        </h2>
-                        <button 
-                            class="btn"
-                            (click)="establecerDatosConsumo()">
-                            <i class="ri-pencil-line"></i>
-                        </button>
+                     </div>
+                     <!-- información de consumo -->
+                     <div class="data__item">
+                         <div class="title">
+                            <h2>Consumo 
+                                 <!-- <small [ngClass]="{'consumo__required': consumo}">*</small> -->
+                            </h2>
+                            <button 
+                                class="btn"
+                                (click)="abrirModal()">
+                                <i class="ri-pencil-line"></i>
+                            </button>
+                         </div>
+                         <div class="item__container">
+                             <h3> Cantidad: </h3>
+                             <p>{{ lecturaConsumo | number }}</p>
+                             <span>{{ ultimaFactura.consumo.fecha | date }}</span>
+                             <h3>IVA:</h3>
+                             <p>{{ ultimaFactura.consumo.iva | number }}</p>
+                             <span>GS</span>
+                             <h3>Precio Lts:</h3>
+                             <p>{{ ultimaFactura.consumo.precio | number }}</p>
+                             <span>GS</span>
+                             <h3>A pagar:</h3>
+                             <p>{{ costoConsumo | number }}</p>
+                             <span>GS</span>
+                         </div>
                     </div>
-
-                    @if (consumo) {
-                        <div class="item__container">
-                            <h3> Cantidad: </h3>
-                            <p>{{ consumo.cantidad }}</p>
-                            <span>{{ consumo.fecha | date }}</span>
-                            <h3>IVA:</h3>
-                            <p>{{ consumo.iva | number }}</p>
-                            <span>GS</span>
-                            <h3>Total:</h3>
-                            <p>{{ 10000 | number }}</p>
-                            <span>GS</span>
-                        </div>
-                    }
-
-                 </div>
+                }
                 <!-- información de deudas pendientes -->
                 <div class="data__item">
                     <div class="title">
@@ -114,10 +114,10 @@
                         </span>
                     </div>
 
-                 </div>
+                </div>
 
                  <!-- fecha de Emisión y vencimiento -->
-                @if(consumo){
+                <!-- @if(consumo){
                     <div class="factura__date">
                        <div class="emsion">
                            <p>Emisión:</p>
@@ -128,12 +128,12 @@
                            <span>{{ consumo.fechaVencimiento }}</span>
                        </div>
                     </div>
-                }
+                } -->
 
                  <!-- total a pagar -->
                  <div class="cuenta">
                     <h4>A credito</h4>
-                    <span>Total: {{ totalAPagar | number }} GS</span>
+                    <span>Total: {{ 2000 | number }} GS</span>
                  </div>
             </div>
 
