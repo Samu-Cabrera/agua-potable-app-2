@@ -22,4 +22,8 @@ export class FacturaService {
     createFactura(userID: string, factura: Consumo): Observable<FacturaElement>{
         return this._http.post<FacturaElement>(`${ this._url }/api/user/factura/${ userID }`, factura);
     }
+
+    updateFacturaById(id: string, data?: Consumo): Observable<Factura> {
+        return this._http.patch<Factura>(`${ this._url }/api/user/factura/update/${ id }`, data);
+    }
 }

@@ -1,6 +1,8 @@
 <div class="factura__container">
     <div class="factura__header">
-        <a class="btn__previus">
+        <a 
+            class="btn__previus"
+            (click)="previous()">
             <i class="ri-arrow-left-line"></i>
         </a>
         <h2 class="factura__title">
@@ -65,15 +67,15 @@
                          <div class="item__container">
                              <h3> Cantidad: </h3>
                              <p>{{ lecturaConsumo | number }}</p>
-                             <span>{{ ultimaFactura.consumo.fecha | date }}</span>
+                             <span>{{ ultimaFactura.consumo.fecha | date:'dd/MM/yyyy' }}</span>
                              <h3>IVA:</h3>
                              <p>{{ ultimaFactura.consumo.iva | number }}</p>
                              <span>GS</span>
-                             <h3>Precio Lts:</h3>
+                             <h3>Precio:</h3>
                              <p>{{ ultimaFactura.consumo.precio | number }}</p>
                              <span>GS</span>
                              <h3>A pagar:</h3>
-                             <p>{{ costoConsumo | number }}</p>
+                             <p>{{ getCostoConsumo | number }}</p>
                              <span>GS</span>
                          </div>
                     </div>
@@ -84,56 +86,42 @@
                         <h2>Pendiente</h2>
                     </div>
 
-                    <div class="item__container">
-                        <h3>
-                            Cantidad:
+                    <div class="table__container">
+                        <!-- header -->
+                        <h3>Factura</h3>
+                        <h3>Cantidad</h3>
+                        <h3>Fecha</h3>
+                        <h3>IVA</h3>
+                        <h3>Total</h3>
+                        <!-- body -->
+                         @for (factura of facturaPendiente; track $index) {
+                            <span>{{ factura.nroFactura | number }}</span>
+                            <p>{{ factura.consumo.cantidad | number }} L</p>
+                            <span>{{ factura.fechaEmision | date:'dd/MM/yyy' }}</span>
+                            <p>{{ factura.consumo.iva | number }} ₲</p>
+                            <p>{{ factura.cuentaTotal | number }} ₲</p>
+                        }
+                        <h3 class="deuda__total">Pendiente: 
+                            <span>{{ getCuentaPiendiente | number }} GS</span>
                         </h3>
-                        <p>
-                            1.500L
-                        </p>
-                        <span>
-                            28/06/2024
-                        </span>
-                        <h3>
-                            IVA:
-                        </h3>
-                        <p>
-                            1.000
-                        </p>
-                        <span>
-                            GS
-                        </span>
-                        <h3>
-                            Total:
-                        </h3>
-                        <p>
-                            20.000
-                        </p>
-                        <span>
-                            GS
-                        </span>
                     </div>
 
                 </div>
 
-                 <!-- fecha de Emisión y vencimiento -->
-                <!-- @if(consumo){
-                    <div class="factura__date">
-                       <div class="emsion">
-                           <p>Emisión:</p>
-                           <span>{{ consumo.fecha| date }}</span>
-                       </div>
-                       <div class="vencimiento">
-                           <p>Vence:</p>
-                           <span>{{ consumo.fechaVencimiento }}</span>
-                       </div>
-                    </div>
-                } -->
-
+                <div class="factura__date">
+                   <div class="emsion">
+                       <p>Emisión:</p>
+                       <span>{{ fechaEmision | date:'dd/MM/yyy' }}</span>
+                   </div>
+                   <div class="vencimiento">
+                       <p>Vence:</p>
+                       <span>{{ venceFecha | date:'dd/MM/yyy' }}</span>
+                   </div>
+                </div>
                  <!-- total a pagar -->
                  <div class="cuenta">
                     <h4>A credito</h4>
-                    <span>Total: {{ 2000 | number }} GS</span>
+                    <span>Total: {{ getCostoConsumo + getCuentaPiendiente | number }} GS</span>
                  </div>
             </div>
 
@@ -141,10 +129,12 @@
 
     </div>   
     <div class="save__factura">
-        <button class="btn__save">
-            Guardar
-            <i class="ri-save-line"></i>
-        </button>
+        <!-- boton guardar -->
+        <app-button 
+            (clicked)="onSubmit()" 
+            urlRedirect="medidor/users"
+            buttonText="Guardar"
+            buttonIcon="ri-save-line"/>
     </div>
 </div>
 
@@ -155,7 +145,7 @@
         <form [formGroup]="myForm">
             <div class="modal__content">
                 <div class="input">
-                    <label>Precio: <small>*</small></label>
+                    <label>Precio:</label>
                     <input 
                         type="number"
                         formControlName="precio">
@@ -164,7 +154,7 @@
                     </span>
                 </div>
                 <div class="input">
-                    <label>IVA: <small>*</small></label>
+                    <label>IVA:</label>
                     <input 
                         type="number"
                         formControlName="iva">
@@ -173,20 +163,24 @@
                     </span>
                 </div>
                 <div class="input">
-                    <label>Vence: <small>*</small></label>
+                    <label>Vence en:</label>
                     
                     <input 
-                        type="datetime-local"
-                        formControlName="vence">
+                        type="number"
+                        formControlName="venceEn">
+
+                    <span>
+                        Días
+                    </span>
                 </div>
             </div>
-            <button
-                [ngClass]="{'btn__invalid': myForm.invalid}"
-                class="btn__send"
-                type="submit"
-                (click)="onSubmit()">
-                <i class="ri-check-line"></i>
-            </button>
+            <div class="btn__container">
+                <app-button
+                    buttonText="Actualizar"
+                    buttonIcon="ri-restart-line"
+                    (clicked)="updateFacturaData()"
+                    [urlRedirect]="navigateUrl"/>
+            </div>
         </form>
     </app-modal>
 }

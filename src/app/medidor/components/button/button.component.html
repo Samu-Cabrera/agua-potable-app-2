@@ -1,0 +1,7 @@
+<button 
+    [ngClass]="{'loader': loading, 'finished': finish}"
+    class="btn__save"
+    (click)="onSave()">
+        {{ buttonText() | titlecase }}
+        <i [class]="buttonIcon()"></i>
+</button>

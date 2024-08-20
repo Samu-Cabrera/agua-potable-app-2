@@ -16,8 +16,9 @@ export class SharedInputComponent {
   public pleaceholder = input.required<string>();
   public inputValue = output<string>();
   public inputValueChanges = output<string>();
-  public valueControl = new FormControl('');
   
+  public valueControl = new FormControl('');
+
   emitInputValue(): void {
     this.inputValue.emit(this.valueControl.value!.toString().trim());
   }
