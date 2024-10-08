@@ -1,0 +1,84 @@
+$color-blue: rgba(4, 100, 243, .75);
+$color-black: #5C5C5C;
+$color-gray: #979696;
+$color-magenta: #FD10D7;
+$color-green: #00D4A2;
+$color-gray-light: #EDEFFF;
+
+$box-shadow-blue: rgba(4, 33, 185, .10);
+
+.nav__superior {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid;
+
+    .menu {
+        list-style: none;
+        display: flex;
+        column-gap: 20px;
+        font-weight: 500;
+
+        .active {
+            color: $color-blue;
+            font-weight: 600;
+        }
+    }
+
+    .usuario {
+        display: flex;
+        column-gap: 10px;
+        text-align: end;
+        align-items: center;
+
+        .datos > h3 {
+            color: $color-black;
+        } 
+
+        .datos > span {
+            position: relative;
+            top: -8px;
+            font-size: 12px;
+            font-weight: 300;
+        }
+
+        .avatar__border {
+            width: 62px;
+            height: 62px;
+            background-image: linear-gradient(150deg, $color-magenta, $color-blue 100%);
+            padding: 3px;
+            border-radius: 50%;
+            box-shadow: 4px 4px 10px $box-shadow-blue;
+
+            .avatar__container {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                background-color: $color-gray-light;
+
+                .indicador {
+                    position: absolute;
+                    top: 3px;
+                    right: 0;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: $color-green;
+                    border: 2px solid $color-gray-light;
+                    z-index: 3;
+                }
+
+                .avatar__image {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 100%;
+                }
+            }
+        }
+    }
+}

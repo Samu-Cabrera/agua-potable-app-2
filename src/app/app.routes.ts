@@ -10,6 +10,10 @@ export const routes: Routes = [
         loadChildren: () => import('./medidor/medidor.routes').then(c => c.medidorRoute)
     },
     {
+        path: 'dashboard',
+        loadChildren: () => import('./dashboard/dashboard.routes').then(c => c.dashboardRoute)
+    },
+    {
         path: '**',
         redirectTo: 'auth',
         pathMatch: 'full'
