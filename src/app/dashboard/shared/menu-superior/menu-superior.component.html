@@ -1,18 +1,18 @@
 <div class="nav__superior">
     <ul class="menu">
         <li>Administración</li>
-        <li class="active">Home</li>
+        <li class="active">{{ itemName() | titlecase }}</li>
     </ul>
     <!-- Usuario administrador -->
     <div class="usuario">
         <div class="datos">
-            <h3>Jorge Fernández</h3>
-            <span>Jorgemail.com</span>
+            <h3>{{ userName() | titlecase }}</h3>
+            <span>{{ userGmail() }}</span>
         </div>
         <div class="avatar__border">
             <div class="avatar__container">
                 <div class="indicador"></div>
-                <img class="avatar__image" src="https://img.freepik.com/psd-gratis/ilustracion-3d-avatar-o-perfil-humano_23-2150671142.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1727740800&semt=ais_hybrid" alt="avatar">
+                <img class="avatar__image" [src]="avatarUrl()" alt="avatar">
             </div>
         </div>
     </div>

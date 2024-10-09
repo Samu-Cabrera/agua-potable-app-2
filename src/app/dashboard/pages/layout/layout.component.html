@@ -1,6 +1,7 @@
 <div 
     class="container"
     [ngClass]="{'sidebar-collapsed': openSidebar}">
+
     <div class="sidebar">
         <button 
             class="menu__btn"
@@ -36,13 +37,15 @@
     </div>
     <main class="main">
         <div class="main__content">
-            <section></section>
-            <section></section>
-            <section></section>
-            <section></section>
-            <section></section>
-            <section></section>
-            <section></section>
+            <menu-superior 
+                itemName="inicio"
+                userName="Jorge Fernández"
+                userGmail="jorge@gmail.com"
+                avatarUrl="https://res.cloudinary.com/die4hw70e/image/upload/v1728483693/samu-img/user_avatar_sirmyv.jpg"/>
+            
+            <section class="pages">
+
+            </section>
         </div>
     </main>
 </div>
