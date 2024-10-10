@@ -1,0 +1,54 @@
+$color-black: #5C5C5C;
+$box-shadow-blue: rgba(4, 34, 185, 0.065);
+
+.chart__container {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+
+    .header {
+        width: 100%;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: $color-black;
+        }
+
+        .calendar {
+            font-size: 14px;
+            font-weight: 500;
+            color: #979696;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #EDEFFF;
+            box-shadow: 0 5px 10px $box-shadow-blue;
+            background-color: #FFFFFF;
+            cursor: pointer;
+            transition: transform .3s ;
+
+
+            button {
+                background-color: transparent;
+                border: none;
+                margin-left: 10px;
+
+                i {
+                    font-size: 20px;
+                    color: #979696;
+
+                }
+
+            }
+
+            &:hover {
+                transform: translateY(-2px);
+            }
+        }
+    }
+}

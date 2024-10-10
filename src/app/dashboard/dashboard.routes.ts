@@ -6,7 +6,14 @@ export const dashboardRoute: Routes = [
         path: '',
         component: LayoutComponent,
         children: [
-
+            {
+                path: '',
+                loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent)
+            },
+            {
+                path: '**',
+                redirectTo: ''
+            }
         ]
     },
     {

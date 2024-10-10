@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { MenuSuperiorComponent } from '../../shared/menu-superior/menu-superior.component';
+import { Component, OnInit } from '@angular/core';
 import { NgClass, TitleCasePipe } from '@angular/common';
+import { MenuSuperiorComponent } from '../../shared/menu-superior/menu-superior.component';
+import { RouterModule } from '@angular/router';
 
 interface MenuItem {
   icon: string;
@@ -13,15 +14,17 @@ interface MenuItem {
   selector: 'app-layout',
   standalone: true,
   imports: [
-    MenuSuperiorComponent,
+    RouterModule,
     NgClass,
-    TitleCasePipe
+    TitleCasePipe,
+    MenuSuperiorComponent
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit {
   public openSidebar: boolean = false;
+  public openSidebarValue?: any;
   public itemIsActive: boolean = false;
 
   public menuItems: MenuItem[] = [
@@ -39,8 +42,14 @@ export class LayoutComponent {
     }
   ]
 
+  ngOnInit(): void {
+    const storedValue = localStorage.getItem('openSidebar');
+    this.openSidebar = storedValue ? JSON.parse(storedValue) : false;
+  }
+
   toggleSidebar(){
     this.openSidebar ? this.openSidebar = false : this.openSidebar = true;
+    localStorage.setItem('openSidebar', JSON.stringify(this.openSidebar));
   }
 
   itemActive(clickedItem: MenuItem) {
