@@ -201,7 +201,7 @@ $color-white: #FFFFFF;
 
         .card__container {
             height: 1600px;
-            grid-template-columns: 100%;
+            grid-template-columns: minmax(280px, 100%);
             grid-template-rows:  repeat(3, 200px) repeat(2, 450px);
             column-gap: 20px;
             row-gap: 20px;
@@ -223,6 +223,7 @@ $color-white: #FFFFFF;
             .card.five {
                 grid-column: 1;
                 grid-row: 5 / 6;
+                overflow-x: auto;
             }
         }
         

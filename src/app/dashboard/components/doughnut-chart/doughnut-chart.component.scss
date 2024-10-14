@@ -1,0 +1,112 @@
+.container {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+
+    .data {
+        width: 100%;
+        margin-top: 30px;
+        
+
+        .card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 10px 0;
+
+            .title {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                column-gap: 5px;
+
+                .indicador {
+                    display: block;
+                    width: 20px;
+                    height: 3px;
+                    background-color: #7459D9;
+                    border-radius: 3px;
+                    margin-right: 10px;
+                }
+                h2, p {
+                    font-size: 14px;
+                    color: #979696;
+                    font-weight: 400;
+                }
+
+                p {
+                    color: #8155FE;
+                }
+    
+                .date {
+                    color: #8155FE;
+                }
+
+
+            }
+
+            .date {
+                font-size: 30px;
+                font-weight: 600;
+                color: #5C5C5C;
+            }
+        }
+
+        .card.egreso {
+            .title .indicador {
+                background-color: #B9ABEB;
+
+                p {
+                    color: #B9ABEB;
+                }
+            }
+
+            .title p {
+                color: #B9ABEB;
+            }
+        }
+    }
+    
+}
+
+@media(max-width:1350px) {
+    .container {
+        padding: 10px 0;
+
+        canvas {
+            width: 250px !important;
+            height: 250px !important;
+        }
+        
+        .data {
+            margin-top: 0;
+
+            .card span {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media(max-width:1020px) {
+    .container {
+
+        canvas {
+            width: 200px !important;
+            height: 200px !important;
+        }
+        
+        .data {
+            margin-top: 0;
+
+            .card span {
+                font-size: 14px;
+            }
+        }
+    }
+}
