@@ -11,6 +11,10 @@ export const dashboardRoute: Routes = [
                 loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent)
             },
             {
+                path: 'comprobante',
+                loadComponent: () => import('./pages/comprobante/comprobante.component').then(c => c.ComprobanteComponent)
+            },
+            {
                 path: '**',
                 redirectTo: ''
             }

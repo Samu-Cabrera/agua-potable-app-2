@@ -37,7 +37,7 @@ export class LayoutComponent implements OnInit {
     {
       icon: 'ri-file-list-2-line',
       title: 'Crear Factura',
-      link: 'dashboard',
+      link: 'comprobante',
       active: false
     }
   ]

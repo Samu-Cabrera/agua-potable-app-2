@@ -1,0 +1,95 @@
+<main class="table">
+    <!-- <section class="table__header">
+      <h2>Titulo de la tabla</h2>
+      <div class="input__group">
+        <input type="text" placeholder="Search data..."  (input)="searchTable()">
+        <i class="ri-search-2-line"></i>
+      </div>
+    </section> -->
+    <section class="table__header">
+        <h2 class="title">
+            Lista de usuarios
+        </h2>
+        <div class="input__group">
+            <input type="text" placeholder="Buscar usuario...">
+            <i class="icon ri-search-2-line"></i>
+        </div>
+        <div class="filter">
+            <button class="btn active">
+                Activos
+                <span></span>
+            </button>
+            <button class="btn">
+                Inactivos
+                <span></span>
+            </button>
+            <button class="btn">
+                <i class="ri-sort-alphabet-asc"></i>
+            </button>
+        </div>
+    </section>
+    <section class="table__body">
+      <table>
+        <thead>
+          <tr>
+            <th class="thead__id">ID</th>
+            <th>Comp</th>
+            <th>Usuario</th>
+            <th>CI</th>
+            <th>Dirección</th>
+            <th>Lectura</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of tableData; track $index) {
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>
+                    <i class="icon ri-checkbox-circle-line"></i>
+                </td>
+                <td class="user">
+                    <div class="avatar">
+                        <img [src]="row.avatar" alt="avatar">
+                    </div>
+                    <h2 class="name">
+                        {{ row.name }}
+                    </h2>
+                </td>
+                <td>{{ row.ci }}</td>
+                <td>{{ row.address }}</td>
+                <td>{{ row.lectura }}</td>
+                <td>
+                    <p class="status" 
+                        [ngClass]="row.status">
+                        {{ row.status | titlecase }}
+                    </p>
+                </td>
+                <td>
+                    <button class="btn__action">
+                        Generar
+                        <i class="ri-file-list-line"></i>
+                    </button>
+                </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+    <section class="table__footer">
+      <div class="btns">
+          <button class="btn btn__prev">
+              <i class="ri-arrow-left-double-line"></i>
+          </button>
+          <button class="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>...</button>
+          <button>10</button>
+          <button class="btn btn__next">
+              <i class="ri-arrow-right-double-line"></i>
+          </button>
+      </div>
+  </section>
+  </main>
