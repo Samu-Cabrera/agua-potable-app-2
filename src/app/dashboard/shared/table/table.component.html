@@ -1,19 +1,15 @@
-<main class="table">
-    <!-- <section class="table__header">
-      <h2>Titulo de la tabla</h2>
-      <div class="input__group">
-        <input type="text" placeholder="Search data..."  (input)="searchTable()">
-        <i class="ri-search-2-line"></i>
-      </div>
-    </section> -->
+<div class="table">
     <section class="table__header">
         <h2 class="title">
             Lista de usuarios
         </h2>
-        <div class="input__group">
-            <input type="text" placeholder="Buscar usuario...">
-            <i class="icon ri-search-2-line"></i>
-        </div>
+        <app-input
+            [icon]="true"
+            placeholder="Buscar usuario..."
+            type="text"
+            [animationHover]="true"
+            class="input"
+        />
         <div class="filter">
             <button class="btn active">
                 Activos
@@ -67,10 +63,12 @@
                     </p>
                 </td>
                 <td>
-                    <button class="btn__action">
+                    <a 
+                        class="btn__action"
+                        [routerLink]="['/dashboard/comprobante/', row.id]">
                         Generar
                         <i class="ri-file-list-line"></i>
-                    </button>
+                    </a>
                 </td>
             </tr>
           }
@@ -92,4 +90,4 @@
           </button>
       </div>
   </section>
-  </main>
+  </div>

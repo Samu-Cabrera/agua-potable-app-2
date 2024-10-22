@@ -1,6 +1,8 @@
 import { NgClass, TitleCasePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { InputComponent } from '../input/input.component';
 
 interface TableRow {
   id: number;
@@ -19,13 +21,15 @@ interface TableRow {
   standalone: true,
   imports: [
     FormsModule,
+    RouterModule,
     NgClass,
-    TitleCasePipe
+    TitleCasePipe,
+    InputComponent
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
-export class TableComponent implements OnInit {
+export class TableComponent  {
 
   searchTerm: string = '';
   tableData: TableRow[] = [
@@ -130,10 +134,6 @@ export class TableComponent implements OnInit {
       status: 'inactivo'
     }
   ];
-
-  ngOnInit(): void {
-    
-  }
 
   searchTable() {
     const searchTerm = this.searchTerm.toLowerCase();

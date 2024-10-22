@@ -251,14 +251,8 @@ $color-purple: rgba(129, 85, 254, .53);
             }
         }
 
-        .menu  {
-            .menu__item {
-                .item__link {
-                    .text {
-                        display: none;
-                    }
-                }
-            }
+        .menu .item__link .text  {
+            display: none;
         }
     }
     .main {

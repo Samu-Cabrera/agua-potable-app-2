@@ -11,7 +11,11 @@ export const dashboardRoute: Routes = [
                 loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent)
             },
             {
-                path: 'comprobante',
+                path: 'users',
+                loadComponent: () => import('./pages/user-list/user-list.component').then(c => c.UserListComponent)
+            },
+            {
+                path: 'comprobante/:id',
                 loadComponent: () => import('./pages/comprobante/comprobante.component').then(c => c.ComprobanteComponent)
             },
             {

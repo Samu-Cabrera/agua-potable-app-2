@@ -7,6 +7,11 @@
     align-items: center;
     margin: 0 auto;
 
+    canvas {
+        width: 250px !important;
+        height: 250px !important;
+    }
+
     .data {
         width: 100%;
         margin-top: 30px;
@@ -77,11 +82,6 @@
 @media(max-width:1350px) {
     .container {
         padding: 10px 0;
-
-        canvas {
-            width: 250px !important;
-            height: 250px !important;
-        }
         
         .data {
             margin-top: 0;
