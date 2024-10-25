@@ -1,0 +1,76 @@
+.btn__save {
+    display: block;
+    width: 250px;
+    height: 50px;
+    background-image: linear-gradient(138deg, #6254FF, #4F03EF 100%);
+    margin: 40px 0;
+    text-align: center;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    transition: all .3s ease;
+    cursor: pointer;
+    box-shadow: 0 15px 20px rgba(0, 23, 146, .10);
+
+    &:hover {
+        opacity: 0.8;
+        transition: all .3s ease;
+    }
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 0;
+    background: none;
+    border: 5px solid #6254FF;
+    background-color: transparent;
+    border-top-color: transparent;
+    box-shadow: none;
+    animation: animateButtonLoading 1s .4s linear infinite;
+
+    @keyframes animateButtonLoading {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+.finished {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-image: linear-gradient(138deg, #6254FF, #4F03EF 100%);
+    font-size: 0;
+    animation: finishedAnimations 1s ease-in;
+
+    @keyframes finishedAnimations {
+        10% {
+            transform: scale(0.8) translateY(20px);
+        }
+        35% {
+            transform: scale(1) translateY(0px);
+        }
+    }
+}
+
+.finished::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    background-image: url('../../../../../public/check-line.png');
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
