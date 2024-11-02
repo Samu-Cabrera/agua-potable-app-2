@@ -19,6 +19,24 @@ export const dashboardRoute: Routes = [
                 loadComponent: () => import('./pages/comprobante/comprobante.component').then(c => c.ComprobanteComponent)
             },
             {
+                path: 'imprimir/comprobante/:id',
+                loadComponent: () => import('./pages/print-comprobante/print-comprobante.component').then(c => c.PrintComprobanteComponent)
+            },
+            {
+                path: 'historial',
+                loadComponent: () => import('./pages/historial/historial.component').then(c => c.HistorialComponent),
+                children: [
+                    {
+                        path: 'comprobantes',
+                        loadComponent: () => import('./pages/historial-comprobante/historial-comprobante.component').then(c => c.HistorialComprobanteComponent)
+                    },
+                    {
+                        path: 'facturas',
+                        loadComponent: () => import('./pages/historia-factura/historia-factura.component').then(c => c.HistoriaFacturaComponent)
+                    }
+                ]
+            },
+            {
                 path: '**',
                 redirectTo: ''
             }

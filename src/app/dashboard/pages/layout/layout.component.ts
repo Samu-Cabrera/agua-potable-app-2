@@ -39,6 +39,12 @@ export class LayoutComponent implements OnInit {
       title: 'Crear Factura',
       link: 'users',
       active: false
+    },
+    {
+      icon: 'ri-file-chart-line',
+      title: 'Historial',
+      link: 'historial',
+      active: false
     }
   ]
 

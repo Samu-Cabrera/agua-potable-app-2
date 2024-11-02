@@ -19,75 +19,12 @@
                 class="input"/>
         </div>
     </form>
-    <section class="comprobante">
-        <span class="nro__factura">N°: 001</span>
-        <div class="logo">
-            <img class="logo__img" src="https://res.cloudinary.com/die4hw70e/image/upload/v1722607548/samples/samu/logo-junta-de-saneamiento-2_qynfno.png" alt="logo img">
-            <h2 class="title">Junta de Saneamiento</h2>
-            <p class="address">San Isidro</p>
-            <p>Calle san Isidro, Coronel Bogado</p>
-            <p>Cel: +5959586287790</p>
-        </div>
-        <div class="data">
-            <h3 class="title">Recibo de dinero</h3>
-            <div class="data__user">
-                <h2>Usuario</h2>
-                <h3>Nombre:</h3>
-                <p>Samuel Melgarejo Cabrera</p>
-                <h3>CI:</h3>
-                <p>5.913.237</p>
-                <h3>Dirección:</h3>
-                <p>San Isidro, Coronel Bogado</p>
-            </div>
-            <div class="data__factura">
-                <h2>Factura</h2>
-                <h3>Nro</h3>
-                <h3>Consumo</h3>
-                <h3>Precio</h3>
-                <h3>IVA</h3>
-                <h3>Fecha</h3>
-                <h3>Total</h3>
-                <p>001</p>
-                <p>15.000 Lts</p>
-                <p>2 GS</p>
-                <p>10 %</p>
-                <p>23/08/2024</p>
-                <p>15.000 GS</p>
-            </div>
-            <div class="data__servicio">
-                <h2>Servicio</h2>
-                <h3>Servicio:</h3>
-                <p>Agua potable</p>
-                <h3>Forma de Pago:</h3>
-                <p>contado</p>
-                <h3>Metodo de pago:</h3>
-                <p>Efectivo</p>
-            </div>
-            <div class="fecha">
-                <h3>Fecha de emisión:</h3>
-                <p>23/08/2024</p>
-            </div>
-            <div class="importe">
-                <h3>Importe</h3>
-                <p>15.000 GS</p>
-            </div>
-            <div class="firma">
-                <div class="tesorera">
-                    <h3>Lisia Mariana</h3>
-                    <p>Tesorera</p>
-                </div>
-                <div class="cello">
-                    <h3>Cello de la Junta</h3>
-                </div>
-            </div>
-            <div class="codigo">
-                <img src="https://res.cloudinary.com/die4hw70e/image/upload/v1729885888/samu-img/qr_sin_fondo_s2aeff.png" alt="QR img">
-            </div>
-        </div>
-    </section>
+    <!-- section comprobante -->
+     <shared-comprobante/>
     <div class="btn__generar">
         <shared-button
             buttonText="Generar"
-            buttonIcon="ri-file-list-line"/>
+            buttonIcon="ri-file-list-line"
+            [urlRedirect]="imprimirCompUrl"/>
     </div>
 </div>

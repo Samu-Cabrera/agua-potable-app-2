@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card__header">
+        <h2>{{ cardData().title | titlecase }}</h2>
+    </div>
+    <div class="card__body">
+        <li>Factura Nro</li>
+        <span>{{ cardData().nro | number }}</span>
+        <li>Consumo</li>
+        <span>{{ cardData().consumo | number }} L</span>
+        <li>Monto Pagado</li>
+        <span class="count">{{ cardData().monto | number }} GS</span>
+    </div>
+    <div class="card__footer">
+        <a href="#">Ver más</a>
+    </div>
+</div>
