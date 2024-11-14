@@ -1,0 +1,118 @@
+$blue: rgba(4, 100, 243, .75);
+$black: #5C5C5C;
+$gray-light: #EDEFFF;
+$box-shadow-blue: rgba(4, 33, 185, .10);
+$white: #FFFFFF;
+
+
+.historial {
+    width: 100%;
+    margin-top: 30px;
+
+    .header {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 15px;
+
+        .tabs {
+            display: flex;
+            column-gap: 10px;
+
+            li {
+                list-style: none;
+                
+                a {
+                    display: block;
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: $black;
+                    padding: 10px 30px;
+                    border-radius: 30px;
+                    cursor: pointer;
+
+                    &.active {
+                        background-color: $blue;
+                        box-shadow: 0 15px 20px $box-shadow-blue;
+                        color: $white;
+                    }
+
+                    &:hover:not(.active) {
+                        opacity: .75;
+                        transition: opacity .3s ease-in-out;
+                    }
+                }
+
+            }
+        }
+
+        .user__data {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            h2 {
+                font-size: 18px;
+                font-weight: 500;
+                color: $black;
+            }
+
+            p {
+                font-size: 12px;
+                font-weight: 300;
+                color: $black;
+            }
+        }
+
+        .filter {
+            span {
+                font-size: 14px;
+                font-weight: 400;
+                color: $black;
+            }
+
+            button {
+                background-color: transparent;
+                color: $black;
+                margin-left: 10px;
+                padding: 8px 15px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 400;
+                font-family: 'Poppins';
+                border: none;
+                outline: none;
+
+                i {
+                    font-size: 20px;
+                }
+
+                &:hover {
+                    outline: 1px solid $blue;
+                    color: $blue;
+                    opacity: .75;
+                    transition: opacity .2s ease-in-out;
+                }
+            }
+        }
+    }
+
+    &__page {
+        width: 100%;
+        margin-top: 20px;
+    } 
+
+    
+}
+
+@media(max-width: 720px){
+    .historial .header .user__data {
+        display: none;
+    }
+}

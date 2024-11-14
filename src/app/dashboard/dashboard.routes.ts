@@ -25,16 +25,32 @@ export const dashboardRoute: Routes = [
             {
                 path: 'historial',
                 loadComponent: () => import('./pages/historial/historial.component').then(c => c.HistorialComponent),
+            },
+            {
+                path: 'historial/:userId',
+                loadComponent: () => import('./pages/historial/historial-layout/historial-layout.component').then(c => c.HistorialLayoutComponent),
                 children: [
                     {
                         path: 'comprobantes',
-                        loadComponent: () => import('./pages/historial-comprobante/historial-comprobante.component').then(c => c.HistorialComprobanteComponent)
+                        loadComponent: () => import('./pages/historial/comprobante/comprobante.component').then(c => c.ComprobanteComponent)
+                    },
+                    {
+                        path: 'comprobantes/:id',
+                        loadComponent: () => import('./pages/historial/detalle-comprobante/detalle-comprobante.component').then(c => c.DetalleComprobanteComponent)
                     },
                     {
                         path: 'facturas',
-                        loadComponent: () => import('./pages/historia-factura/historia-factura.component').then(c => c.HistoriaFacturaComponent)
+                        loadComponent: () => import('./pages/historial/factura/factura.component').then(c => c.FacturaComponent)
+                    },
+                    {
+                        path: 'facturas/:id',
+                        loadComponent: () => import('./pages/historial/detalle-factura/detalle-factura.component').then(c => c.DetalleFacturaComponent)
                     }
                 ]
+            },
+            {
+                path: 'notificaciones',
+                loadComponent: () => import('./pages/notificaciones/notificaciones.component').then(c => c.NotificacionesComponent)
             },
             {
                 path: '**',

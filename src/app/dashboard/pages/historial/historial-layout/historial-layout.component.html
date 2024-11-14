@@ -1,0 +1,36 @@
+<div class="historial">
+    <section class="header">
+        <div class="tabs">
+            <li>
+                <a 
+                    routerLink="comprobantes" 
+                    routerLinkActive="active">
+                    Recibos
+                </a>
+            </li>
+            <li>
+                <a 
+                    routerLink="facturas"
+                    routerLinkActive="active">
+                    Facturas
+                </a>
+            </li>
+        </div>
+        <div class="user__data">
+            <h2 class="user__name">Pedro Díaz</h2>
+            <p>Factura 31/10/2024</p>
+        </div>
+        <div class="filter">
+            <button class="calendar">
+                Enero 2024
+                <i class="ri-arrow-down-s-line"></i>
+            </button>
+            <button class="order">
+                <i class="ri-arrow-up-down-fill"></i>
+            </button>
+        </div>
+    </section>
+    <section class="historial__page">
+        <router-outlet/>
+    </section>
+</div>

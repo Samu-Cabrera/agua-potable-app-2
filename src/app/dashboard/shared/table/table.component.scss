@@ -22,6 +22,7 @@ $linear-gradient-blue: rgba(129, 85, 254, 1), rgba(4, 33, 185, 1) 100%;
     overflow: hidden;
   
     &__header {
+      position: relative;
       width: 100%;
       padding: 20px;
       display: flex;

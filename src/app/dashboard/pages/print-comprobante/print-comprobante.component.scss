@@ -34,6 +34,7 @@ $blue-shadow: rgba(4, 34, 79, .15);
             align-self: center;
 
             .btn__prev {
+                text-decoration: none;
                 display: block;
                 grid-column: 1 / 2;
                 transition: opacity .3s ease-in-out;

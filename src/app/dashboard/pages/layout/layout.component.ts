@@ -45,6 +45,12 @@ export class LayoutComponent implements OnInit {
       title: 'Historial',
       link: 'historial',
       active: false
+    },
+    {
+      icon: 'ri-notification-2-line',
+      title: 'Notificaciones',
+      link: 'notificaciones',
+      active: false
     }
   ]
 

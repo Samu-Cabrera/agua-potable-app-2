@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { MenuSuperiorComponent } from '../../shared/menu-superior/menu-superior.component';
 import { SharedComprobanteComponent } from '../../shared/shared-comprobante/shared-comprobante.component';
@@ -9,7 +9,8 @@ import { SharedComprobanteComponent } from '../../shared/shared-comprobante/shar
   standalone: true,
   imports: [
     MenuSuperiorComponent,
-    SharedComprobanteComponent
+    SharedComprobanteComponent,
+    RouterLink
   ],
   templateUrl: './print-comprobante.component.html',
   styleUrl: './print-comprobante.component.scss'
