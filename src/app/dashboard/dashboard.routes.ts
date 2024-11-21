@@ -50,7 +50,25 @@ export const dashboardRoute: Routes = [
             },
             {
                 path: 'notificaciones',
-                loadComponent: () => import('./pages/notificaciones/notificaciones.component').then(c => c.NotificacionesComponent)
+                loadComponent: () => import('./pages/notificaciones/notificaciones.component').then(c => c.NotificacionesComponent),
+            },
+            {
+                path: 'notificaciones/nuevo',
+                loadComponent: () => import('./pages/notificaciones/crear-notificacion/crear-notificacion.component').then(c => c.CrearNotificacionComponent),
+                children: [
+                    {
+                        path: 'reunion',
+                        loadComponent: () => import('./pages/notificaciones/reunion/reunion.component').then(c => c.ReunionComponent)
+                    },
+                    {
+                        path: 'corte-agua',
+                        loadComponent: () => import('./pages/notificaciones/corte/corte.component').then(c => c.CorteComponent)
+                    },
+                    {
+                        path: 'personalizado',
+                        loadComponent: () => import('./pages/notificaciones/personalizado/personalizado.component').then(c => c.PersonalizadoComponent)
+                    }
+                ]
             },
             {
                 path: '**',

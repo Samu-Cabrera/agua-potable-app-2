@@ -1,0 +1,99 @@
+$white: #FFFFFF;
+$white-gray: #DADEF9;
+$blue-rgba: rgba(0, 23, 146, .10);
+$blue: rgba(4, 100, 243, .75);
+$magenta: #FD10D7;
+$black: #5C5C5C;
+$gray: #979696;
+$gray-light: #EDEFFF;
+$purple: #8155FE;
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    background-color: $white;
+    border-radius: 20px;
+    box-shadow: 0 15px 20px $blue-rgba;
+    margin: 30px auto;
+
+    .content {
+        width: 100%;
+        padding: 20px;
+
+        .title {
+            font-size: 18px;
+            font-weight: 500;
+            color: $black;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .tags {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+
+            .tag__item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 2px;
+                height: 40px;
+                border-radius: 50px;
+                background-image: linear-gradient(145deg, $magenta, $blue);
+                overflow: hidden;
+                cursor: pointer;
+                transition: opacity .3s ease-in-out;             
+
+
+                a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    background-color: $white;
+                    border-radius: 50px;
+                    text-align: center;
+                    text-decoration: none;
+                    font-size: 14px;
+                    color: $gray;
+                    padding: 7px;
+                }
+
+                &:hover {
+                    opacity: .7;
+                    transition: opacity .3s ease-in-out;             
+                }
+                
+            }
+
+            .tag__item:nth-child(2) {
+                background-image: linear-gradient(145deg, $purple, $blue);
+            }
+
+            .tag__item:nth-child(4) {
+                grid-column: 1 / 4;
+                width: 50px;
+                height: 50px;
+                justify-self: center;
+                
+                a {
+                    padding: 5px;
+                    font-size: 25px;
+                    
+                }
+            }
+
+            .tag__item a.active {
+                background-color: transparent;
+                color: $white;
+            }
+        }
+
+        .form__group {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,32 @@
+<div class="user__list">
+    <h2>Lista de usuarios</h2>
+
+    <ul class="list__group">
+        @for (user of userList; track $index) {
+            <li 
+                class="list__item"
+                (click)="onClick()">
+                <div class="avatar__container">
+                    <div class="avatar__border">
+                        <div class="avatar__img">
+                            <img [src]="user.avatar" [alt]="user.name">
+                        </div>
+                    </div>
+                    <div class="avatar__data">
+                        <h3 class="name">{{ user.name | titlecase }}</h3>
+                        <span class="address">{{ user.address | titlecase }}</span>
+                    </div>
+                </div>
+                <div class="messages">
+                    <p>{{ user.message }}</p>
+                </div>
+                <div class="actions">
+                    <span class="time">10: 30 am</span>
+                    <p class="btn__action">100</p>
+                </div>
+                
+            </li>
+        }
+        
+    </ul>
+</div>

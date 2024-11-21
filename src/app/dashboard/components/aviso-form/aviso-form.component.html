@@ -1,0 +1,23 @@
+<form class="form__container">
+    <h2 class="form__title">
+        {{ titleForm() }}
+    </h2>
+
+    <div class="input__group">
+        @for (input of inputItem(); track $index) {
+            <div 
+                class="input__item"
+                [ngClass]="input.class">
+                <label>{{  input.title }}</label>
+                <input [type]="input.typeInput">
+            </div>
+        }
+    </div>
+
+    <button 
+        class="btn__submit"
+        type="submit">
+        Enviar
+    </button>
+
+</form>

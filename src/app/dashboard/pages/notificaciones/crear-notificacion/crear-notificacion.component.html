@@ -1,0 +1,38 @@
+<menu-superior 
+    itemName="Notificaciones/Nuevo"
+    userName="Jorge Fernández"
+    userGmail="jorge@gmail.com"
+    avatarUrl="https://res.cloudinary.com/die4hw70e/image/upload/v1728483693/samu-img/user_avatar_sirmyv.jpg"
+/>
+
+<div class="container">
+    <div class="content">
+        <h2 class="title">Crear un nuevo aviso</h2>
+        <div class="tags">
+            <div class="tag__item">
+                <a 
+                    routerLink="/dashboard/notificaciones/nuevo/reunion"
+                    routerLinkActive="active">
+                    Reunión
+                </a>
+            </div>
+            <div class="tag__item">
+                <a
+                    routerLink="/dashboard/notificaciones/nuevo/corte-agua"
+                    routerLinkActive="active">
+                    Corte 
+                </a>
+            </div>
+            <div class="tag__item">
+                <a
+                    routerLink="/dashboard/notificaciones/nuevo/personalizado"
+                    routerLinkActive="active">
+                    Perzonalizado
+                </a>
+            </div>
+        </div>
+        <div class="form__group">
+            <router-outlet/>
+        </div>
+    </div>
+</div>

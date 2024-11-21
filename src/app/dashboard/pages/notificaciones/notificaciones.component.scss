@@ -1,0 +1,48 @@
+$white: #FFFFFF;
+$white-gray: #DADEF9;
+$blue-rgba: rgba(0, 23, 146, .10);
+$blue: rgba(4, 100, 243, .75);
+$black: #5C5C5C;
+$gray: #979696;
+$gray-light: #EDEFFF;
+
+.notification__container {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) 2fr;
+    margin-top: 35px;
+    width: 100%;
+    height: 90vh;
+    background-color: $white;
+    border-radius: 20px;
+    box-shadow: 0 15px 20px $blue-rgba;
+    overflow: hidden;
+
+    .btn__create {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: -80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-image: linear-gradient(145deg, #8155FE, #0421B9);
+        cursor: pointer;
+        box-shadow: 0 15px 20px rgba(0, 33, 185, .2);
+
+        a {
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: 300;
+            color: $gray-light;
+        }
+
+        &:hover {
+            opacity: .75;
+            transition: all .3s ease-in-out;
+        }
+    }
+
+}
