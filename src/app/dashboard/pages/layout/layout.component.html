@@ -23,11 +23,10 @@
             @for (item of menuItems; track $index) {
                 <li
                     class="menu__item"
-                    [ngClass]="{'active': item.active}">
+                    routerLinkActive="active">
                     <a 
                     [routerLink]="item.link"
-                    class="item__link"
-                    (click)="itemActive(item)">
+                    class="item__link">
                         <i class="icon {{ item.icon }}"></i>
                         <span class="text">{{ item.title | titlecase }}</span>
                     </a>

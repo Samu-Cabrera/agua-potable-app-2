@@ -12,7 +12,7 @@ import { AvisoFormComponent } from '../../../components/aviso-form/aviso-form.co
   styleUrl: './personalizado.component.scss'
 })
 export class PersonalizadoComponent {
-  public input: InputForm[] = [
+  /* public input: InputForm[] = [
     {
       title: 'Título',
       typeInput: 'text',
@@ -33,5 +33,5 @@ export class PersonalizadoComponent {
       class: 'hora'
     },
 
-  ];
+  ]; */
 }

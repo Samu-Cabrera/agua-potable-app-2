@@ -6,25 +6,30 @@
 />
 
 <div class="container">
-    <form class="form">
+    <form 
+        class="form"
+        autocomplete="off">
         <h2>Complete el formulario</h2>
         <div class="input__group">
             <app-input
                 placeholder="Importe del usuario..."
                 type="number"
-                class="input"/>
+                class="input"
+                (value)="onValueImporte($event)"/>
             <app-input
                 placeholder="Nombre del tesorero..."
                 type="text"
-                class="input"/>
+                class="input"
+                (value)="onValueTesorero($event)"/>
         </div>
     </form>
     <!-- section comprobante -->
-     <shared-comprobante/>
+     <shared-comprobante [comprobante]="comprobante"/>
     <div class="btn__generar">
         <shared-button
             buttonText="Generar"
             buttonIcon="ri-file-list-line"
-            [urlRedirect]="imprimirCompUrl"/>
+            [urlRedirect]="imprimirCompUrl"
+            (click)="submit()"/>
     </div>
 </div>

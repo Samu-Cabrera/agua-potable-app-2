@@ -7,7 +7,7 @@ export const dashboardRoute: Routes = [
         component: LayoutComponent,
         children: [
             {
-                path: '',
+                path: 'home',
                 loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent)
             },
             {
@@ -69,6 +69,28 @@ export const dashboardRoute: Routes = [
                         loadComponent: () => import('./pages/notificaciones/personalizado/personalizado.component').then(c => c.PersonalizadoComponent)
                     }
                 ]
+            },
+            {
+                path: 'estadistica',
+                loadComponent: () => import('./pages/estadistica/estadistica.component').then(c => c.EstadisticaComponent),
+                children: [
+                    {
+                        path: 'finanza',
+                        loadComponent: () => import('./pages/estadistica/finanza/finanza.component').then(c => c.FinanzaComponent)
+                    },
+                    {
+                        path: 'consumo',
+                        loadComponent: () => import('./pages/estadistica/consumo/consumo.component').then(c => c.ConsumoComponent)
+                    },
+                    {
+                        path: 'usuario',
+                        loadComponent: () => import('./pages/estadistica/usuarios/usuarios.component').then(c => c.UsuariosComponent)
+                    }
+                ]
+            },
+            {
+                path: 'transacciones',
+                loadComponent: () => import('./pages/transaccion/transaccion.component').then(c => c.TransaccionComponent)
             },
             {
                 path: '**',

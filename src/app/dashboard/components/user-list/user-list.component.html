@@ -5,7 +5,7 @@
         @for (user of userList; track $index) {
             <li 
                 class="list__item"
-                (click)="onClick()">
+                (click)="onClick(user.id)">
                 <div class="avatar__container">
                     <div class="avatar__border">
                         <div class="avatar__img">
@@ -24,7 +24,6 @@
                     <span class="time">10: 30 am</span>
                     <p class="btn__action">100</p>
                 </div>
-                
             </li>
         }
         

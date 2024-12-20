@@ -3,7 +3,9 @@
     [ngClass]="{ animated: animationHover() }">
   <input 
     [type]="type()" 
-    [placeholder]="placeholder()" />
+    [placeholder]="placeholder()"
+    [formControl]="inputValue"
+    (input)="emitValue()"/>
   <i 
     [ngClass]="{ hide: icon() == false }" 
     class="icon ri-search-2-line"></i>

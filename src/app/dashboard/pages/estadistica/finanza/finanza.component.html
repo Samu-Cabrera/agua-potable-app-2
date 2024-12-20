@@ -1,0 +1,31 @@
+<div class="cards">
+    <div class="card">
+        <div class="card__body">
+            <div class="chart">
+                <doughnut-chart 
+                    headerTitle="Importe del usuarios"
+                    [labels]="labels"
+                    [years]="years"
+                    [data]="data"/>
+            </div>
+        </div>
+        <div class="card__footer">
+            <span class="amount">{{ data.data1 | number }} Gs</span>
+            <span class="title">Importe</span>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card__body">
+            <div class="chart">
+                <bar-chart 
+                    headerTitle="Deudas de usuarios"
+                    [data]="barChartData"
+                    [labelData]="labelData"
+                    [years]="years"/>
+            </div>
+        </div>
+        <div class="card__footer">
+            
+        </div>
+    </div>
+</div>

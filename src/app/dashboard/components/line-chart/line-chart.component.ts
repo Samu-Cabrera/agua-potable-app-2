@@ -1,37 +1,29 @@
-import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+import { TitleCasePipe } from "@angular/common";
+import { Component, OnInit, ElementRef, ViewChild, input, SimpleChanges } from "@angular/core";
 import { Chart, registerables } from "chart.js";
 
 @Component({
   selector: "line-chart",
   standalone: true,
-  imports: [],
+  imports: [
+    TitleCasePipe
+  ],
   templateUrl: "./line-chart.component.html",
   styleUrl: "./line-chart.component.scss",
 })
 export class LineChartComponent implements OnInit {
   @ViewChild("barchart") chartCanvas!: ElementRef<HTMLCanvasElement>;
-
-  public labelData: string[] = [
-    "Ene",
-    "Feb",
-    "Mar",
-    "Abr",
-    "May",
-    "Jul",
-    "Ago",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dic",
-  ];
-  public realData: number[] = [100, 200, 80, 240, 200, 350];
+  public headerTitle = input<string>('Chart title');
+  public btnFiltrar = input<boolean>(true);
+  public realData = input.required<number[]>();
+  public labelData = input.required<string[]>();
+  public years = input.required<number[]>();
   public colorData: string[] = [
     "rgba(255, 99, 132, .8)",
     "rgba(255, 159, 64, .8)",
     "rgba(255, 205, 86, .8)",
     "rgba(75, 192, 192, .8)",
   ];
-
   private chart!: Chart;
 
   ngOnInit() {
@@ -40,6 +32,12 @@ export class LineChartComponent implements OnInit {
 
   ngAfterViewInit() {
     this.renderChart();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['realData'] && !changes['realData'].firstChange) {
+      this.updateChart();
+    }
   }
 
   renderChart() {
@@ -60,11 +58,10 @@ export class LineChartComponent implements OnInit {
       this.chart = new Chart(ctx, {
         type: "line",
         data: {
-          labels: this.labelData,
+          labels: this.labelData(),
           datasets: [
             {
-              label: "50.000 LTS",
-              data: this.realData,
+              data: this.realData(),
               fill: true,
               borderColor: gradient,
               backgroundColor: gradientFill,
@@ -135,6 +132,14 @@ export class LineChartComponent implements OnInit {
           },
         },
       });
+    }
+  }
+
+  updateChart() {
+    if (this.chart) {
+      this.chart.data.labels = this.labelData();
+      this.chart.data.datasets[0].data = this.realData();
+      this.chart.update();
     }
   }
 }

@@ -12,9 +12,9 @@
                 <h3 class="title">
                     Nuevas Facturas
                 </h3>
-                <span>20</span>
+                <span>{{ facturasFiltradas.length | number }}</span>
                 <p class="date">
-                    Septiembre 04
+                    {{ today | date:'MMMM yyyy' }}
                 </p>
             </div>
 
@@ -27,43 +27,64 @@
         <div class="card two">
             <div class="data">
                 <h3 class="title">
-                    Nuevas Facturas
+                    Recibos Generados
                 </h3>
-                <span>20</span>
+                <span>{{ reciboFiltrados.length | number }}</span>
                 <p class="date">
-                    Septiembre 04
+                    {{ today | date:'MMMM yyyy' }}
                 </p>
             </div>
 
             <div class="icon__border">
                 <div class="content">
-                    <i class="ri-file-list-2-line"></i>
+                    <i class="ri-file-line"></i>
                 </div>
             </div>
         </div>
         <div class="card three">
             <div class="data">
                 <h3 class="title">
-                    Nuevas Facturas
+                    Total Usuarios
                 </h3>
-                <span>20</span>
+                <span>{{ usuarios?.total | number }}</span>
                 <p class="date">
-                    Septiembre 04
+                    {{ today | date:'MMMM yyyy' }}
                 </p>
             </div>
 
             <div class="icon__border">
                 <div class="content">
-                    <i class="ri-file-list-2-line"></i>
+                    <i class="ri-user-line"></i>
                 </div>
             </div>
         </div>
 
         <div class="card four">
-            <doughnut-chart class="chart"/>
+            <doughnut-chart 
+                headerTitle="Ingresos / Gastos"
+                [labels]="labelChart"
+                [data]="financialData"
+                [years]="yearSelected"
+                (yearSelected)="onYearSelected($event)"
+                class="chart"/>
+            <div class="data">
+                <span>
+                    <i class="ri-refund-2-line icon__ingreso"></i>
+                    Ingreso: {{ financialData.data1 }} Gs
+                </span>
+                <span>
+                    <i class="ri-refund-2-line icon__egreso"></i>
+                    Egreso: {{ financialData.data2 }} Gs
+                </span>
+            </div>
         </div>
         <div class="card five">
-            <line-chart class="chart"/>
+            <line-chart 
+                class="chart"
+                headerTitle="Consumo de agua"
+                [realData]="realDataConsumo"
+                [years]="years"
+                [labelData]="labelDataConsumo"/>
         </div>
     </div>
 

@@ -1,4 +1,7 @@
-<form class="form__container">
+<form 
+    class="form__container"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form">
     <h2 class="form__title">
         {{ titleForm() }}
     </h2>
@@ -8,9 +11,16 @@
             <div 
                 class="input__item"
                 [ngClass]="input.class">
-                <label>{{  input.title }}</label>
-                <input [type]="input.typeInput">
+                <label>{{  input.label }}</label>
+                <input 
+                    [type]="input.type"
+                    [formControlName]="input.name">
             </div>
+            @if(form.get(input.name)?.invalid && form.get(input.name)?.touched){
+                <span class="input__error">
+                    Este campo es obligatorio.
+                </span>
+            }   
         }
     </div>
 

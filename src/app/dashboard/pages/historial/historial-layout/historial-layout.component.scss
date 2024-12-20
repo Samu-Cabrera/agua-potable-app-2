@@ -69,7 +69,8 @@ $white: #FFFFFF;
             }
         }
 
-        .filter {
+        /* .filter {
+
             span {
                 font-size: 14px;
                 font-weight: 400;
@@ -100,7 +101,74 @@ $white: #FFFFFF;
                     transition: opacity .2s ease-in-out;
                 }
             }
-        }
+        } */
+
+        .filter {
+            display: flex;
+            gap: 1rem;
+          
+            .dropdown {
+              position: relative;
+          
+              &__button {
+                display: flex;
+                justify-content: center;
+                background-color: transparent;
+                color: $black;
+                margin-left: 10px;
+                padding: 8px 15px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 400;
+                font-family: 'Poppins';
+                border: none;
+                outline: none;
+
+                i {
+                    font-size: 20px;
+                }
+
+                &:hover {
+                    outline: 1px solid $blue;
+                    color: $blue;
+                    opacity: .75;
+                    transition: opacity .2s ease-in-out;
+                }
+              }
+          
+              &__menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: white;
+                border-radius: 10px;
+                margin-top: 0.5rem;
+                list-style: none;
+                padding: 0;
+                width: 100%;
+                display: none;
+                box-shadow: 0 15px 20px $box-shadow-blue;
+                z-index: 1000;
+                color: $black;
+                font-size: 14px;
+                font-weight: 400;
+          
+                &.active {
+                  display: block;
+                }
+          
+                li {
+                  padding: 0.5rem 1rem;
+                  cursor: pointer;
+          
+                  &:hover {
+                    background: #f0f0f0;
+                  }
+                }
+              }
+            }
+          }
     }
 
     &__page {

@@ -16,12 +16,14 @@
             <h2>Imprimir Comprobante</h2>
         </div>
         <div class="modal__body">
-            <div class="modal__comprob">
-                <shared-comprobante/>
+            <div class="modal__comprob" #comprobante>
+                <shared-comprobante [comprobante]="recibo"/>
             </div>
         </div>
         <div class="btn">
-            <button class="btn__imprimir">
+            <button 
+                class="btn__imprimir"
+                (click)="imprimirComprobante()">
                 Imprimir
                 <i class="ri-printer-line"></i>
             </button>

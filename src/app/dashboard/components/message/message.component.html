@@ -2,59 +2,35 @@
     <h2 class="title">
         Avisos
     </h2>
-    <div class="avatar__container">
-        <div class="avatar__border">
-            <div class="avatar__img">
-                <img src="https://res.cloudinary.com/die4hw70e/image/upload/v1728483693/samu-img/user_avatar_sirmyv.jpg" alt="">
+    @if (user()) {
+        <div class="avatar__container">
+            <div class="avatar__border">
+                <div class="avatar__img">
+                    <img [src]="user().imagen" [alt]="user().name">
+                </div>
+            </div>
+            <div class="avatar__data">
+                <h3 class="name">{{ user().name + ' ' + user().lastname }}</h3>
+                <span class="address">{{ user().address }}</span>
             </div>
         </div>
-        <div class="avatar__data">
-            <h3 class="name">Alex Rogriguez</h3>
-            <span class="address">San Isidro</span>
+        <ul class="message__group">
+            @for (msg of messages(); track $index) {
+                <li class="message__list">
+                    <p>
+                        {{ msg.message }}
+                    </p>
+                    <span>
+                        {{ msg.date | date:'dd-MM-yyy' }}
+                    </span>
+                </li>
+            }
+        </ul>
+        <div class="message__send">
+            <input type="text" placeholder="Responder...">
+            <button class="btn__send">
+                <i class="ri-send-plane-2-line"></i>
+            </button>
         </div>
-    </div>
-    <ul class="message__group">
-        <li class="message__list">
-            <p>
-                Lorem ipsum dolor sit amet
-                lorem20
-            </p>
-            <span>
-                5 May 2015
-            </span>
-        </li>
-        <li class="message__list">
-            <p>
-                Lorem ipsum dolor sit amet
-                lorem20
-            </p>
-            <span>
-                5 May 2015
-            </span>
-        </li>
-        <li class="message__list">
-            <p>
-                Lorem ipsum dolor sit amet
-                lorem20
-            </p>
-            <span>
-                5 May 2015
-            </span>
-        </li>
-        <li class="message__list">
-            <p>
-                Lorem ipsum dolor sit amet
-                lorem20
-            </p>
-            <span>
-                5 May 2015
-            </span>
-        </li>
-    </ul>
-    <div class="message__send">
-        <input type="text" placeholder="Responder...">
-        <button class="btn__send">
-            <i class="ri-send-plane-2-line"></i>
-        </button>
-    </div>
+    }
 </div>

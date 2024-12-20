@@ -1,5 +1,10 @@
 export interface InputForm {
-    title: string;
-    typeInput: string;
+    name: string;
+    label: string;
+    type: string;
+    placeholder?: string;
+    defaultValue?: any;
+    required?: boolean;
     class?: string;
+    errorMessage?: string;
 }

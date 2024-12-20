@@ -1,5 +1,9 @@
-$color-black: #5C5C5C;
+$black: #5C5C5C;
 $box-shadow-blue: rgba(4, 34, 185, 0.065);
+$white: #FFFFFF;
+$white-gray: #DADEF9;
+$gray: #979696;
+
 
 .chart__container {
     width: 100%;
@@ -8,46 +12,41 @@ $box-shadow-blue: rgba(4, 34, 185, 0.065);
 
     .header {
         width: 100%;
-        padding: 10px 20px;
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
 
-        h2 {
-            font-size: 18px;
+        .title {
+            font-size: 14px;
             font-weight: 600;
-            color: $color-black;
+            color: $gray;
         }
 
-        .calendar {
-            font-size: 14px;
-            font-weight: 500;
-            color: #979696;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 1px solid #EDEFFF;
-            box-shadow: 0 5px 10px $box-shadow-blue;
-            background-color: #FFFFFF;
+        .filtrar {
+            padding: 10px;
+            background-color: $white;
+            border-radius: 10px;
+            transition: opacity .3s ease-in-out;
+            box-shadow: 0 10px 15px rgba(115, 136, 255, 0.1);
+            border: 1px solid  $white-gray;
             cursor: pointer;
-            transition: transform .3s ;
-
-
-            button {
-                background-color: transparent;
-                border: none;
-                margin-left: 10px;
-
-                i {
-                    font-size: 20px;
-                    color: #979696;
-
-                }
-
-            }
 
             &:hover {
-                transform: translateY(-2px);
+                opacity: .7;
+                transition: opacity .3s ease-in-out;
+            }
+
+            select {
+                border: none;
+                outline: none;
+                background-color: transparent;
+                color: $gray;
+                cursor: pointer;
+                
+                option {
+                    font-size: 14px;
+                    font-weight: 300;
+                }
             }
         }
     }

@@ -1,12 +1,15 @@
 <div class="chart__container">
     <div class="header">
-        <h2>Consumo de agua potable</h2>
-        <div class="calendar">
-            <span>Agosto 2024</span>
-            <button>
-                <i class="ri-calendar-line"></i>
-            </button>
-        </div>
+        <h2 class="title">{{ headerTitle() | titlecase }}</h2>
+        @if (btnFiltrar()) {
+            <div class="filtrar">
+                <select>
+                    @for (year of years(); track $index) {
+                        <option value="year">{{ year }}</option>
+                    }
+                </select>
+            </div>
+        }
     </div>
     <canvas #barchart></canvas>
 </div>

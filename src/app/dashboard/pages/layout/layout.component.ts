@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass, TitleCasePipe } from '@angular/common';
 import { MenuSuperiorComponent } from '../../shared/menu-superior/menu-superior.component';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 
 interface MenuItem {
   icon: string;
   title: string;
   link: string;
-  active: boolean;
 }
 
 @Component({
@@ -15,9 +14,9 @@ interface MenuItem {
   standalone: true,
   imports: [
     RouterModule,
+    RouterLink,
     NgClass,
-    TitleCasePipe,
-    MenuSuperiorComponent
+    TitleCasePipe
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
@@ -31,26 +30,32 @@ export class LayoutComponent implements OnInit {
     {
       icon: 'ri-home-line',
       title: 'home',
-      link: 'dashboard',
-      active: true
+      link: 'home'
     },
     {
       icon: 'ri-file-list-2-line',
       title: 'Crear Factura',
-      link: 'users',
-      active: false
+      link: 'users'
     },
     {
       icon: 'ri-file-chart-line',
       title: 'Historial',
-      link: 'historial',
-      active: false
+      link: 'historial'
     },
     {
       icon: 'ri-notification-2-line',
       title: 'Notificaciones',
-      link: 'notificaciones',
-      active: false
+      link: 'notificaciones'
+    },
+    {
+      icon: 'ri-pie-chart-line',
+      title: 'Estadísticas',
+      link: 'estadistica/finanza'
+    },
+    {
+      icon: 'ri-exchange-dollar-fill',
+      title: 'Transacciones',
+      link: 'transacciones'
     }
   ]
 
@@ -62,12 +67,6 @@ export class LayoutComponent implements OnInit {
   toggleSidebar(){
     this.openSidebar ? this.openSidebar = false : this.openSidebar = true;
     localStorage.setItem('openSidebar', JSON.stringify(this.openSidebar));
-  }
-
-  itemActive(clickedItem: MenuItem) {
-    this.menuItems.forEach(item => {
-      item.active = (item === clickedItem);
-    });
   }
 
 }

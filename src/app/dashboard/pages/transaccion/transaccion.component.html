@@ -1,0 +1,123 @@
+<menu-superior 
+    itemName="Estadística "
+    userName="Jorge Fernández"
+    userGmail="jorge@gmail.com"
+    avatarUrl="https://res.cloudinary.com/die4hw70e/image/upload/v1728483693/samu-img/user_avatar_sirmyv.jpg"
+/>
+
+<div class="transaccion__container">
+    <div class="card form">
+        <form 
+            class="form"
+            [formGroup]="myForm"
+            (ngSubmit)="onSubmit()">
+            <h2 class="title">{{ isEditing ? 'Editar transacción' : 'Registro de transacción' }}</h2>
+            <div class="input__group">
+                <select formControlName="type">
+                    <option value="" disabled selected>Seleccione tipo de transacción</option>
+                    <option value="ingreso">Ingreso</option>
+                    <option value="egreso">Egreso</option>
+                </select>
+                @if(isValidField('type')){
+                    <span class="message__error">Este campo es requerido.</span>
+                }
+                <input 
+                    type="number" 
+                    placeholder="Monto"
+                    formControlName="amount">
+                @if(isValidField('amount')){
+                    <span class="message__error">Este campo es requerido.</span>
+                }
+                <select formControlName="category">
+                    <option value="" disabled selected>Categoría</option>
+                    <option value="salario">Salario</option>
+                    <option value="alimentos">Alimentos</option>
+                    <option value="transporte">Transporte</option>
+                </select>
+                @if(isValidField('category')){
+                    <span class="message__error">Este campo es requerido.</span>
+                }
+                <input 
+                    type="text" 
+                    placeholder="Descripción"
+                    formControlName="description">
+                @if(isValidField('description')){
+                    <span class="message__error">Este campo es requerido.</span>
+                }
+                <input 
+                    type="date" 
+                    placeholder="Fecha"
+                    formControlName="date">
+                @if(isValidField('date')){
+                    <span class="message__error">Este campo es requerido.</span>
+                }
+            </div>
+            <button 
+                type="submit" 
+                class="btn"
+                [ngClass]="{'btn__disabled': myForm.invalid}">
+                {{ isEditing ? 'Actualizar' : 'Guardar' }}
+            </button>
+        </form>
+    </div>
+    <div class="card history">
+        <div class="header">
+            <form [formGroup]="filterForm">
+                <select formControlName="transactionType">
+                    <option value="">Todos</option>
+                    <option value="ingreso">Ingreso</option>
+                    <option value="egreso">Egreso</option>
+                </select>
+            </form>
+            <h2 class="title">Historial</h2>
+            <select>
+                <option value="">2024</option>
+                <option value="">2025</option>
+            </select>
+        </div>
+        <div class="chart">
+            <doughnut-chart 
+                [btnFiltrar]="true"
+                [hiddeTitle]="true"
+                headerTitle="Ingreso Egreso"
+                class="doughnut__chart"
+                [years]="years"
+                [data]="data"
+                [labels]="labels"/>
+            <div class="data">
+                <span>{{ currentBalance | number }} Gs</span>
+                <small>Saldo disponible</small>
+            </div>
+        </div>
+        <div class="list__container">
+            <ul class="list__group">
+                @for (transaction of transactions; track $index) {
+                    <li 
+                        class="list__item"
+                        [ngClass]="{'egreso': transaction.type == 'egreso'}">
+                        <div class="data">
+                            <div class="icon">
+                                <i class="ri-money-dollar-circle-line"></i>
+                            </div>
+                            <span>{{ transaction.category | titlecase }} - Categoria</span>
+                        </div>
+                        <span class="fecha">{{ transaction.date |date:'MM-dd-yyyy' }}</span>
+                        <span class="cantidad">{{ transaction.amount | number }}GS</span>
+                        <div class="btn__container">
+                            <button 
+                                class="eliminar"
+                                (click)="deteleTransaction(transaction._id)">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                            <button 
+                                class="editar"
+                                (click)="editTransaction(transaction._id)">
+                                <i class="ri-pencil-line"></i>
+                            </button>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

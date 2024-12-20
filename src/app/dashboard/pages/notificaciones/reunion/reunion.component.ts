@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AvisoFormComponent } from '../../../components/aviso-form/aviso-form.component';
 import { InputForm } from '../../../interfaces/input-form.interfaces';
 
@@ -12,33 +12,56 @@ import { InputForm } from '../../../interfaces/input-form.interfaces';
   styleUrl: './reunion.component.scss'
 })
 export class ReunionComponent {
-  public input: InputForm[] = [
+  public inputs: InputForm[] = [
     {
-      title: 'Título',
-      typeInput: 'text',
-      
+      name: 'title',
+      label: 'Título',
+      type: 'text',
+      required: true,
+      errorMessage: 'Este campo es obligatorio'
     },
     {
-      title: 'Motivo',
-      typeInput: 'text'
+      name: 'motivo', 
+      label: 'Motivo',
+      type: 'text',
+      required: true,
+      errorMessage: 'Este campo es obligatorio'
     },
     {
-      title: 'Fecha',
-      typeInput: 'date',
-      class: 'fecha'
+      name: 'fecha', 
+      label: 'Fecha',
+      type: 'date',
+      required: true,
+      class: 'fecha',
+      errorMessage: 'Este campo es obligatorio'
+
     },
     {
-      title: 'Fecha',
-      typeInput: 'time',
-      class: 'hora'
+      name: 'fecha', 
+      label: 'Fecha',
+      type: 'time',
+      required: true,
+      class: 'hora',
+      errorMessage: 'Este campo es obligatorio'
     },
     {
-      title: 'Dirección',
-      typeInput: 'text'
+      name: 'address', 
+      label: 'Dirección',
+      type: 'text',
+      required: true,
+      errorMessage: 'Este campo es obligatorio'
     },
     {
-      title: 'Descripción',
-      typeInput: 'text'
+      name: 'description',  
+      label: 'Descripción',
+      type: 'text',
+      required: true,
+      errorMessage: 'Este campo es obligatorio'
     }
-  ]
+  ];
+
+  
+  onSubmit(value: any): void {
+    console.log(value);
+  }
 }

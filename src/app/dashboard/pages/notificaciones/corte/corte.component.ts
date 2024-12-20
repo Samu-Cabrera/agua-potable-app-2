@@ -12,7 +12,7 @@ import { AvisoFormComponent } from '../../../components/aviso-form/aviso-form.co
   styleUrl: './corte.component.scss'
 })
 export class CorteComponent {
-  public input: InputForm[] = [
+  /* public input: InputForm[] = [
     {
       title: 'Título',
       typeInput: 'text',
@@ -36,5 +36,5 @@ export class CorteComponent {
       title: 'Descripción',
       typeInput: 'text'
     }
-  ];
+  ]; */
 }

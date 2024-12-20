@@ -1,0 +1,321 @@
+$white: #FFFFFF;
+$white-gray: #DADEF9;
+$blue-rgba: rgba(0, 23, 146, .10);
+$blue: rgba(4, 100, 243, .75);
+$black: #5C5C5C;
+$gray: #979696;
+$purple: #8155FE;
+$green: #00D4A2;
+$red: #df0404be;
+
+
+.transaccion__container {
+    width: 100%;
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    background-color: $white;
+    margin-top: 30px;
+    box-shadow: 0 15px 20px $blue-rgba;
+    border-radius: 20px;
+
+    .card {
+        width: 100%;
+        padding: 20px 50px;
+        text-align: center;
+
+        .form {
+            width: 100%;
+
+            .title {
+                font-size: 14px;
+                font-weight: 500;
+                color: $black;
+                text-align: center;
+                margin: 20px 0;
+            }
+
+            .input__group {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-items: center;
+                row-gap: 10px;
+                margin-bottom: 30px;
+
+                .message__error {
+                    font-size: 12px;
+                    font-weight: 300;
+                    color: $red;
+                    text-align: start;
+                }
+
+                select, input {
+                    padding: 10px;
+                    border-radius: 10px;
+                    outline: 1px solid $white-gray;
+                    border: none;
+                    font-size: 12px;
+                    font-weight: 300;
+                    color: $gray;
+                    cursor: pointer;
+                    transition: outline .3s ease-in-out;
+
+
+                    &:hover {
+                        outline: 1px solid rgba(4, 100, 243, .5);
+                        transition: outline .3s ease-in-out;
+                    }
+                }
+
+                input[type="number"]::-webkit-inner-spin-button,
+                input[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+                }
+
+                
+
+            }
+
+            .btn {
+                width: 50%;
+                padding: 15px;
+                border: none;
+                background-image: linear-gradient(145deg, $purple, $blue);
+                border-radius: 10px;
+                box-shadow: 0 15px 20px $blue-rgba;
+                color: $white;
+                font-size: 14px;
+                font-weight: 400;
+                cursor: pointer;
+                margin-bottom: 20px;
+                transition: opacity .3s ease-in-out;
+
+
+                &:hover {
+                    opacity: .75;
+                    transition: opacity .3s ease-in-out;
+                }
+            }
+
+            .btn.btn__disabled {
+                user-select: none;
+                opacity: .55;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    .card.history {
+        border-left: 1px solid $white-gray;
+        width: 100%;
+        
+        .header {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+
+            select {
+                border: none;
+                outline: none;
+                appearance: none;
+                background-color: $white-gray;
+                cursor: pointer;
+                color: $gray;
+                padding: 10px 20px;
+                border-radius: 10px;
+                transition: all .2s ease-in-out;
+
+
+                option {
+                    background-color: $white;
+                }
+
+                &:hover {
+                    background-color: $white;
+                    outline: 1px solid $white-gray;
+                    transition: all .2s ease-in-out;
+                }
+
+                
+            }
+
+            .title {
+                font-size: 14px;
+                font-weight: 500;
+                color: $black;
+            }
+            
+        }
+
+        .chart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 250px;
+            margin-top: 50px;
+
+            .doughnut__chart {
+                position: absolute;
+                top: -40px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .data {
+                display: flex;
+                flex-direction: column;
+                
+                span {
+                    font-size: 30px;
+                    font-weight: 500;
+                    color: $black;
+                }
+
+                small {
+                    font-size: 12px;
+                    font-weight: 300;
+                    color: $gray;
+                }
+            }
+        }
+
+        .list__container {
+            width: 100%;
+            height: 350px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                width: 8px;
+                height: 8px;
+            }
+        
+            &::-webkit-scrollbar-thumb {
+                border-radius: 8px;
+                background-color: #0004;
+                visibility: hidden;
+            }
+        
+            &:hover::-webkit-scrollbar-thumb {
+                visibility: visible;
+            }
+
+            .list__group {
+                width: 100%;
+                list-style: none;
+
+                .list__item {
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 5px;
+                    padding: 0 10px;
+                    border-radius: 10px;
+
+                    .data {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        column-gap: 5px;
+                        font-size: 12px;
+                        font-weight: 400;
+                        color: $black;
+
+                        .icon {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $green;
+                            font-size: 25px;
+                            color: $white-gray;
+                        }
+                    }
+
+                    .fecha {
+                        font-size: 12px;
+                        font-weight: 300;
+                        color: $gray;
+                    }
+
+                    .cantidad {
+                        font-size: 12px;
+                        font-weight: 400;
+                        color: $green;
+                    }
+
+                    .btn__container {
+                        position: absolute;
+                        top: 50%;
+                        right: 10px;
+                        transform: translateY(-50%);
+                        background-color: $white-gray;
+                        padding: 5px;
+                        display: none;
+
+                        button {
+                            border: none;
+                            outline: none;
+                            padding: 5px;
+                            border-radius: 5px;
+                            box-shadow: 0 8px 15px $blue-rgba;
+                            cursor: pointer;
+                            font-size: 14px;
+
+                            :hover {
+                                opacity: .5;
+                            }
+                        }
+
+                        .eliminar {
+                            background-color: $red;
+                            color: $white-gray;
+                            margin-right: 10px;
+                        }
+
+                        .editar {
+                            background-color: $green;
+                            color: $white;
+                        }
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: $white-gray;
+
+                        .btn__container {
+                            display: block;
+                        }
+                    }
+                }
+
+                .list__item.egreso {
+                    .data .icon {
+                        background-color: $red;
+                    }
+                    .cantidad {
+                        color: $red;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1020px) {
+    .transaccion__container {
+        grid-template-columns: 100%;
+    }
+}

@@ -62,9 +62,11 @@ $gray-light: #EDEFFF;
             }
         }
 
-        
-
-        
+        .input__error {
+            font-size: 10px;
+            font-weight: 400;
+            color: rgba(214, 2, 2, 0.842);
+        }
     }
 
     .btn__submit {

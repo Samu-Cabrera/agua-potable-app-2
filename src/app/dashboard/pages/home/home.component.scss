@@ -27,6 +27,7 @@ $color-white: #FFFFFF;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 15px;
             
             
             .data span, .icon__border i {
@@ -127,8 +128,44 @@ $color-white: #FFFFFF;
         }
 
         .card.four {
+            position: relative;
             grid-column: 4 / 6;
             grid-row: 1 / 4;
+
+            .data {
+                position: absolute;
+                top: 80%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                span {
+                    display: block;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: $color-gray;
+                    margin-bottom: 10px;
+
+                    .icon__ingreso {
+                        font-size: 20px;
+                        margin-right: 5px;
+                        color: $color-green;
+                    }
+                    .icon__ingreso {
+                        font-size: 20px;
+                        margin-right: 5px;
+                        color: $color-green;
+                    }
+
+                    .icon__egreso {
+                        font-size: 20px;
+                        margin-right: 5px;
+                        color: #FE1A43;
+                    }
+                }
+            }
         }
 
         .card.five {
@@ -155,6 +192,10 @@ $color-white: #FFFFFF;
             .card.four {
                 grid-column: 3 / 5;
                 grid-row: 2 / 4;
+
+                .data {
+                    top: 90%;
+                }
             }
     
             .card.five {
@@ -185,6 +226,10 @@ $color-white: #FFFFFF;
             .card.four {
                 grid-column: 2 / 3;
                 grid-row: 1 / 4;
+
+                .data {
+                    top: 50%;
+                }
             }
     
             .card.five {

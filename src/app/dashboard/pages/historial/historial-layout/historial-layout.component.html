@@ -17,14 +17,21 @@
             </li>
         </div>
         <div class="user__data">
-            <h2 class="user__name">Pedro Díaz</h2>
-            <p>Factura 31/10/2024</p>
+            <h2 class="user__name">{{ userFullName | titlecase }}</h2>
+            <p>Fecha {{ today | date:'dd-MM-yyy' }}</p>
         </div>
         <div class="filter">
-            <button class="calendar">
-                Enero 2024
-                <i class="ri-arrow-down-s-line"></i>
-            </button>
+            <div class="dropdown">
+                <button class="dropdown__button" (click)="toggleDropdown('year')">
+                  {{ selectedYear || 'Seleccionar Año' }}
+                  <i class="ri-arrow-down-s-line"></i>
+                </button>
+                <ul class="dropdown__menu" [class.active]="dropdownOpen === 'year'">
+                    @for (year of availableYears; track $index) {
+                        <li (click)="filterByYear(year)">{{ year }}</li>
+                    }
+                </ul>
+              </div>
             <button class="order">
                 <i class="ri-arrow-up-down-fill"></i>
             </button>

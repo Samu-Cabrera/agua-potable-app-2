@@ -9,6 +9,7 @@
             type="text"
             [animationHover]="true"
             class="input"
+            (value)="onValueInput($event)"
         />
         <div class="filter">
             <button class="btn active">
@@ -39,11 +40,15 @@
           </tr>
         </thead>
         <tbody>
-          @for (row of tableData; track $index) {
+          @for (row of tableData(); track $index) {
             <tr>
-                <td>{{ row.id }}</td>
+                <td>{{ $index + 1 }}</td>
                 <td>
-                    <i class="icon ri-checkbox-circle-line"></i>
+                    @if(row.comprobante){
+                        <i class="icon ri-checkbox-circle-line"></i>
+                    } @else {
+                        <i class="icon ri-close-circle-line false"></i>
+                    }
                 </td>
                 <td class="user">
                     <div class="avatar">
@@ -63,12 +68,15 @@
                     </p>
                 </td>
                 <td>
-                    <a 
+                    @for (action of actions(); track $index) {
+                        <a 
+                        [routerLink]="[action.routerLink, row.id]"
                         class="btn__action"
-                        [routerLink]="['/dashboard/comprobante/', row.id]">
-                        Generar
-                        <i class="ri-file-list-line"></i>
-                    </a>
+                        [ngClass]="action.color">
+                            {{ action.label  | titlecase}}
+                            <i [class]="action.icon"></i>
+                        </a>
+                    }
                 </td>
             </tr>
           }

@@ -8,60 +8,63 @@
         <p>Calle san Isidro, Coronel Bogado</p>
         <p>Cel: +5959586287790</p>
     </div>
-    <div class="data">
-        <h3 class="title">Recibo de dinero</h3>
-        <div class="data__user">
-            <h2>Usuario</h2>
-            <h3>Nombre:</h3>
-            <p>Samuel Melgarejo Cabrera</p>
-            <h3>CI:</h3>
-            <p>5.913.237</p>
-            <h3>Dirección:</h3>
-            <p>San Isidro, Coronel Bogado</p>
-        </div>
-        <div class="data__factura">
-            <h2>Factura</h2>
-            <h3>Nro</h3>
-            <h3>Consumo</h3>
-            <h3>Precio</h3>
-            <h3>IVA</h3>
-            <h3>Fecha</h3>
-            <h3>Total</h3>
-            <p>001</p>
-            <p>15.000 Lts</p>
-            <p>2 GS</p>
-            <p>10 %</p>
-            <p>23/08/2024</p>
-            <p>15.000 GS</p>
-        </div>
-        <div class="data__servicio">
-            <h2>Servicio</h2>
-            <h3>Servicio:</h3>
-            <p>Agua potable</p>
-            <h3>Forma de Pago:</h3>
-            <p>contado</p>
-            <h3>Metodo de pago:</h3>
-            <p>Efectivo</p>
-        </div>
-        <div class="fecha">
-            <h3>Fecha de emisión:</h3>
-            <p>23/08/2024</p>
-        </div>
-        <div class="importe">
-            <h3>Importe</h3>
-            <p>15.000 GS</p>
-        </div>
-        <div class="firma">
-            <div class="tesorera">
-                <h3>Lisia Mariana</h3>
-                <p>Tesorera</p>
+    @if(comprobante()){
+        <div class="data">
+            
+            <h3 class="title">Recibo de dinero</h3>
+            <div class="data__user">
+                <h2>Usuario</h2>
+                <h3>Nombre:</h3>
+                <p>{{ comprobante().username | titlecase }}</p>
+                <h3>CI:</h3>
+                <p>{{ comprobante().ci | number }}</p>
+                <h3>Dirección:</h3>
+                <p>{{ comprobante().userAdress | titlecase }}</p>
             </div>
-            <div class="cello">
-                <h3>Cello de la Junta</h3>
+            <div class="data__factura">
+                <h2>Factura</h2>
+                <h3>Nro</h3>
+                <h3>Consumo</h3>
+                <h3>Precio</h3>
+                <h3>IVA</h3>
+                <h3>Fecha</h3>
+                <h3>Total</h3>
+                <!-- facturas pendientes -->
+                 @for (item of comprobante().factura; track $index) {
+                     <p>{{ item.nroFactura | number }}</p>
+                     <p>{{ item.consumo.cantidad | number }} Lts</p>
+                     <p>{{ item.consumo.precio | number }} GS</p>
+                     <p>{{ item.consumo.iva | number }} %</p>
+                     <p>{{ item.fechaEmision | date:'dd-MM-yyy' }}</p>
+                     <p>{{ item.cuentaTotal | number }} GS</p>
+                 }
+            </div>
+            <div class="data__servicio">
+                <h2>Servicio</h2>
+                <h3>Servicio:</h3>
+                <p>{{ comprobante().servicio | titlecase }}</p>
+                <h3>Forma de Pago:</h3>
+                <p>{{ comprobante().formaPago | titlecase }}</p>
+                <h3>Importe del usuario:</h3>
+                <p>{{ comprobante().importe | number }} GS</p>
+            </div>
+            <div class="fecha">
+                <h3>Fecha de emisión:</h3>
+                <p>{{ comprobante().fecha | date:'dd-MM-yyy' }}</p>
+            </div>
+            <div class="importe">
+                <h3>A Pagar</h3>
+                <p>{{ comprobante().totalCuenta | number }} GS</p>
+            </div>
+            <div class="firma">
+                <div class="tesorera">
+                    <h3>{{ comprobante().tesorero }}</h3>
+                    <p>Tesorera</p>
+                </div>
+                <div class="cello">
+                    <h3>Cello de la Junta</h3>
+                </div>
             </div>
         </div>
-        <div class="codigo">
-            <img src="https://res.cloudinary.com/die4hw70e/image/upload/v1729885888/samu-img/qr_sin_fondo_s2aeff.png" alt="QR img">
-        </div>
-    </div>
+    }
 </section>
