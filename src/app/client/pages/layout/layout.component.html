@@ -1,0 +1,33 @@
+<div class="client__container">
+    <header class="header">
+        <div class="logo">
+            <img src="https://res.cloudinary.com/die4hw70e/image/upload/v1728393718/samu-img/logo-junta-de-saneamiento-2_di3y6j.png" alt="">
+        </div>
+        <div class="user__info">
+            <div class="data">
+                <h3>Samuel Mlegarejo</h3>
+                <span>samugmail.com</span>
+            </div>
+            <div class="avatar">
+                <img src="https://res.cloudinary.com/die4hw70e/image/upload/v1729263556/samu-img/realistic_image_of_a_man_ovxvqz.jpg" alt="">
+            </div>
+        </div>
+    </header>
+    <main class="content">
+        <router-outlet/>
+    </main>
+    <footer class="footer">
+        <a 
+            class="icon"
+            routerLink="/client/home">
+            <i class="ri-home-5-line"></i>
+            <span>Home</span>
+        </a>
+        <a 
+            class="icon"
+            routerLink="/auth/login">
+            <i class="ri-logout-circle-line"></i>
+            <span>Logout</span>
+        </a>
+    </footer>
+</div>

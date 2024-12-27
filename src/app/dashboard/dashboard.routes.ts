@@ -93,6 +93,10 @@ export const dashboardRoute: Routes = [
                 loadComponent: () => import('./pages/transaccion/transaccion.component').then(c => c.TransaccionComponent)
             },
             {
+                path: 'admin-users',
+                loadComponent: () => import('./pages/admin-users/admin-users.component').then(c => c.AdminUsersComponent)
+            },
+            {
                 path: '**',
                 redirectTo: ''
             }

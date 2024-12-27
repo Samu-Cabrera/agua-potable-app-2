@@ -1,0 +1,99 @@
+$dark: #353535;
+$dark-light: #888888;
+$blue: #0464F3;
+$blue-dark: rgba(1, 4, 79, .15);
+$magenta: #FD10D7;
+$white: #FFFFFF;
+$purple: #8155FE;
+$gray-light: #F5F5F5;
+
+.consumo__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 100px;
+    text-align: center;
+
+    .title {
+        font-size: 18px;
+        font-weight: 500;
+        color: $dark-light;
+    }
+
+    .circle__progress {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .data__container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+
+        .data {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            column-gap: 10px;
+            width: 100%;
+            max-width: 500px;
+            padding: 10px 0;
+            background-color: $white;
+            border-radius: 10px;
+            box-shadow: 0 15px 20px $blue-dark;
+
+            i {
+                font-size: 30px;
+                font-weight: 500;
+                color: #15E1B0;
+                margin-left: 10px;
+                opacity: .75;
+            }
+
+            i.consumo {
+                color: $blue;
+            }
+
+            i.limite {
+                color: #FE1A43;
+            }
+
+            span {
+                font-size: 14px;
+                font-weight: 400;
+                color: $dark-light;
+            }
+        }
+
+
+    }
+
+    .btn {
+        display: block;
+        text-decoration: none;
+        width: 100%;
+        max-width: 300px;
+        padding: 10px 20px;
+        background-color: $blue;
+        border-radius: 10px;
+        box-shadow: 0 15px 20px $blue-dark;
+        color: $gray-light;
+        font-size: 12px;
+        font-weight: 400;
+        cursor: pointer;
+        margin: 30px;
+        transition: opacity .2s ease;
+
+        &:hover {
+            opacity:.8;
+            transition: opacity .2s ease;
+        }
+    }
+
+    
+}

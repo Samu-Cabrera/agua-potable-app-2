@@ -28,8 +28,8 @@ export class UsuariosComponent implements OnInit {
     this._userService.getUsuarios().pipe(
       map(user => user.usuarios)
     ).subscribe((users: any[]) => {
-      const data1 = users.filter(user => user.estado === true);
-      const data2 = users.filter(user => user.estado === false);
+      const data1 = users.filter(user => user.estado === 'activo');
+      const data2 = users.filter(user => user.estado === 'eliminado');
       this.data = { data1: data1.length, data2: data2.length };
     });
   }

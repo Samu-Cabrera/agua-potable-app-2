@@ -56,6 +56,11 @@ export class LayoutComponent implements OnInit {
       icon: 'ri-exchange-dollar-fill',
       title: 'Transacciones',
       link: 'transacciones'
+    },
+    {
+      icon: 'ri-user-settings-line',
+      title: 'Usuarios',
+      link: 'admin-users'
     }
   ]
 

@@ -1,0 +1,18 @@
+<div class="home__container">
+    <div class="cards">
+        @for (icon of icons; track $index) {
+            <a 
+                class="card"
+                [routerLink]="icon.link">
+                <div class="border">
+                    <div class="icon">
+                        <i [class]="icon.icon"></i>
+                    </div>
+                </div>
+                <span>
+                    {{ icon.title | titlecase }}
+                </span>
+            </a>
+        }
+    </div>
+</div>

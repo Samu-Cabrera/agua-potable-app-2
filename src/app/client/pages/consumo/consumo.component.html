@@ -1,0 +1,29 @@
+<div class="consumo__container">
+    <h3 class="title">Consumo</h3>
+
+    <div class="circle__progress">
+        <circle-progress 
+            [value]="value"
+            [maxValue]="maxValue"
+            [diaConsumo]="diaConsumo"/>
+    </div>
+
+    <div class="data__container">
+        <div class="data">
+            <i class="ri-contrast-drop-2-line consumo"></i>
+            <span>Consumo: 14.000 litros </span>
+        </div>
+        <div class="data">
+            <i class="ri-error-warning-line limite"></i>
+            <span>Limite: 15.000 litros  </span>
+        </div>
+        <div class="data">
+            <i class="ri-money-dollar-circle-line"></i>
+            <span>A pagar 15.000 Gs </span>
+        </div>
+    </div>
+    <a class="btn">
+        Ver Factura
+        <i class="ri-file-list-line"></i>
+    </a>
+</div>

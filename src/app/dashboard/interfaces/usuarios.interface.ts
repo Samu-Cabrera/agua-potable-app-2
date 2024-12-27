@@ -13,7 +13,7 @@ export interface Usuario {
     telefono:  number;
     medidor:   string;
     email:     string;
-    estado:    boolean;
+    estado:    'pendiente' | 'activo' | 'eliminado';
     roles:     Role[];
     imagen:    string;
     createdAt: Date;

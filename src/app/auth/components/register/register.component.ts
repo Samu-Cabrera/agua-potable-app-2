@@ -31,9 +31,9 @@ export class RegisterComponent {
   btnShow: boolean = false;
 
   registerForm: FormGroup = this.fb.group({
-    nombre: ['test1', [Validators.required]],
-    apellido: ['test1', [Validators.required]],
-    ci: ['111111', [
+    nombre: ['', [Validators.required]],
+    apellido: ['', [Validators.required]],
+    ci: ['', [
       Validators.required,
       minValidators,
       maxValidators

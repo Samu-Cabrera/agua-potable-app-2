@@ -191,6 +191,21 @@ $white-rgba: rgba(255, 255, 255, .7);
                 transform: scale(.98);
             }
         }
+        
+        .message__container {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+
+            h3 {
+                font-size: 14px;
+                font-weight: 400;
+                color: $dark-light;
+            }
+        }
     }
 }
 
@@ -206,7 +221,8 @@ $white-rgba: rgba(255, 255, 255, .7);
 
     h3 {
         font-size: 16px;
-        font-weight: 400;
+        font-weight: 300;
+        color: $dark-light;
     }
     span {
         color: #0D9F00;

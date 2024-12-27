@@ -25,18 +25,17 @@ import { PhotoPipe } from '../../pipes/photo.pipe';
 export class MedidorUserListComponent implements OnInit{
 
   private readonly _userService = inject(UserService);
-  public users: Usuario[] = [];
+  public users!: Usuario[];
   public usersFound: Usuario[] = [];
 
   ngOnInit(): void {
-
     const saveUser = localStorage.getItem('users');
     this.users = saveUser ? JSON.parse(saveUser) : [];
 
     this._userService.getUser().subscribe(res => {
       if (!saveUser) {
         this.users = res.usuarios;
-        localStorage.setItem('users', JSON.stringify(this.users));
+        // localStorage.setItem('users', JSON.stringify(this.users));
       }
     });
   }

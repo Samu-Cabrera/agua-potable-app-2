@@ -80,7 +80,7 @@ export class TransaccionComponent implements OnInit {
   updateChartData(): void {
     const ingreso = this.transactions.filter(t => t.type === 'ingreso').reduce((acc, ing) => acc + ing.amount, 0);
     const egreso = this.transactions.filter(t => t.type === 'egreso').reduce((acc, eg) => acc + eg.amount, 0);
-    this.data = {data1: egreso, data2: ingreso};
+    this.data = {data1: ingreso, data2: egreso};
   }
 
   calculateCurrentBalance(): void {

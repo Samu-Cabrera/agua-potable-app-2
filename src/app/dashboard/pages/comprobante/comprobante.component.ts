@@ -4,7 +4,7 @@ import { InputComponent } from "../../shared/input/input.component";
 import { ButtonComponent } from "../../shared/button/button.component";
 import { Comprobante, SharedComprobanteComponent } from '../../shared/shared-comprobante/shared-comprobante.component';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { forkJoin, map, switchMap } from 'rxjs';
 import { Factura } from '../../interfaces/facturas.interfaces';
 import { FacturasService } from '../../services/facturas.service';
 import { Recibo } from '../../interfaces/recibo.interface';
@@ -43,7 +43,6 @@ export class ComprobanteComponent implements OnInit {
   public comprobante!: Comprobante;
   ngOnInit(): void {
     this.loadFacturas();
-    this.loadRecibos();
   }
 
   loadFacturas(): void {
@@ -54,16 +53,18 @@ export class ComprobanteComponent implements OnInit {
       }),
     ).subscribe((respuesta: any) => {
       this._facturasPendientes = respuesta.factura.filter((factura: any) => factura.estadoPago === false);
+      console.log(this._facturasPendientes);
+      this.loadRecibos(this.userId);
     });
   }
 
-  loadRecibos(): void {
-    this._reciboService.getRecibos()
-      .subscribe(recibos => {
-        this._recibos = recibos;
-        this._userData = recibos[0].userID;
-        this.asignarRecibo();
-      });
+  loadRecibos(id: string): void {
+    this._reciboService.getRecibos().subscribe(recibos => {
+      const recibo = recibos.filter(recibo => recibo.userID._id === id)
+      this._recibos = recibo;
+      this._userData = recibos[0].userID;
+      this.asignarRecibo();
+    });  
   }
 
   asignarRecibo(): void {
