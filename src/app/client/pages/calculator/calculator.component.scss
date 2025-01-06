@@ -1,0 +1,103 @@
+$dark: #353535;
+$dark-light: #888888;
+$blue: #0464F3;
+$blue-dark: rgba(1, 4, 79, .15);
+$magenta: #FD10D7;
+$white: #FFFFFF;
+$purple: #8155FE;
+
+.calculator__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+        font-size: 18px;
+        font-weight: 500;
+        color: $dark-light;
+        margin-bottom: 15px;
+    }
+
+    .card {
+        width: 400px;
+        min-height: 300px;
+        background-color: $white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 20px $blue-dark;
+        margin-bottom: 200px;
+
+        .card__header {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 10px;
+            font-size: 14px;
+            color: $dark-light;
+            margin-bottom: 40px;
+
+            p {
+                justify-self: end;
+                font-weight: 500;
+            }
+        }
+
+        .card__body {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 20px;
+
+            input {
+                width: 100%;
+                padding: 10px 15px;
+                outline: none;
+                border: none;
+                border-radius: 10px;
+                border: 1px solid rgba(4, 100, 243, .2);
+                font-size: 12px;
+                font-weight: 300;
+                color: $dark-light;
+                transition: border .2s ease;
+
+                &:hover {
+                    border: 1px solid rgba(4, 100, 243, .5);
+                    transition: border .2s ease;
+
+                }
+            }
+
+            input[type=number]::-webkit-outer-spin-button,
+            input[type=number]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 15px 20px;
+                background-color: $blue;
+                color: $white;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+                box-shadow: 0 15px 20px $blue-dark;
+                transition: opacity 0.3s ease-in-out;
+
+                &:hover {
+                    opacity: .75;
+                    transition: opacity 0.3s ease-in-out;
+                }
+            }
+        }
+        
+
+
+    }
+
+
+
+}

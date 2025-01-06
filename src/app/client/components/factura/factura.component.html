@@ -1,0 +1,107 @@
+<div class="factura__content">
+    <!-- logo de la junta de saneamiento -->
+    <div class="factura__logo">
+        <div class="logo">
+            <div class="logo__imagen">
+                <img 
+                    src="https://res.cloudinary.com/die4hw70e/image/upload/v1722607548/samples/samu/logo-junta-de-saneamiento-2_qynfno.png" 
+                    alt="Factura Logo">
+
+            </div>
+            <div class="nombre">
+                <h2>Junta de Saneamiento</h2>
+                <h3>San Isidro</h3>
+            </div>
+        </div>
+        <div class="numero__factura">
+            <span>N°: {{ factura().nroFactura }}</span>
+        </div>
+    </div>
+
+    <div class="factura__data-container">
+        <h2 class="factura__title">
+            Factura
+        </h2>
+
+        <div class="factura__data">
+            <div class="data__item">
+               <div class="title">
+                   <h2>Usuario</h2>
+               </div>
+               <div class="item__container user">
+                   <h3>Nombre:</h3>
+                   <p>{{ factura().userID.nombre + ' ' + factura().userID.apellido | titlecase}}</p>
+                   <h3>CI:</h3>
+                   <p>{{ factura().userID.ci | number }}</p>
+                   <h3>Dirección:</h3>
+                   <p>{{ factura().userID.direccion | titlecase }}</p>
+               </div>
+            </div>
+            <!-- información de consumo -->
+            <div class="data__item">
+                <div class="title">
+                   <h2>Consumo</h2>
+                </div>
+                <div class="item__container">
+                    <h3> Cantidad: </h3>
+                    <p>{{ factura().consumo.cantidad | number }}</p>
+                    <span>Lts</span>
+                    <h3>IVA:</h3>
+                    <p>{{ factura().consumo.iva | number }}</p>
+                    <span>GS</span>
+                    <h3>Precio:</h3>
+                    <p>{{ factura().consumo.precio }}</p>
+                    <span>GS</span>
+                    <h3>A pagar:</h3>
+                    <p>{{  factura().cuentaTotal | number }}</p>
+                    <span>GS</span>
+                </div>
+           </div>
+            <!-- información de deudas pendientes -->
+            <div class="data__item">
+                <div class="title">
+                    <h2>Pendiente</h2>
+                </div>
+
+                <div class="table__container">
+                    <!-- header -->
+                    <h3>Factura</h3>
+                    <h3>Cantidad</h3>
+                    <h3>Fecha</h3>
+                    <h3>IVA</h3>
+                    <h3>Total</h3>
+                    <!-- body -->
+                     @for (factura of facturasPendientes(); track $index) {
+                        <span>{{ factura.nroFactura| number }}</span>
+                        <p>{{ factura.consumo.cantidad | number }} L</p>
+                        <span>{{ factura.fechaEmision | date:'dd/MM/yyy' }}</span>
+                        <p>{{ factura.consumo.iva | number }} ₲</p>
+                        <p>{{ factura.cuentaTotal | number }} ₲</p>
+                    }
+                    <h3 class="deuda__total">Pendiente: 
+                        <span>{{ '' | number }} GS</span>
+                    </h3>
+                </div>
+
+            </div>
+
+            <div class="factura__date">
+               <div class="emsion">
+                   <p>Emisión:</p>
+                   <span>{{ factura().fechaEmision | date:'dd/MM/yyy' }}</span>
+               </div>
+               <div class="vencimiento">
+                   <p>Vence:</p>
+                   <span>{{ factura().fechaVencimiento | date:'dd/MM/yyy' }}</span>
+               </div>
+            </div>
+             <!-- total a pagar -->
+             <div class="cuenta">
+                <h4>Contado</h4>
+                <span>Total: {{ cuentaTotal() | number }} GS</span>
+             </div>
+        </div>
+
+    </div>
+
+</div> 

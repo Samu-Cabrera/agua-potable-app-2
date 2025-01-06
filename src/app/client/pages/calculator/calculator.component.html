@@ -1,0 +1,27 @@
+<div class="calculator__container">
+    <h2 class="title">Calculadora de consumo</h2>
+
+    <div class="card">
+        <div class="card__header">
+            <span>Lectura Anterior</span>
+            <p>{{ consumo.lectura | number }} Lts</p>
+            <span>Lectura Actual</span>
+            <p>{{ lecturaActual | number }} Lts</p>
+            <span>Consumo</span>
+            <p>{{ lectura | number }} Lts</p>
+            <span>Tiempo</span>
+            <p>{{ tiempoConsumo | number }} días</p>
+        </div>
+        <div class="card__body">
+            <input 
+                type="number" 
+                placeholder="Ingrese lectura"
+                [formControl]="input">
+            <button 
+                class="btn"
+                (click)="calcularConsumo()">
+                Calcular
+            </button>
+        </div>
+    </div>
+</div>

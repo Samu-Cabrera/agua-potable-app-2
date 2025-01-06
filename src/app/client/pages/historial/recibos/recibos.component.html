@@ -1,0 +1,21 @@
+<div class="recibo__container">
+    @for (item of cardData; track $index) {
+        <a 
+            (click)="openModal(item.id!, item.nro)"
+            class="btn__item">
+            <card [cardData]="item"/>
+        </a>
+    }
+</div>
+
+@if (modal) {
+    <app-modal 
+        titleModal=""
+        (closeModal)="closeModal($event)"
+        class="modal">
+        <div class="recibo">
+            <app-recibo [comprobante]="reciboDetails"/>
+        </div>
+    </app-modal>
+    
+}

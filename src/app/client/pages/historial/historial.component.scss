@@ -1,0 +1,47 @@
+$dark: #353535;
+$dark-light: #888888;
+$blue: #0464F3;
+$blue-dark: rgba(1, 4, 79, .15);
+$magenta: #FD10D7;
+$white: #FFFFFF;
+$purple: #8155FE;
+$gray-light: #F5F5F5;
+
+.historial__container {
+    width: 100%;
+
+    .menu {
+        width: 100%;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+
+        .title {
+            font-size: 18px;
+            font-weight: 500;
+            color: $dark-light;
+        }
+
+
+        .btns {
+            display: flex;
+            justify-content: center;
+            column-gap: 5px;
+
+            .btn{
+                display: block;
+                text-decoration: none;
+                padding: 8px 30px;
+                color: $dark-light;
+                font-size: 14px;
+                font-weight: 300;
+            }
+
+            .btn.active {
+                background-color: $blue;
+                color: $white;
+                border-radius: 20px;
+            }
+        }
+    }
+}

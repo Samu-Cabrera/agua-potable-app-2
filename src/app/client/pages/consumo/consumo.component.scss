@@ -78,8 +78,9 @@ $gray-light: #F5F5F5;
         text-decoration: none;
         width: 100%;
         max-width: 300px;
-        padding: 10px 20px;
+        padding: 15px 20px;
         background-color: $blue;
+        border: none;
         border-radius: 10px;
         box-shadow: 0 15px 20px $blue-dark;
         color: $gray-light;
@@ -96,4 +97,37 @@ $gray-light: #F5F5F5;
     }
 
     
+}
+
+.modal__container {
+    width: 50%;
+    height: 90vh;
+    background-color: $white;
+}
+
+
+.modal {
+    position: absolute;
+    z-index: 1500;
+
+    .factura {
+        width: 100%;
+        max-height: 450px;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            background-color: #0004;
+            visibility: hidden;
+        }
+    
+        &:hover::-webkit-scrollbar-thumb {
+            visibility: visible;
+        }
+    }
 }

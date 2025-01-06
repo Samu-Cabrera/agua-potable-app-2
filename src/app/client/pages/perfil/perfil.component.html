@@ -1,0 +1,47 @@
+<div class="perfil__container">
+    <h2 class="title">Editar Perfil</h2>
+
+    <div class="avatar">
+        <div class="border">
+            <div class="img">
+                <img src="https://res.cloudinary.com/die4hw70e/image/upload/v1728483693/samu-img/user_avatar_sirmyv.jpg" alt="Avatar">
+            </div>
+        </div>
+        <button 
+            class="edit"
+            (click)="subirPhoto()">
+            <i class="ri-image-edit-line"></i>
+        </button>
+    </div>
+
+    <form class="form">
+        @for (input of inputs; track $index) {
+            <div class="form__group">
+                <label 
+                    class="form__label" 
+                    [for]="input.labelFor">
+                    {{ input.label | titlecase }}
+                </label>
+                <input [type]="input.inputType" 
+                class="form__input" 
+                [id]="input.inputId">
+            </div>
+        }
+
+        <button class="form__action">
+            Guardar Cambios
+        </button>
+    </form>
+</div>
+
+@if (modal) {
+    <app-modal 
+        titleModal=""    
+        (closeModal)="closeModal($event)"
+        class="modal">
+        <h2>
+            Subir Foto
+        </h2>
+    </app-modal>
+}
+

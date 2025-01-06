@@ -1,0 +1,74 @@
+.factura__container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+
+    .btn__item {
+        text-decoration: none;
+        border: none;
+        line-height: 20px;
+        font-size: 12px;
+        font-weight: 300;
+        text-align: start;
+        transition: opacity .2s ease-in-out;
+        cursor: pointer;
+        background-color: transparent;
+
+        &:hover {
+            opacity: 0.75;
+            transition: opacity .2s ease-in-out;
+
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .factura__container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 820px) {
+    .factura__container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 620px) {
+    .factura__container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .factura__container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.modal {
+    position: absolute;
+    z-index: 1500;
+
+    .factura {
+        width: 100%;
+        max-height: 450px;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            background-color: #0004;
+            visibility: hidden;
+        }
+    
+        &:hover::-webkit-scrollbar-thumb {
+            visibility: visible;
+        }
+    }
+}

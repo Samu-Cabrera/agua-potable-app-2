@@ -1,0 +1,17 @@
+<div class="historial__container">
+    <div class="menu">
+        <div class="title">Historial</div>
+        <div class="btns">
+            @for (item of menu; track $index) {
+                <a
+                    class="btn"
+                    [routerLink]="item.link"
+                    routerLinkActive="active">
+                    {{ item.title }}
+                </a>
+            }
+        </div>
+    </div>
+    <!-- Vistas -->
+    <router-outlet/>
+</div>

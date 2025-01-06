@@ -1,0 +1,147 @@
+$dark: #353535;
+$dark-light: #888888;
+$blue: #0464F3;
+$blue-dark: rgba(1, 4, 79, .15);
+$magenta: rgba(253, 16, 215, .75);
+$white: #FFFFFF;
+$purple: #8155FE;
+$gray-light: #F5F5F5;
+
+.perfil__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 15px;
+
+    .title {
+        font-size: 18px;
+        font-weight: 500;
+        color: $dark-light;
+    }
+
+    .avatar {
+        position: relative;
+        margin-bottom: 15px;
+
+        .border {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-image: linear-gradient(330deg, $blue, $magenta);
+            padding: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+                background-color: $white;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .edit {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #BEBEBE;
+            border: none;
+            outline: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            outline: 3px solid $gray-light;
+            color: $gray-light;
+            font-size: 25px;
+            cursor: pointer;
+        }
+    }
+
+    .form {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        row-gap: 15px;
+        margin-bottom: 100px;
+
+        .form__group {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid #D9E3FE;
+            border-radius: 10px;
+            background-color: $white;
+            transition: border .2s ease-in-out;
+
+            .form__label {
+                position: absolute;
+                top: -10px;
+                left: 10px;
+                padding: 2px 10px;
+                background-color: $gray-light;
+                border-radius: 2px;
+                font-size: 10px;
+                font-weight: 300;
+                color: $dark-light;
+            }
+
+            .form__input {
+                width: 100%;
+                height: 100%;
+                outline: none;
+                border: none;
+                padding: 15px 20px;
+                font-size: 12px;
+                font-weight: 400;
+                color: $dark-light;
+                border-radius: 10px;
+            }
+
+            &:hover {
+                border: 1px solid #0464f381;
+                transition: border .2s  ease-in;
+            }
+        }
+
+        .form__action {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px 30px;
+            background-image: linear-gradient(320deg, $blue, $purple);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 15px 20px $blue-dark;
+            margin-top: 30px;
+            color: $gray-light;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity .2s ease-in-out;
+
+            &:hover {
+                opacity:.75;
+                transition: opacity .2s ease-in-out;
+            }
+        }
+    }
+
+
+}
+
+.modal {
+    position: absolute;
+    z-index: 2000;
+}

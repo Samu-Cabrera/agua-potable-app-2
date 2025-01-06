@@ -1,0 +1,108 @@
+$dark: #353535;
+$dark-light: #888888;
+$blue: #0464F3;
+$blue-dark: rgba(1, 4, 79, .15);
+$magenta: #FD10D7;
+$white: #FFFFFF;
+$purple: #8155FE;
+$gray-light: #F5F5F5;
+
+.aviso__container {
+    width: 100%;
+    text-align: center;
+
+    .title {
+        color: $dark-light;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+
+    .user {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-image: linear-gradient(145deg, $blue, $magenta);
+            overflow: hidden;
+            padding: 2px;
+            object-fit: cover;
+            user-select: none;
+            box-shadow: 0 10px 15px $blue-dark;
+        
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+        }
+
+        .rol {
+            font-size: 14px;
+            font-weight: 300;
+            color: $dark-light;
+        }
+    }
+
+    .aviso__group {
+        width: 100%;
+        height: 300px;
+        overflow-x: auto;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            background-color: #0004;
+            visibility: hidden;
+        }
+    
+        &:hover::-webkit-scrollbar-thumb {
+            visibility: visible;
+        }
+
+        .aviso__list {
+            position: relative;
+            max-width: 90%;
+            width: fit-content;
+            list-style: none;
+            padding: 30px;
+            margin-bottom: 15px;
+            background-color: #E1E4FF;
+            border-radius: 50px;
+            
+            &:first-child {
+                border-radius: 50px 50px 50px 0;
+                
+            }
+
+            &:last-child {
+                border-radius: 0 50px 50px 50px;
+            }
+
+            p {
+                font-size: 12px;
+                font-weight: 400;
+                color: $dark;
+            }
+
+            span {
+                position: absolute;
+                bottom: 15px;
+                right: 30px;
+                font-size: 10px;
+                font-weight: 300;
+                color: $dark-light;
+            }
+
+        }
+    }
+}

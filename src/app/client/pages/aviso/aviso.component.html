@@ -1,0 +1,25 @@
+<div class="aviso__container">
+    <h3 class="title">
+        Avisos
+    </h3>
+    <div class="user">
+        <div class="avatar">
+            <img src="https://res.cloudinary.com/die4hw70e/image/upload/v1729263556/samu-img/realistic_image_of_a_man_ovxvqz.jpg" alt="">
+        </div>
+        <span class="rol">
+            Admin
+        </span>
+    </div>
+    <ul class="aviso__group">
+        @for (aviso of avisos; track $index) {
+            <li class="aviso__list">
+                <p>
+                    {{ aviso.mensaje }}
+                </p>
+                <span>
+                    {{ aviso.createdAt| date:'dd-MM-yyy' }}
+                </span>
+            </li>
+        }
+    </ul>
+</div>
